@@ -1,32 +1,32 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express from 'express';
-import path from 'path';
+import './database/index';
 
+import express from 'express';
 import homeRoutes from './routes/homeRoutes';
+import userRoutes from './routes/userRoutes';
+import tokenRoutes from './routes/tokenRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
-import loginRoutes from './routes/loginRoutes';
 
 class App {
-    constructor() {
-        this.app = express();
-        this.app.set('views', path.resolve(__dirname, 'views'));
-        this.app.set('view engine', 'ejs');
-        this.middlewares();
-        this.routes();
-    }
+  constructor() {
+    this.app = express();
+    this.middlewares();
+    this.routes();
+  }
 
-    middlewares() {
-        this.app.use(express.urlencoded({ extended: true }));
-        this.app.use(express.json());
-    }
+  middlewares() {
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.json());
+  }
 
-    routes() {
-        this.app.use('/', homeRoutes);
-        this.app.use('/equipment', equipmentRoutes);
-        this.app.use('/login', loginRoutes);
-    }
+  routes() {
+    this.app.use('/', homeRoutes);
+    this.app.use('/user/', userRoutes);
+    this.app.use('/token/', tokenRoutes);
+    this.app.use('/equipment/', equipmentRoutes);
+  }
 }
 
 export default new App().app;

@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import equipmentController from '../app/controllers/EquipmentController';
+import EquipmentController from '../controllers/EquipmentController';
 
 const router = new Router();
 
-router.get('/', equipmentController.index);
-router.post('/', equipmentController.store);
+router.get('/', EquipmentController.show);
+router.post('/', EquipmentController.store);
+router.put('/', EquipmentController.update);
+router.delete('/', EquipmentController.delete);
 
 export default router;
