@@ -4,4 +4,4 @@ dotenv.config();
 import app from './app';
 
 const port = process.env.APP_PORT;
-app.listen(port || 3000);
+app.listen(port || 5000);
