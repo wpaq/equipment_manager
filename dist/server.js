@@ -3,4 +3,7 @@ _dotenv2.default.config();
 
 var _app = require('./app'); var _app2 = _interopRequireDefault(_app);
 
-_app2.default.listen(process.env.APP_PORT);
+const port = process.env.PORT || 8000;
+_app2.default.listen(port, () => {
+    console.log("App is running on port " + port);
+});
