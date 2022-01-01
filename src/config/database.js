@@ -14,4 +14,10 @@ module.exports = {
     createdAt: 'created_at',
     updatedAt: 'updated_at',
   },
+  dialectOptions: {
+    connectionString: process.env.DATABASE_URI,
+    ssl: { 
+        rejectUnauthorized: false 
+    }
+  },
 };
