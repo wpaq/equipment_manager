@@ -1,4 +1,4 @@
-import Sequelize, { Model, DataTypes } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 export default class Equipment extends Model {
     static init(sequelize) {
@@ -34,6 +34,7 @@ export default class Equipment extends Model {
             },
             {
                 sequelize,
+                freezeTableName: true,
                 tableName: 'equipments'
             },
         );
