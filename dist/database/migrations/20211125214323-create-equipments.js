@@ -17,15 +17,15 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      setor: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       empresa: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      observacao: {
+      local: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      responsavel: {
         type: Sequelize.STRING,
         allowNull: true
       },

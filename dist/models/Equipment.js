@@ -34,6 +34,7 @@
             },
             {
                 sequelize,
+                freezeTableName: true,
                 tableName: 'equipments'
             },
         );
