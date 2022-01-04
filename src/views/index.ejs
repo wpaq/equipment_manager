@@ -2,41 +2,45 @@
 
 <div class="container">
     <div class="row">
-        <h1 class=" text-center">Equipments</h1>
-        <p class="text-center lead">Seus Equipments estão abaixo</p>
+        <h1 class="text-center">Equipamentos</h1>
+        <p class="text-center lead">Seus Equipamentos estão abaixo</p>
 
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Tombo</th>
-                <th scope="col">Equipamento</th>
-                <th scope="col">Setor</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">Observação</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">190452</th>
-                <td>Gabinete</td>
-                <td>PAD</td>
-                <td>PMJN</td>
-                <td>Com defeito</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>PMJN</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
+        <% if (equipments.length > 0) { %>
+            <div class="responsive-table">
+                <table class="table my-3">
+                    <tr>
+                        <th>Tombo</th>
+                        <th>Equipamento</th>
+                        <th>Empresa</th>
+                        <th>Local</th>
+                        <th>Responsavel</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <% equipments.forEach(equipment => { %>
+                    <tr>
+                        <td><%= equipment.tombo %></td>
+                        <td><%= equipment.equipamento %></td>
+                        <td><%= equipment.empresa %></td>
+                        <td><%= equipment.local %></td>
+                        <td><%= equipment.responsavel %></td>
+                        <td>
+                            <a href="/equipment/index/<%= equipment._id %>">Editar</a>
+                        </td>
+                        <td>
+                            <a
+                                class="text-danger"
+                                href="/equipment/delete/<%= equipment._id %>"
+                                >Excluir</a
+                            >
+                        </td>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+        <% } else { %>
+            <p class="text-center lead">Não existem contatos na sua agenda.</p>
+        <% } %>
     </div>
 </div>
 

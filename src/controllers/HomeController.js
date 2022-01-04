@@ -1,6 +1,10 @@
+import Equipment from '../models/Equipment';
+
 class HomeController {
   async index(req, res) {
-    res.json('Index');
+    const equipments = await Equipment.findAll();
+
+    return res.render('index', { equipments });
   }
 }
 

@@ -8,6 +8,7 @@ import './database/index';
 import express from 'express';
 import homeRoutes from './routes/homeRoutes';
 import userRoutes from './routes/userRoutes';
+import loginRoutes from './routes/loginRoutes';
 import tokenRoutes from './routes/tokenRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
 
@@ -28,6 +29,7 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/user/', userRoutes);
+    this.app.use('/login/', loginRoutes);
     this.app.use('/token/', tokenRoutes);
     this.app.use('/equipment/', equipmentRoutes);
   }
