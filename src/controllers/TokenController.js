@@ -30,7 +30,8 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
-    res.cookie('authorization', 'Bearer ' + token);
+    res.cookie('access_token', token);
+
     res.json({ token, user: user.nome, id, email });
   }
 }
