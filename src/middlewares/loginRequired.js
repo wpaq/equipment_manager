@@ -2,10 +2,22 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 
 export default async (req, res, next) => {
-  const rawCookies = req.headers.cookie.split('; ');
+  const rawCookies = req.headers.cookie;
+  
+  // Verifica de existem cookies
+  if (!rawCookies) {
+    req.flash('errors', 'Você precisa fazer login.');
+    req.session.save(function() {
+        return res.status(401).redirect('login');
+    });
+    return;
+  }
+  
+  // Se exister separa eles e faz a leitura pra verificar se o authorization existe
+  const rawCookiesSplit = rawCookies.split('; ');
   const parsedCookies = {};
 
-  rawCookies.forEach(rawCookie => {
+  rawCookiesSplit.forEach(rawCookie => {
     const parsedCookie = rawCookie.split('=');
 
     parsedCookies[parsedCookie[0]] = parsedCookie[1];
@@ -14,14 +26,19 @@ export default async (req, res, next) => {
   const authorization = parsedCookies['access_token'];
 
   if (!authorization) {
-    return res.status(404).json({
-      errors: ['Login Required'],
+    req.flash('errors', 'Você precisa fazer login.');
+    req.session.save(function() {
+        return res.status(401).redirect('login');
     });
+    return;
   }
+
 
   try {
     const dados = jwt.verify(authorization, process.env.TOKEN_SECRET);
     const { id, email } = dados;
+
+    console.log(dados)
 
     const user = await User.findOne({
       where: {
@@ -31,9 +48,11 @@ export default async (req, res, next) => {
     });
 
     if (!user) {
-      return res.status(404).json({
-        errors: ['Usuário inválido'],
-      });
+        req.flash('errors', 'Usuário inválido.');
+        req.session.save(function() {
+            return res.status(401).redirect('login');
+        });
+        return;
     }
 
     req.userId = id;
@@ -41,8 +60,8 @@ export default async (req, res, next) => {
 
     return next();
   } catch (e) {
-    return res.status(404).json({
-      errors: ['Token expirado ou inválido'],
-    });
+    req.flash('errors', 'Token expirado ou inválido.');
+    req.session.destroy();
+    return res.status(401).redirect('login');
   }
 };

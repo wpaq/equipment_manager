@@ -1,33 +1,54 @@
 <%- include('includes/head'); %>
 
-<form class="form-signin" action="/token" method="post">
-  <h1 class="h3 mb-3 font-weight-normal text-center">Log In</h1>
-  <label for="email" class="sr-only">Email address</label>
-  <input
-    type="email"
-    name="email"
-    id="inputEmail"
-    class="form-control"
-    placeholder="Email address"
-    required
-    autofocus
-  />
-  <label for="password" class="sr-only">Password</label>
-  <input
-    type="password"
-    name="password"
-    id="inputPassword"
-    class="form-control"
-    placeholder="Password"
-    required
-  />
-  <div class="checkbox mb-3">
-    <label> <input type="checkbox" value="remember-me" /> Remember me </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">
-    Sign in
-  </button>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; wpaq 2022</p>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class=" text-center">Fazer login</h1>
+            <p class="text-center lead">Se já tiver uma conta, faça login abaixo:</p>
+
+            <%- include('includes/messages'); %>
+
+            <div class="row">
+                <div class="col-lg my-3">
+                    <form class="form-signin" action="/token" method="post">
+
+                        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
+                        <label for="email" class="sr-only">Email address</label>
+                        <input
+                          type="email"
+                          name="email"
+                          id="inputEmail"
+                          class="form-control"
+                          placeholder="Email address"
+                          required
+                          autofocus
+                        />
+                        <label for="password" class="sr-only">Password</label>
+                        <input
+                          type="password"
+                          name="password"
+                          id="inputPassword"
+                          class="form-control"
+                          placeholder="Password"
+                          required
+                        />
+                        <div class="checkbox mb-3">
+                          <label> <input type="checkbox" value="remember-me" /> Remember me </label>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">
+                          Sign in
+                        </button>
+                        <p class="mt-5 mb-3 text-muted text-center">&copy; wpaq 2022</p>
+                      </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
 
 <%- include('includes/footer'); %>

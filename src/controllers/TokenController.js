@@ -6,23 +6,29 @@ class TokenController {
     const { email = '', password = '' } = req.body;
 
     if (!email || !password) {
-      return res.status(401).json({
-        errors: ['Credenciais inválidas'],
-      });
+        req.flash('errors', 'Credenciais inválidas.');
+        req.session.save(function() {
+          return res.status(401).redirect('login');
+        });
+        return;
     }
 
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.status(401).json({
-        errors: ['Usuário não existe'],
+      req.flash('errors', 'User does not exists');
+      req.session.save(function() {
+        return res.status(401).redirect('login');
       });
+      return;
     }
 
     if (!(await user.passwordIsValid(password))) {
-      return res.status(401).json({
-        errors: ['Senha inválida'],
-      });
+        req.flash('errors', 'Password invalid.');
+        req.session.save(function() {
+          return res.status(401).redirect('login');
+        });
+        return;
     }
 
     const { id } = user;
@@ -32,7 +38,12 @@ class TokenController {
 
     res.cookie('access_token', token);
 
-    res.json({ token, user: user.nome, id, email });
+    req.flash('success', 'Usuário logado com sucesso');
+    req.session.user = user;
+    req.session.token = token;
+    req.session.save(function() {
+        return res.redirect('/');
+    }); 
   }
 }
 

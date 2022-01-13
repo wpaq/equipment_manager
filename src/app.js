@@ -4,6 +4,8 @@ dotenv.config();
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import flash from 'connect-flash';
+import csrf from 'csurf';
 import cors from 'cors';
 import helmet from 'helmet';
 
@@ -15,6 +17,7 @@ import userRoutes from './routes/userRoutes';
 import loginRoutes from './routes/loginRoutes';
 import tokenRoutes from './routes/tokenRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
+import { middlewareGlobal, checkCsrfError, csrfMiddleware } from './middlewares/middleware';
 
 class App {
   constructor() {
@@ -24,20 +27,29 @@ class App {
   }
 
   middlewares() {
+    this.app.use(cors());
+    this.app.use(helmet());
+
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());    
+    this.app.use(bodyParser.urlencoded());
+    this.app.use(cookieParser());
     this.app.set('trust proxy', 1);
     this.app.use(session({
         secret: process.env.TOKEN_SECRET,
         resave: false,
-        saveUninitialized: true,
-        cookie: { secure: true }
+        saveUninitialized: false,
+        cookie: { 
+            maxAge: 1000 * 60 * 60 * 24 * 7,
+            httpOnly: true 
+        }
     }));
-    this.app.use(bodyParser.urlencoded());
-    this.app.use(cookieParser());
-    this.app.use(cors());
-    this.app.use(helmet());
+    this.app.use(flash());
 
+    this.app.use(csrf());
+    this.app.use(middlewareGlobal);
+    this.app.use(checkCsrfError);
+    this.app.use(csrfMiddleware);
     
     this.app.set('view engine', 'ejs');
     this.app.set('views', './src/views');
