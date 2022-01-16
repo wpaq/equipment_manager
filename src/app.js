@@ -34,7 +34,6 @@ class App {
     this.app.use(express.json());    
     this.app.use(bodyParser.urlencoded());
     this.app.use(cookieParser());
-    this.app.set('trust proxy', 1);
     this.app.use(session({
         secret: process.env.TOKEN_SECRET,
         resave: false,
