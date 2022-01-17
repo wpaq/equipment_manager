@@ -3,10 +3,10 @@ import User from '../models/User';
 
 export default async (req, res, next) => {
   try {
-    const authorization = req.cookies['access_token'];
+    const authorization = req.session.token;
   
     if (!authorization) {
-        req.flash('errors', 'Token expirado ou inválido.');
+        req.flash('errors', 'Você precisa fazer login.');
         req.session.save(function() {
             return res.status(401).redirect('/login');
         });

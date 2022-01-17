@@ -1,12 +1,10 @@
 class LoginController {
     async index (req, res) {
-        if (req.cookies['access_token']) {
-            return res.render('login-logado'); 
-        }     
-        return res.render('login');        
+        if (!req.session.token) {    
+            return res.render('login');           
+        }
+        return res.render('login-logado');              
     }
-
-
 };
 
 export default new LoginController();

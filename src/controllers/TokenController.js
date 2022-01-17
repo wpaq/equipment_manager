@@ -16,7 +16,7 @@ class TokenController {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      req.flash('errors', 'User does not exists');
+      req.flash('errors', 'Credenciais inválidas.');
       req.session.save(function() {
         return res.status(401).redirect('login');
       });
@@ -24,7 +24,7 @@ class TokenController {
     }
 
     if (!(await user.passwordIsValid(password))) {
-        req.flash('errors', 'Password invalid.');
+        req.flash('errors', 'Credenciais inválidas.');
         req.session.save(function() {
           return res.status(401).redirect('login');
         });
@@ -36,7 +36,7 @@ class TokenController {
       expiresIn: process.env.TOKEN_EXPIRATION,
     });
 
-    res.cookie('access_token', token);
+    req.session.token = token;
     
     req.flash('success', 'Usuário logado com sucesso');
     req.session.save(function() {

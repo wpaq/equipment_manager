@@ -1,13 +1,26 @@
 import Equipment from '../models/Equipment';
 
 class EquipmentController {
+    async index(req, res) {
+        try {
+            res.render('index', {
+                equipment: {}
+            });
+        } catch (e) {
+            req.session.save(function() {
+                return res.status(401).render('404');
+            });
+            return;
+        }
+    }
+
+
     async show(req, res) {
         try {
             const equipment = await Equipment.findAll();
 
             return res.json(equipment);
         } catch (e) {
-            console.log(e)
             return res.status(400).json({
                 errors: e.errors.map((err) => err.message),
             });
@@ -28,20 +41,26 @@ class EquipmentController {
 
     async update(req, res) {
         try {
-            const equipment = await Equipment.findByPk(req.body.id);
+            const equipment = await Equipment.findByPk(req.params.id);
 
             if (!equipment) {
-                return res.status(400).json({
-                    errors: 'Equipment does not exists'
+                req.flash('errors', 'Equipamento não existe.');
+                req.session.save(function() {
+                    return res.status(401).render('404');
                 });
+                return;
             };
 
-            const newData = await equipment.update(req.body);
-            return res.json(equipment);
+            await equipment.update(req.body);
+
+            req.flash('errors', 'Equipamento editado com sucesso.');
+            req.session.save(() => res.redirect(`/equipment/index/${equipment.equipamento._id}`));
+            return;            
         } catch (e) {
-            return res.status(400).json({
-                errors: e.errors.map((err) => err.message),
+            req.session.save(function() {
+                return res.status(401).render('404');
             });
+            return;
         }
     };
 
