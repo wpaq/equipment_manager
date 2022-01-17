@@ -37,10 +37,8 @@ class TokenController {
     });
 
     res.cookie('access_token', token);
-
+    
     req.flash('success', 'Usuário logado com sucesso');
-    req.session.user = user;
-    req.session.token = token;
     req.session.save(function() {
         return res.redirect('/');
     }); 

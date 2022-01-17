@@ -1,11 +1,9 @@
-import User from '../models/User';
-
 class LoginController {
     async index (req, res) {
-        if (!req.session) {
-            return res.render('login');  
+        if (req.cookies['access_token']) {
+            return res.render('login-logado'); 
         }     
-        return res.render('login-logado');
+        return res.render('login');        
     }
 
 
