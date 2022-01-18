@@ -1,15 +1,12 @@
 import Equipment from '../models/Equipment';
 
 class EquipmentController {
-    async show(req, res) {
+    async index (req, res) {
         try {
-            const equipment = await Equipment.findAll();
-
             res.render('equipment', {
                 equipment: {}
             });
-           
-        } catch (e) {
+        } catch (err) {
             return req.session.save(() => res.render('404'));
         }
     }
@@ -18,7 +15,9 @@ class EquipmentController {
         try {
             const newEquipment = await Equipment.create(req.body);
 
-            return res.json(newEquipment);
+            req.flash('success', 'Equipamento criado com sucesso.');
+            req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
+            return;            
         } catch (e) {
             return req.session.save(() => res.render('404'));
         }
@@ -32,7 +31,7 @@ class EquipmentController {
                 return res.status(401).render('404');
             };           
             
-            res.render('equipment', { equipment });
+            return res.render('equipment', { equipment });
         } catch (e) {
             return req.session.save(() => res.render('404'));
         }

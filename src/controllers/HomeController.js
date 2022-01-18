@@ -2,9 +2,14 @@ import Equipment from '../models/Equipment';
 
 class HomeController {
   async index(req, res) {
-    const equipments = await Equipment.findAll();
+    try {
+        const equipments = await Equipment.findAll();
 
-    return res.render('index', { equipments });
+        res.render('index', { equipments });
+       
+    } catch (e) {
+        return req.session.save(() => res.render('404'));
+    }
   }
 }
 
