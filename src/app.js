@@ -34,6 +34,7 @@ class App {
     this.app.use(express.json());    
     this.app.use(bodyParser.urlencoded());
     this.app.use(cookieParser());
+    this.app.use(express.static('public'));
     this.app.use(session({
         secret: process.env.TOKEN_SECRET,
         resave: false,
