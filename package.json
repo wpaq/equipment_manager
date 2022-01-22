@@ -44,7 +44,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "dev": "nodemon src/server.js --ignore public --ignore frontend",
-    "web": "webpack -w"
+    "web": "webpack -w",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",

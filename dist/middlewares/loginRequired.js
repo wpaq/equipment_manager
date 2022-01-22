@@ -2,18 +2,18 @@
 var _User = require('../models/User'); var _User2 = _interopRequireDefault(_User);
 
 exports. default = async (req, res, next) => {
-  const { authorization } = req.headers;
-
-  if (!authorization) {
-    return res.status(404).json({
-      errors: ['Login Required'],
-    });
-  }
-
-  const [, token] = authorization.split(' ');
-
   try {
-    const dados = _jsonwebtoken2.default.verify(token, process.env.TOKEN_SECRET);
+    const authorization = req.session.token;
+  
+    if (!authorization) {
+        req.flash('errors', 'Você precisa fazer login.');
+        req.session.save(function() {
+            return res.status(401).redirect('/login');
+        });
+        return;
+    }
+
+    const dados = _jsonwebtoken2.default.verify(authorization, process.env.TOKEN_SECRET);
     const { id, email } = dados;
 
     const user = await _User2.default.findOne({
@@ -24,18 +24,15 @@ exports. default = async (req, res, next) => {
     });
 
     if (!user) {
-      return res.status(404).json({
-        errors: ['Usuário inválido'],
-      });
+        req.flash('errors', 'Usuário inválido.');
+        req.session.save(function() {
+            return res.status(401).redirect('/login');
+        });
+        return;
     }
-
-    req.userId = id;
-    req.userEmail = email;
 
     return next();
   } catch (e) {
-    return res.status(404).json({
-      errors: ['Token expirado ou inválido'],
-    });
+    return res.status(401).redirect('/login');
   }
 };
