@@ -98,6 +98,11 @@ form button:hover {
     width: 100%;
     line-height: 1.4;
     padding: 0px 15px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .pageNotFound h1 {
@@ -111,6 +116,7 @@ form button:hover {
 }
 
 .pageNotFound h2 {
+    padding: 15px 0;
     font-family: "Titillium Web", sans-serif;
     font-size: 26px;
     font-weight: 700;
@@ -149,7 +155,7 @@ form button:hover {
 @media only screen and (max-width: 767px) {
     .pageNotFound {
         height: 110px;
-        line-height: 110px;
+        line-height: 25px;
     }
     .pageNotFound h1 {
         font-size: 120px;
