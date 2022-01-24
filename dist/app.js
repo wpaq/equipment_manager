@@ -32,7 +32,6 @@ class App {
 
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());    
-    this.app.use(_bodyparser2.default.urlencoded());
     this.app.use(_cookieparser2.default.call(void 0, ));
     this.app.use(_express2.default.static('public'));
     this.app.use(_expresssession2.default.call(void 0, {
