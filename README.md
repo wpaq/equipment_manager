@@ -20,6 +20,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [UUID](https://www.npmjs.com/package/uuid)
 - [Express](https://expressjs.com)
 - [Webpack](https://webpack.js.org)
+- [EJS](https://ejs.co/)
 
 <br>
 
