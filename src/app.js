@@ -60,6 +60,9 @@ class App {
     this.app.use('/login/', loginRoutes);
     this.app.use('/token/', tokenRoutes);
     this.app.use('/equipment/', equipmentRoutes);
+    this.app.use('*', function (req, res) {
+        res.render('404');
+    })
   }
 }
 
