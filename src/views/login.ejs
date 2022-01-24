@@ -1,45 +1,44 @@
 <%- include('includes/head'); %>
 
-<div class="container">
+<div class="container login-container">
     <div class="row">
         <div class="col-lg-2"></div>
 
-        <div class="col-lg-8 my-3">
-            <h1 class=" text-center">Login</h1>
-            <p class="text-center lead">Faça login abaixo para entrar no sistema:</p>
+        <div class="my-3">
+            <h1 class="text-center text-uppercase"><b>Login</b></h1>
+            <p class="text-center lead">Faça login abaixo para entrar no sistema</p>
 
             <%- include('includes/messages'); %>
 
-            <div class="row">
+            <div class="row login-form">
                 <div class="col-lg my-3">
                     <form class="form-signin" action="/token" method="post">
 
                         <input type="hidden" name="_csrf" value=<%= csrfToken %>>
 
-                        <label for="email" class="sr-only">Email:</label>
                         <input
                           type="email"
                           name="email"
                           id="inputEmail"
                           class="form-control"
-                          placeholder="Email address"
+                          placeholder="Endereço de email"
                           required
                           autofocus
                         />
-                        <label for="password" class="sr-only">Senha:</label>
+
                         <input
                           type="password"
                           name="password"
                           id="inputPassword"
                           class="form-control"
-                          placeholder="Password"
+                          placeholder="Senha"
                           required
                         />
                         <div class="checkbox mb-3">
-                          <label> <a href="#"> Forgot Password</a></label>
+                          <label> <a href="#"> Esqueci a Senha</a></label>
                         </div>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
-                          Log in
+                          Login
                         </button>
                         <p class="mt-5 mb-3 text-muted text-center">&copy; wpaq 2022</p>
                       </form>

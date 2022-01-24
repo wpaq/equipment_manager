@@ -1,5 +1,5 @@
 :root {
-    --primary-color: rgb(17, 86, 102);
+    --primary-color: #5c91fe;;
     --primary-color-darker: rgb(17, 31, 34);
 }
 
@@ -16,13 +16,6 @@ body {
     line-height: 1em;
 }
 
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-}
 
 .container-equipments {
     max-width: 850px;
@@ -81,28 +74,75 @@ form button {
     border: none;
     background: var(--primary-color);
     color: #fff;
-    font-size: 18px;
+    line-height: 1.2;
+    font-size: 16px;
     font-weight: 700;
-    height: 50px;
+    padding: 0 20px;
+    height: 62px;   
     cursor: pointer;
     margin-top: 30px;
+    text-transform: uppercase;
 }
 
 form button:hover {
     background: var(--primary-color-darker);
 }
 
+/* */
+.login-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container h1 {
+    font-size: 30px;
+}
+
+.login-container a {
+    text-decoration: none;
+}
+
+/* Login Form */
+
+.login-form {
+    width: 100%;
+    padding: 15px;
+}
+
+.login-form input {
+    width: 100%;
+    background-color: #e6e6e6;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    font-size: 18px;
+    display: block;
+    height: 62px;
+    padding: 0 20px 0 38px;
+}
+
+/* //Login Form */
+
 /* Page 404 */
 .pageNotFound {
-    max-width: 767px;
     width: 100%;
-    line-height: 1.4;
-    padding: 0px 15px;
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
 }
 
 .pageNotFound h1 {
