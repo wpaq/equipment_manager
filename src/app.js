@@ -62,7 +62,7 @@ class App {
     this.app.use('/equipment/', equipmentRoutes);
     this.app.use('*', function (req, res) {
         res.render('404');
-    })
+    });    
   }
 }
 

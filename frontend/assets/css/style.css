@@ -1,35 +1,35 @@
 :root {
-  --primary-color: rgb(17, 86, 102);
-  --primary-color-darker: rgb(17, 31, 34);
+    --primary-color: rgb(17, 86, 102);
+    --primary-color-darker: rgb(17, 31, 34);
 }
 
 * {
-  box-sizing: border-box;
-  outline: 0;
+    box-sizing: border-box;
+    outline: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Open sans', sans-serif;
-  font-size: 1em;
-  line-height: 1em;
+    margin: 0;
+    padding: 0;
+    font-family: "Open sans", sans-serif;
+    font-size: 1em;
+    line-height: 1em;
 }
 
 .container {
-  max-width: 600px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .container-equipments {
-  max-width: 850px;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
+    max-width: 850px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .navbar {
@@ -38,7 +38,7 @@ body {
 .advanced {
     text-decoration: none;
     font-size: 15px;
-    font-weight: 500
+    font-weight: 500;
 }
 
 .btn-secondary,
@@ -47,45 +47,113 @@ body {
     color: #fff;
     background-color: #00838f !important;
     border-color: #00838f !important;
-    box-shadow: none
+    box-shadow: none;
 }
 
 .advanced {
-    color: #00838f !important
+    color: #00838f !important;
 }
 
 .form-control:focus {
     box-shadow: none;
-    border: 1px solid #00838f
+    border: 1px solid #00838f;
 }
 
-form input, form label, form button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
+form input,
+form label,
+form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 form input {
-  font-size: 24px;
-  height: 50px;
-  padding: 0 20px;
+    font-size: 24px;
+    height: 50px;
+    padding: 0 20px;
 }
 
 form input:focus {
-  outline: 1px solid var(--primary-color);
+    outline: 1px solid var(--primary-color);
 }
 
 form button {
-  border: none;
-  background: var(--primary-color);
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  height: 50px;
-  cursor: pointer;
-  margin-top: 30px;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 30px;
 }
 
 form button:hover {
-  background: var(--primary-color-darker);
+    background: var(--primary-color-darker);
 }
+
+/* Page 404 */
+.pageNotFound {
+    max-width: 767px;
+    width: 100%;
+    line-height: 1.4;
+    padding: 0px 15px;
+}
+
+.pageNotFound h1 {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 186px;
+    font-weight: 900;
+    margin: 0px;
+    text-transform: uppercase;
+    background-size: cover;
+    background-position: center;
+}
+
+.pageNotFound h2 {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.pageNotFound p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.pageNotFound a {
+    font-family: "Titillium Web", sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    background: #5c91fe;
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 1px;
+    margin-top: 15px;
+    -webkit-transition: 0.2s all;
+    transition: 0.2s all;
+}
+
+.pageNotFound a:hover {
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 767px) {
+    .pageNotFound {
+        height: 110px;
+        line-height: 110px;
+    }
+    .pageNotFound h1 {
+        font-size: 120px;
+    }
+}
+
+/* //Page 404 */
