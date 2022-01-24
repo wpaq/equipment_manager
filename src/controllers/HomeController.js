@@ -4,11 +4,28 @@ class HomeController {
   async index(req, res) {
     try {
         const equipments = await Equipment.findAll();
-
-        res.render('index', { equipments });
-       
+        res.render('index', { equipments });      
     } catch (e) {
         return req.session.save(() => res.render('404'));
+    }
+  }
+
+  async search(req, res) {
+    try {
+        const tombo = req.query.tombo;
+
+        if (typeof tombo != 'number') {
+            req.flash('errors', 'Informe um valor válido.');
+            req.session.save(() => res.redirect(`/index`));
+            return;    
+        }
+
+        const equipments = await Equipment.findAll({ where: { tombo } });
+
+        res.render('index', { equipments }); 
+    } catch (err) {      
+        console.log(err)
+        return req.session.save(() => res.render('404'));   
     }
   }
 }

@@ -5,5 +5,6 @@ var _loginRequired = require('../middlewares/loginRequired'); var _loginRequired
 const router = new (0, _express.Router)();
 
 router.get('/', _loginRequired2.default, _HomeController2.default.index);
+router.get('/index', _loginRequired2.default, _HomeController2.default.search);
 
 exports. default = router;
