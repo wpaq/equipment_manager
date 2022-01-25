@@ -4,13 +4,13 @@
     <div class="row">
         <div class="col-lg-2"></div>
 
-        <div class="my-3">
+        <div class="my-3 login-form">
             <h1 class="text-center text-uppercase"><b>Login</b></h1>
             <p class="text-center lead">Faça login abaixo para entrar no sistema</p>
 
             <%- include('includes/messages'); %>
 
-            <div class="row login-form">
+            <div class="row">
                 <div class="col-lg my-3">
                     <form class="form-signin" action="/token" method="post">
 
@@ -37,7 +37,7 @@
                         <div class="checkbox mb-3">
                           <label> <a href="#"> Esqueci a Senha</a></label>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        <button class="btn btn-lg btn-block" type="submit">
                           Login
                         </button>
                         <p class="mt-5 mb-3 text-muted text-center">&copy; wpaq 2022</p>
