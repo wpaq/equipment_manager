@@ -52,6 +52,19 @@ body {
     border: 1px solid #00838f;
 }
 
+/* Navbar */
+.navbar {
+    width: 100%;
+    line-height: 1.2;
+    font-size: 18px;
+    height: 62px;
+}
+
+.navbar .navbar-brand:hover {
+    opacity: 0.5;
+}
+/* -- Navbar -- */
+
 form input,
 form label,
 form button {
