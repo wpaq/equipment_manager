@@ -88,7 +88,7 @@ form button:hover {
     background: var(--primary-color-darker);
 }
 
-/* */
+/* Login Container */
 .login-container {
     width: 100%;
     min-height: 100vh;
@@ -106,9 +106,9 @@ form button:hover {
 .login-container a {
     text-decoration: none;
 }
+/* -- Login Container -- */
 
 /* Login Form */
-
 .login-form {
     width: 100%;
     padding: 15px;
@@ -136,8 +136,7 @@ form button:hover {
 .login-form button:hover {
     color: #e6e6e6;
 }
-
-/* //Login Form */
+/* -- Login Form -- */
 
 /* Page 404 */
 .pageNotFound {
@@ -199,6 +198,19 @@ form button:hover {
 .pageNotFound a:hover {
     opacity: 0.8;
 }
+/* -- PageNotFound -- */
+
+/* Messages Alert */
+.messages-alert {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+    font-size: 18px;
+    height: 62px;
+    text-align: center;
+}
+
 
 @media only screen and (max-width: 767px) {
     .pageNotFound {
