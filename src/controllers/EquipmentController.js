@@ -4,7 +4,8 @@ class EquipmentController {
     async index (req, res) {
         try {
             res.render('equipment', {
-                equipment: {}
+                equipment: {},
+                title: 'Equipment'
             });
         } catch (err) {
             return req.session.save(() => res.render('404', { title:'404' }));
@@ -19,7 +20,7 @@ class EquipmentController {
             req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
             return;            
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.render('404', { title:'404'}));
         }
     };
 
@@ -31,7 +32,7 @@ class EquipmentController {
                 return res.status(401).render('404', { title:'404' });
             };           
             
-            return res.render('equipment', { equipment });
+            return res.render('equipment', { equipment, title: 'equipment' });
         } catch (e) {
             return req.session.save(() => res.render('404', { title:'404' }));
         }
