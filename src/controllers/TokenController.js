@@ -18,7 +18,7 @@ class TokenController {
     if (!user) {
       req.flash('errors', 'Credenciais inválidas.');
       req.session.save(function() {
-        return res.status(401).render('login');
+        return res.status(401).render('login', { title:'Login' });
       });
       return;
     }
