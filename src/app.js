@@ -60,7 +60,7 @@ class App {
     this.app.use('/token/', tokenRoutes);
     this.app.use('/equipment/', equipmentRoutes);
     this.app.use('*', function (req, res) {
-        res.render('404');
+        res.render('404', { title:'404' });
     });    
   }
 }

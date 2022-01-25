@@ -8,7 +8,7 @@ class TokenController {
     if (!email || !password) {
         req.flash('errors', 'Credenciais inválidas.');
         req.session.save(function() {
-          return res.status(401).redirect('login');
+          return res.status(401).redirect('login', { title:'Login' });
         });
         return;
     }
@@ -26,7 +26,7 @@ class TokenController {
     if (!(await user.passwordIsValid(password))) {
         req.flash('errors', 'Credenciais inválidas.');
         req.session.save(function() {
-          return res.status(401).redirect('login');
+          return res.status(401).redirect('login', { title:'Login' });
         });
         return;
     }
@@ -40,7 +40,7 @@ class TokenController {
     
     req.flash('success', 'Usuário logado com sucesso');
     req.session.save(function() {
-        return res.redirect('/');
+        return res.redirect('/', { title:'Home' });
     }); 
   }
 }

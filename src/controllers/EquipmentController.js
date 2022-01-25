@@ -7,7 +7,7 @@ class EquipmentController {
                 equipment: {}
             });
         } catch (err) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.render('404', { title:'404' }));
         }
     }
 
@@ -28,12 +28,12 @@ class EquipmentController {
             const equipment = await Equipment.findByPk(req.params.id);
 
             if (!equipment) {
-                return res.status(401).render('404');
+                return res.status(401).render('404', { title:'404' });
             };           
             
             return res.render('equipment', { equipment });
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.render('404', { title:'404' }));
         }
     }
 
@@ -52,7 +52,7 @@ class EquipmentController {
             req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
             return;            
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.render('404', { title:'404' }));
         }
     };
 
@@ -69,7 +69,7 @@ class EquipmentController {
             await equipment.destroy();
             return res.json(null);
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.render('404', { title:'404' }));
         }
     };
 };

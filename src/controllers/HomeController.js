@@ -4,9 +4,9 @@ class HomeController {
   async index(req, res) {
     try {
         const equipments = await Equipment.findAll();
-        res.render('index', { equipments });      
+        res.render('index', { equipments, title:'Home' });      
     } catch (e) {
-        return req.session.save(() => res.render('404'));
+        return req.session.save(() => res.render('404', { title:'404' }));
     }
   }
 
@@ -22,10 +22,9 @@ class HomeController {
 
         const equipments = await Equipment.findAll({ where: { tombo } });
 
-        res.render('index', { equipments }); 
+        res.render('index', { equipments, title: 'Home' }); 
     } catch (err) {      
-        console.log(err)
-        return req.session.save(() => res.render('404'));   
+        return req.session.save(() => res.render('404', { title:'404' }));   
     }
   }
 }
