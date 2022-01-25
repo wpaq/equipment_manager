@@ -5,7 +5,6 @@ class EquipmentController {
         try {
             res.render('equipment', {
                 equipment: {},
-                title: 'Equipment'
             });
         } catch (err) {
             return req.session.save(() => res.render('404', { title:'404' }));
