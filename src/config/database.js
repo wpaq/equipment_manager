@@ -16,6 +16,8 @@ module.exports = {
   },
   dialectOptions: {
     connectionString: process.env.DATABASE_URI,
-    ssl: false
+    ssl: { 
+        rejectUnauthorized: false 
+    }
   },
 };
