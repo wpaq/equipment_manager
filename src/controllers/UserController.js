@@ -6,11 +6,9 @@ class UserController {
       try {
         const users = await User.findAll();
         
-        return res.json(users);
+        return res.render('user-create', { c });
       } catch (e) {
-        return res.status(400).json({
-            errors: e.errors.map((err) => err.message),
-        });
+        return req.session.save(() => res.render('404'));
       }
   }
 
@@ -18,12 +16,12 @@ class UserController {
   async store(req, res) {
     try {
       const newUser = await User.create(req.body);
-      const { id, nome, email } = newUser;
-      return res.json({ id, nome, email });
+
+      req.flash('success', 'Usuário adicionado com sucesso');
+      req.session.save(() => res.redirect(`/user/index/${newUser.id}`));
+      return;   
     } catch (e) {
-        return res.status(400).json({
-            errors: e.errors.map((err) => err.message),
-        });
+        return req.session.save(() => res.render('404'));
     }
   }
 
