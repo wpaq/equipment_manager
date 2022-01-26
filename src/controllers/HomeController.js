@@ -14,7 +14,7 @@ class HomeController {
 
   async search(req, res) {
     try {
-        const query = req.query.tombo;
+        const query = req.query.search;
 
         const equipments = await Equipment.findAll({ 
           where: { 
