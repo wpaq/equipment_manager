@@ -1,4 +1,5 @@
 import Equipment from '../models/Equipment';
+import { Op } from 'sequelize'
 
 class HomeController {
   async index(req, res) {
@@ -13,15 +14,46 @@ class HomeController {
 
   async search(req, res) {
     try {
-        const tombo = req.query.tombo;
+        const query = req.query.tombo;
 
-        if (typeof tombo != 'number') {
-            req.flash('errors', 'Informe um valor válido.');
-            req.session.save(() => res.redirect(`/index`));
-            return;    
+        const equipments = await Equipment.findAll({ 
+          where: { 
+            [Op.or]: [   
+              /* -- tombo is integer
+              {
+                tombo: { 
+                  [Op.iLike]: `%${query}%`
+                
+              },*/   
+              {
+                equipamento: { 
+                  [Op.iLike]: `%${query}%`
+                } 
+              },        
+              { 
+                responsavel: { 
+                  [Op.iLike]: `%${query}%`
+                } 
+              },
+              {
+                local: { 
+                  [Op.iLike]: `%${query}%`
+                } 
+              },
+              { 
+                empresa: { 
+                  [Op.iLike]: `%${query}%`
+                } 
+              }
+            ]            
+          }
+        });
+
+        if (equipments.length === 0) {
+          req.flash('errors', 'Equipamento não existe');
+          req.session.save(() => res.redirect('/'));
+          return;    
         }
-
-        const equipments = await Equipment.findAll({ where: { tombo } });
 
         res.render('index', { equipments }); 
     } catch (err) {      
