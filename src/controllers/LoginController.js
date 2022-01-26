@@ -5,6 +5,15 @@ class LoginController {
         }
         return res.render('login-logado');              
     }
+
+    async logout (req, res) {
+        try {
+            req.session.destroy();
+            return res.status(200).redirect('/login');
+        } catch (err) {
+            return res.status(400).render('404');
+        }
+    }
 };
 
 export default new LoginController();
