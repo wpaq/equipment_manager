@@ -1,9 +1,10 @@
+
 class LoginController {
     async index (req, res) {
         if (!req.session.token) {    
-            return res.render('login');           
+            return res.status(401).render('login');           
         }
-        return res.render('login-logado');              
+        return res.status(200).render('login-logado');              
     }
 
     async logout (req, res) {

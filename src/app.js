@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import session from 'express-session';
-import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash';
 import csrf from 'csurf';
