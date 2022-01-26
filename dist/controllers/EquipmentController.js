@@ -4,10 +4,10 @@ class EquipmentController {
     async index (req, res) {
         try {
             res.render('equipment', {
-                equipment: {}
+                equipment: {},
             });
         } catch (err) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.status(404).render('404'));
         }
     }
 
@@ -28,12 +28,12 @@ class EquipmentController {
             const equipment = await _Equipment2.default.findByPk(req.params.id);
 
             if (!equipment) {
-                return res.status(401).render('404');
+                return res.status(404).render('404');
             };           
             
             return res.render('equipment', { equipment });
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.status(404).render('404'));
         }
     }
 
@@ -52,24 +52,25 @@ class EquipmentController {
             req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
             return;            
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.status(404).render('404'));
         }
     };
 
     async delete(req, res) {
         try {
-            const equipment = await _Equipment2.default.findByPk(req.body.id);
+            const equipment = await _Equipment2.default.findByPk(req.params.id);
 
             if (!equipment) {
-                return res.status(400).json({
-                    errors: 'Equipamento não existe'
-                });
+                req.flash('errors', 'Equipamento não existe.');
+                req.session.save(() => res.render('404'));
+                return;
             }
-
+            
             await equipment.destroy();
-            return res.json(null);
+            req.flash('success', 'Equipamento deletado com sucesso');
+            return req.session.save(() => res.status(200).redirect('/'));
         } catch (e) {
-            return req.session.save(() => res.render('404'));
+            return req.session.save(() => res.status(404).render('404'));
         }
     };
 };

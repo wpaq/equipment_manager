@@ -8,6 +8,6 @@ router.get('/index', _loginRequired2.default, _EquipmentController2.default.inde
 router.post('/register', _loginRequired2.default, _EquipmentController2.default.store);
 router.get('/index/:id', _loginRequired2.default, _EquipmentController2.default.editIndex);
 router.post('/edit/:id', _loginRequired2.default, _EquipmentController2.default.update);
-router.delete('/delete/:id', _loginRequired2.default, _EquipmentController2.default.delete);
+router.get('/delete/:id', _loginRequired2.default, _EquipmentController2.default.delete);
 
 exports. default = router;

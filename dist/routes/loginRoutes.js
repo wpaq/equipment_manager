@@ -4,5 +4,6 @@ var _LoginController = require('../controllers/LoginController'); var _LoginCont
 const router = new (0, _express.Router)();
 
 router.get('/', _LoginController2.default.index);
+router.get('/logout', _LoginController2.default.logout);
 
 exports. default = router;

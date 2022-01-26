@@ -2,7 +2,6 @@
 _dotenv2.default.config();
 
 var _expresssession = require('express-session'); var _expresssession2 = _interopRequireDefault(_expresssession);
-var _bodyparser = require('body-parser'); var _bodyparser2 = _interopRequireDefault(_bodyparser);
 var _cookieparser = require('cookie-parser'); var _cookieparser2 = _interopRequireDefault(_cookieparser);
 var _connectflash = require('connect-flash'); var _connectflash2 = _interopRequireDefault(_connectflash);
 var _csurf = require('csurf'); var _csurf2 = _interopRequireDefault(_csurf);
@@ -60,7 +59,7 @@ class App {
     this.app.use('/token/', _tokenRoutes2.default);
     this.app.use('/equipment/', _equipmentRoutes2.default);
     this.app.use('*', function (req, res) {
-        res.render('404');
+        res.render('404', { title:'404' });
     });    
   }
 }

@@ -6,7 +6,7 @@ exports. default = async (req, res, next) => {
     const authorization = req.session.token;
   
     if (!authorization) {
-        req.flash('errors', 'Você precisa fazer login.');
+        req.flash('errors', 'Você precisa fazer login!');
         req.session.save(function() {
             return res.status(401).redirect('/login');
         });
