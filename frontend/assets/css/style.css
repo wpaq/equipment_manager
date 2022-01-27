@@ -16,14 +16,6 @@ body {
     line-height: 1em;
 }
 
-.form-search {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
-
 .container-equipments {
     max-width: 850px;
     margin: 20px auto;
@@ -70,6 +62,15 @@ body {
 .navbar .navbar-brand:hover {
     opacity: 0.5;
 }
+
+.search-form {
+    margin-top: 2em;
+    display: block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 /* -- Navbar -- */
 
 form input,

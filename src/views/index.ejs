@@ -9,20 +9,16 @@
         <%- include('includes/messages'); %>
 
         <% if (equipments.length > 0) { %>
-            <div class="">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-md-10">
-                        <div class="card p-3 py-4">
-                            <h5>Pesquisar por Equipamentos</h5>
-                            <form action="/index" method="GET" class="form-search">
-                                <div class="row g-3 mt-2">
-                                    <div class="col-md-6"> <input type="text" class="form-control" name="search" placeholder="Pesquise por tombo, equipamento, empresa, local e responsável"> </div>
-                                    <div class="col-md-3"> <button class="btn btn-secondary btn-block" type="submit">Buscar Resultados</button> </div>
-                                </div>
-                            </form>
-                        </div>
+             <!-- Another variation with a button -->
+            <div class="input-group">
+                <form action="/index" method="GET" class="search-form">
+                    <input type="text" class="form-control" name="search" placeholder="Pesquise por tombo, equipamento, empresa, local ou responsável">
+                    <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
                     </div>
-                </div>
+                </form>
             </div>
 
             <div class="responsive-table">
