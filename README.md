@@ -4,7 +4,7 @@
 <p >Sistema de gerenciamento de equipamentos.</p>
 
 <h4 align=""> 
-	🚧  Equipment Manager 🚀 Em construção  🚧
+	🚧  Equipment Manager 🚀 Semi-concluído  🚧
 </h4>
 
 <br>
@@ -21,6 +21,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Express](https://expressjs.com)
 - [Webpack](https://webpack.js.org)
 - [EJS](https://ejs.co/)
+- [Heroku](https://www.heroku.com)
 
 <br>
 
