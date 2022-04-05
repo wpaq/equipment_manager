@@ -1,64 +1,76 @@
 <%- include('includes/head'); %>
 <%- include('includes/nav'); %>
 
-<div class="container-equipments">
-    <div class="row">
-        <h1 class="text-center">Equipamentos</h1>
-        <p class="text-center lead">Seus Equipamentos estão abaixo</p>
+<div class="container-fluid">
+    <div class="sidenav">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
 
-        <%- include('includes/messages'); %>
-
-        <% if (equipments.length > 0) { %>
-             <!-- Another variation with a button -->
-            <div class="input-group">
-                <form action="/index" method="GET" class="search-form">
-                        <input type="text" class="form-control" name="search" placeholder="Pesquise por tombo, equipamento, empresa, local ou responsável">
-
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                </form>
-            </div>
-
-            <div class="table-responsive">
-                <table class="table my-3">
-                    <tr>
-                        <th>Tombo</th>
-                        <th>Equipamento</th>
-                        <th>Empresa</th>
-                        <th>Local</th>
-                        <th>Responsavel</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <% equipments.forEach(equipment => { %>
-                    <tr>
-                        <td><%= equipment.tombo %></td>
-                        <td><%= equipment.equipamento %></td>
-                        <td><%= equipment.empresa %></td>
-                        <td><%= equipment.local %></td>
-                        <td><%= equipment.responsavel %></td>
-                        <td>
-                            <a href="/equipment/index/<%= equipment.id %>">Editar</a>
-                        </td>
-                        <td>
-                            <a
-                                class="text-danger"
-                                href="/equipment/delete/<%= equipment.id %>"
-                                name="delete"
-                                >Excluir</a
-                            >
-                        </td>
-                    </tr>
-                    <% }); %>
-                </table>
-            </div>
-        <% } else { %>
-            <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
-        <% } %>
+    <div class="container-equipments">
+        <div class="row">
+            <h1 class="text-center">Equipamentos</h1>
+            <p class="text-center lead">Seus Equipamentos estão abaixo</p>
+    
+            <%- include('includes/messages'); %>
+    
+            <% if (equipments.length > 0) { %>
+                 <!-- Another variation with a button -->
+                <div class="input-group">
+                    <form action="/index" method="GET" class="search-form">
+                            <input type="text" class="form-control" name="search" placeholder="Pesquise por tombo, equipamento, empresa, local ou responsável">
+    
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                    </form>
+                </div>
+    
+                <div class="table-responsive">
+                    <table class="table my-3">
+                        <tr>
+                            <th>Tombo</th>
+                            <th>Equipamento</th>
+                            <th>Empresa</th>
+                            <th>Local</th>
+                            <th>Responsavel</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <% equipments.forEach(equipment => { %>
+                        <tr>
+                            <td><%= equipment.tombo %></td>
+                            <td><%= equipment.equipamento %></td>
+                            <td><%= equipment.empresa %></td>
+                            <td><%= equipment.local %></td>
+                            <td><%= equipment.responsavel %></td>
+                            <td>
+                                <a href="/equipment/index/<%= equipment.id %>">Editar</a>
+                            </td>
+                            <td>
+                                <a
+                                    class="text-danger"
+                                    href="/equipment/delete/<%= equipment.id %>"
+                                    name="delete"
+                                    >Excluir</a
+                                >
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </table>
+                </div>
+            <% } else { %>
+                <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
+            <% } %>
+        </div>
     </div>
 </div>
+
+
+
 
 <%- include('includes/footer'); %>
