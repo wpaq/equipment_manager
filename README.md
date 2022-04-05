@@ -25,6 +25,13 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <br>
 
+### Rodar Projeto
+
+- `npm install` para instalar os pacotes
+- Criar arquivo `.env` e adicionar as seguintes variáveis ambientes:
+`(PORT, DATABASE_HOST, DATABASE_PORT, DATABASE_USERNAME, DATABASE_PASSWORD, DATABASE_DATABASE, DATABASE_URI, TOKEN_SECRET)`
+- `npm run start` para rodar o projeto ou `npm run dev` para rodar em ambiente de desenvolvimento
+
 ### Autor
 ---
 
