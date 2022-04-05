@@ -48,6 +48,7 @@ class App {
     this.app.use(_middleware.checkCsrfError);
     this.app.use(_middleware.csrfMiddleware);
 
+    this.app.use(_express2.default.static('public'));
     this.app.set('view engine', 'ejs');
     this.app.set('views', './src/views');
   }
