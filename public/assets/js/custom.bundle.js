@@ -1,0 +1,2 @@
+(()=>{var e=document.querySelector("#btn"),c=document.querySelector(".sidebar"),t=document.querySelector(".bx-search");e.onclick=function(){c.classList.toggle("active")},t.onlick=function(){c.classList.toggle("active")}})();
+//# sourceMappingURL=custom.bundle.js.map
