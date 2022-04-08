@@ -1,14 +1,65 @@
 <%- include('includes/head'); %>
-<%- include('includes/nav'); %>
 
-<div class="container-fluid">
-    <div class="sidenav">
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+<div class="sidebar">
+    <div class="logo_content">
+        <div class="logo">
+            <i class='bx bx-laptop' ></i>
+            <div class="logo_name">Equipment Manager</div>
+        </div>
+        <i class='bx bx-menu' id="btn" ></i>
     </div>
+    <ul class="nav_list">
+        <li>
+            <i class='bx bx-search' ></i>
+            <input type="text" placeholder="Pesquisar...">
+            <span class="tooltip"></span>
+        </li>
+        <li>
+            <a href="/">
+                <i class='bx bx-grid-alt' ></i>
+                <span class="links_name">Página Inicial</span>
+            </a>
+            <span class="tooltip"></span>
+        </li>
+        <li>
+            <a href="">
+                <i class='bx bx-user' ></i>
+                <span class="links_name">Usuário</span>
+            </a>
+            <span class="tooltip"></span>
+        </li>
+        <li>
+            <a href="/equipment/index">
+                <i class='bx bx-plus-circle'></i>
+                <span class="links_name">Add. Equipamento</span>
+            </a>
+            <span class="tooltip"></span>
+        </li>
+        <li>
+            <a href="">
+                <i class='bx bx-minus-circle' ></i>
+                <span class="links_name">Del. Equipamento</span>
+            </a>
+            <span class="tooltip"></span>
+        </li>
+    </ul>
+    <div class="profile_content">
+        <div class="profile">
+            <div class="profile_details">
+                <img src="" alt="">
+                <div class="name_job">
+                    <div class="name">Wallyson Pablo</div>
+                    <div class="job">Estudante</div>
+                </div>
+            </div>
+            <a href="/login/logout">
+                <i class='bx bx-log-out' id="log_out" ></i>
+            </a>
+        </div>
+    </div>
+</div>
 
+<div class="container">        
     <div class="container-equipments">
         <div class="row">
             <h1 class="text-center">Equipamentos</h1>
