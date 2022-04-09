@@ -28,7 +28,7 @@ body {
     transition: all 0.5s ease;
 }
 
-.sidebar .active {
+.sidebar-active {
     width: 300px;
 }
 
@@ -42,18 +42,21 @@ body {
     pointer-events: none;
 }
 
-.sidebar .active .logo_content .logo {
+.sidebar-active .logo_content .logo {
     opacity: 1;
+    transition: all 0.5s ease;
 }
 
 .logo_content .logo i {
-    font-size: 28px;
+    font-size: 22px;
     margin-right: 5px;
 }
 
 .logo_content .logo .logo_name {
-    font-size: 16px;
+    font-size: 18px;
+    padding-left: 25px;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 .sidebar #btn {
@@ -66,10 +69,17 @@ body {
     width: 50px;
     text-align: center;
     line-height: 50px;
+    border-radius: 12px;
     transform: translateX(-50%);
+    transition: all 0.5s ease;
 }
 
-.sidebar .active #btn {
+.sidebar #btn:hover {
+    background: #fff;
+    color: #1d1b31;
+}
+
+.sidebar-active #btn {
     left: 90%;
 }
 
@@ -82,7 +92,6 @@ body {
     position: relative;
     height: 50px;
     width: 100%;
-    margin: 0 5px;
     list-style: none;
     line-height: 20px;
     border-radius: 12px;
@@ -92,7 +101,7 @@ body {
     position: absolute;
     left: 122px;
     top: 0%;
-    transform: translateY(-50%);
+    transform: translateY(-50%, -50%);
     border-radius: 6px;
     height: 35px;
     width: 122px;
@@ -112,7 +121,7 @@ body {
     top: 50%;
 }
 
-.sidebar .active ul li .tooltip {
+.sidebar-active ul li .tooltip {
     display: none;
 }
 
@@ -151,6 +160,7 @@ body {
     text-decoration: none;
     transition: all 0.4s ease;
     border-radius: 12px;
+    white-space: nowrap;
 }
 
 .sidebar ul li a:hover {
@@ -170,9 +180,10 @@ body {
     pointer-events: none;
 }
 
-.sidebar .active .links_name {
+.sidebar-active .links_name {
     opacity: 1;
     pointer-events: auto;
+    transition: all 0.5s ease;
 }
 
 .sidebar .profile_content {
@@ -193,6 +204,14 @@ body {
 .sidebar .profile_content .profile .profile_details {
     display: flex;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.sidebar-active .profile .profile_details {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .profile .profile_details img {
@@ -213,13 +232,30 @@ body {
 
 .profile #log_out {
     position: absolute;
-    left: 88%;
+    color: #fff;
+    left: 50%;
     bottom: 5px;
     transform: translateX(-50%);
     min-width: 50px;
     line-height: 50px;
     font-size: 20px;
+    text-align: center;
     border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+.profile #log_out:hover {
+    color: #11101d;
+    background: #fff;
+}
+
+.sidebar-active .profile #log_out {
+    left: 88%;
+}
+
+.sidebar-active ~ .container-equipments {
+    width: calc(100% - 300px);
+    left: 300px;
 }
 /* -- SIDEBAR -- */
 

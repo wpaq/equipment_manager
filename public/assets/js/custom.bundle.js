@@ -1,2 +1,2 @@
-(()=>{var e=document.querySelector("#btn"),c=document.querySelector(".sidebar"),t=document.querySelector(".bx-search");e.onclick=function(){c.classList.toggle("active")},t.onlick=function(){c.classList.toggle("active")}})();
+(()=>{var e=document.querySelector("#btn"),t=document.querySelector(".sidebar"),c=document.querySelector(".bx-search");e.addEventListener("click",(function(){t.classList.toggle("sidebar-active")})),c.addEventListener("click",(function(){t.classList.toggle("sidebar-active")}))})();
 //# sourceMappingURL=custom.bundle.js.map
