@@ -26,6 +26,7 @@ body {
     background: #11101d;
     padding: 6px 14px;
     transition: all 0.5s ease;
+    z-index: 99;
 }
 
 .sidebar-active {
@@ -152,10 +153,10 @@ body {
 
 .sidebar ul li .bx-search {
     position: absolute;
-    z-index: 99;
     color: #fff;
     font-size: 22px;
     transition: all 0.5s ease;
+    z-index: 99;
 }
 
 .sidebar ul li .bx-search:hover {
@@ -263,11 +264,119 @@ body {
     left: 50%;
 }
 
-.sidebar-active ~ .container-equipments {
+.sidebar-active ~ .equipments {
     width: calc(100% - 300px);
     left: 300px;
 }
-/* -- SIDEBAR -- */
+
+.sidebar-active ~ .pageHeader {
+    width: calc(100% - 300px);
+    left: 300px;
+}
+/* -- // SIDEBAR -- */
+
+/* PAGEHEADER */
+.pageHeader {
+    position: relative;
+    width: calc(100% - 78px);
+    left: 78px;
+    padding: 20px;
+    min-height: 100px;
+    margin-top: 10px;
+    transition: all 0.4s ease;
+}
+
+.pageHeader .pageOrder {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pageHeader .pageOrder i {
+    font-size: 22px;
+}
+
+.pageHeader .pageOrder a {
+    color: #000;
+    text-decoration: none;
+    float: right;
+}
+
+.pageHeader .pageSearch {
+    display: flex;
+}
+
+.pageHeader .pageSearch .equipmentSearch {
+    position: relative;
+    width: 50%;
+    min-width: 500px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border: none;
+    z-index: 0;
+}
+
+.pageHeader .equipmentSearch .bx-search {
+    position: relative;
+    color: #11101d;
+    font-size: 22px;
+    transition: all 0.5s ease;
+}
+
+.pageHeader .equipmentSearch i {
+    min-width: 50px;
+    text-align: center;
+}
+
+.pageHeader .equipmentSearch input {
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+.pageHeader .equipmentSearch .filterAndSeach {
+    width: 50%;
+    float: right;
+}
+/* // PAGEHEADER */
+
+
+/* EQUIPMENTS */
+.equipments {
+    position: relative;
+    width: calc(100% - 78px);
+    left: 78px;
+    padding: 20px;
+    margin-top: 10px;
+    display: grid;
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.equipments .recents {
+    position: relative;
+    display: grid;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.equipments .recents table {
+    margin: 10px;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* -- // EQUIPMENTS -- */
 
 .container-equipments {
     max-width: 850px;
@@ -308,73 +417,6 @@ body {
 .form-control:focus {
     box-shadow: none;
     border: 1px solid #00838f;
-}
-
-/* Navbar */
-.nav-link{
-    margin: 0 auto;
-}
-
-.navbar .navbar-brand:hover {
-    opacity: 0.5;
-}
-
-.navbar-collapse {
-    text-align: center;
-}
-
-.navbar-toggler {
-    margin: 1em auto;
-}
-
-.search-form {
-    margin-top: 2em;
-    display: block;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-.no-equipments {
-    margin: 1em auto;
-}
-
-/* -- Navbar -- */
-
-form input,
-form label,
-form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-form input {
-    font-size: 24px;
-    height: 50px;
-    padding: 0 20px;
-}
-
-form input:focus {
-    outline: 1px solid var(--primary-color);
-}
-
-form button {
-    border: none;
-    background: var(--primary-color);
-    color: #fff;
-    line-height: 1.2;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 0 20px;
-    height: 62px;   
-    cursor: pointer;
-    margin-top: 30px;
-    text-transform: uppercase;
-}
-
-form button:hover {
-    background: var(--primary-color-darker);
 }
 
 @keyframes fadein {

@@ -1,40 +1,54 @@
 <%- include('includes/head'); %>
 <%- include('includes/sidebar'); %>
 
-<div class="container">        
-    <div class="container-equipments">
-        <div class="row">
-            <h1 class="text-center">Equipamentos</h1>
-            <p class="text-center lead">Seus Equipamentos estão abaixo</p>
-    
-            <%- include('includes/messages'); %>
-    
-            <% if (equipments.length > 0) { %>
-                 <!-- Another variation with a button -->
-                <div class="input-group">
-                    <form action="/index" method="GET" class="search-form">
-                            <input type="text" class="form-control" name="search" placeholder="Pesquise por tombo, equipamento, empresa, local ou responsável">
-    
-                            <div class="input-group-append">
-                                <button class="btn btn-secondary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                    </form>
-                </div>
-    
-                <div class="table-responsive">
-                    <table class="table my-3">
-                        <tr>
-                            <th>Tombo</th>
-                            <th>Equipamento</th>
-                            <th>Empresa</th>
-                            <th>Local</th>
-                            <th>Responsavel</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <% equipments.forEach(equipment => { %>
+<!-- page header -->
+<div class="pageHeader">
+    <div class="pageOrder">
+        <h2><a href="/">Página Inicial</a></h2>
+        <i class='bx bx-chevron-right'></i>
+        <h2><b>Equipamentos</b></h2>
+    </div>
+    <hr>
+    <div class="pageSearch">
+        <form action="/index" method="get">
+            <div class="equipmentSearch">            
+                <i class='bx bx-search' ></i>
+                <input type="text" name="search" placeholder="Pesquisar...">
+            </div>  
+            <div class="filterAndSeach">
+                <a href="#">Filters</a>
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>     
+        </form>
+    </div>
+</div>
+<!-- // page header -->
+
+<%- include('includes/messages'); %>
+
+<!-- equipment list -->
+<% if (equipments.length > 0) { %>
+    <div class="equipments">
+        <div class="recents">
+            <div class="cardHeader">
+                <p>Visualizar: <span>10 - 25 - 50 - 100</span></p>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tombo</th>
+                        <th>Equipamento</th>
+                        <th>Empresa</th>
+                        <th>Local</th>
+                        <th>Responsavel</th>
+                        <th>Ações</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% equipments.forEach(equipment => { %>
                         <tr>
                             <td><%= equipment.tombo %></td>
                             <td><%= equipment.equipamento %></td>
@@ -42,26 +56,20 @@
                             <td><%= equipment.local %></td>
                             <td><%= equipment.responsavel %></td>
                             <td>
-                                <a href="/equipment/index/<%= equipment.id %>">Editar</a>
+                                <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
                             </td>
                             <td>
-                                <a
-                                    class="text-danger"
-                                    href="/equipment/delete/<%= equipment.id %>"
-                                    name="delete"
-                                    >Excluir</a
-                                >
+                                <a class="text-danger" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
                             </td>
                         </tr>
-                        <% }); %>
-                    </table>
-                </div>
-            <% } else { %>
-                <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
-            <% } %>
+                    <% }); %>
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
-
+<% } else { %>
+    <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
+<% } %>
+<!-- // equipment list -->
 
 <%- include('includes/footer'); %>
