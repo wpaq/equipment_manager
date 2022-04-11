@@ -97,17 +97,18 @@ body {
     border-radius: 12px;
 }
 
-.sidebar ul li .tooltip {
+.sidebar .tooltip {
     position: absolute;
     left: 122px;
     top: 0%;
     transform: translateY(-50%, -50%);
     border-radius: 6px;
     height: 35px;
-    width: 122px;
+    width: 152px;
     background: #fff;
     line-height: 35px;
     text-align: center;
+    white-space: nowrap;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     transition: 0s;
     opacity: 0;
@@ -121,7 +122,16 @@ body {
     top: 50%;
 }
 
-.sidebar-active ul li .tooltip {
+.sidebar .profile_content .profile:hover .tooltip {
+    color: #11101d;
+    background: #fff;
+    transition: all 0.5s ease;
+    top: 10%;
+    opacity: 1;
+}
+
+
+.sidebar-active .tooltip {
     display: none;
 }
 
@@ -250,7 +260,7 @@ body {
 }
 
 .sidebar-active .profile #log_out {
-    left: 88%;
+    left: 50%;
 }
 
 .sidebar-active ~ .container-equipments {
