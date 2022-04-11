@@ -1,4 +1,5 @@
 const path = require('path'); // CommonJS
+const webpack = require('webpack');
 
 module.exports = {
   mode: 'production',
@@ -25,6 +26,9 @@ module.exports = {
       use: ['style-loader', 'css-loader']
     }]
   },
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+  ],
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
