@@ -4,7 +4,7 @@
 <p >Sistema de gerenciamento de equipamentos.</p>
 
 <h4 align=""> 
-	🚧  Equipment Manager 🚀 Semi-concluído  🚧
+	🚧  Equipment Manager 🚀 Em produção  🚧
 </h4>
 
 <br>
