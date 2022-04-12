@@ -488,7 +488,6 @@ body {
     padding: 15px;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
     animation: fadein 1s;
     -moz-animation: fadein 1s; /* Firefox */
@@ -502,6 +501,10 @@ body {
 
 .login-container a {
     text-decoration: none;
+}
+
+.form-signin .btn {
+    width: 100%;
 }
 /* -- Login Container -- */
 
