@@ -1,10 +1,24 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
 var _sequelize = require('sequelize');
+var _moment = require('moment'); var _moment2 = _interopRequireDefault(_moment);
 
 class HomeController {
   async index(req, res) {
     try {
+        const option = {
+          year: 'numeric',
+          month: ('long' || 'short' || 'numeric'),
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric'
+        }
         const equipments = await _Equipment2.default.findAll();
+        const date = equipments[0].updated_at;
+        const datePtbr = date.toLocaleDateString('pt-br', option)
+        const formated = _moment2.default.call(void 0, date).format('MMMM Do YYYY, h:mm:ss a');
+        console.log(formated);
+        console.log(datePtbr)
         
         res.status(200).render('index', { equipments });      
     } catch (e) {

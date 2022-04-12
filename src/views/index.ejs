@@ -45,7 +45,8 @@
                         <th scope="col">Empresa</th>
                         <th scope="col">Local</th>
                         <th scope="col">Responsavel</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col">Ultima Modificação</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -57,6 +58,7 @@
                             <td><%= equipment.empresa %></td>
                             <td><%= equipment.local %></td>
                             <td><%= equipment.responsavel %></td>
+                            <td><%= equipment.updated_at %></td>
                             <td>
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
                             </td>
