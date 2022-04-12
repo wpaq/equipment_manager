@@ -536,6 +536,11 @@ body {
 .login-form button:hover {
     color: #e6e6e6;
 }
+
+.login-form .messages-alert {
+    width: auto;
+    margin-bottom: 16px;
+}
 /* -- Login Form -- */
 
 /* Page 404 */
@@ -608,8 +613,7 @@ body {
 .messages-alert {
     border: 1px solid transparent;
     border-radius: 3px;
-    margin-bottom: 16px;
-    margin: 0 auto;
+    margin: auto;
     line-height: 1.2;
     font-size: 18px;
     width: 500px;
