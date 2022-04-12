@@ -105,8 +105,9 @@ body {
     transform: translateY(-50%, -50%);
     border-radius: 6px;
     height: 35px;
-    width: 152px;
+    width: 170px;
     background: #fff;
+    font-size: 15px;
     line-height: 35px;
     text-align: center;
     white-space: nowrap;
@@ -329,6 +330,7 @@ body {
 .pageSearch form .filterAndSeach button {
     background: #1d1b31;
     color: #fff;
+    font-size: 18px;
     height: 100%;
     width: 250px;
 }
@@ -604,8 +606,10 @@ body {
     border: 1px solid transparent;
     border-radius: 3px;
     margin-bottom: 16px;
+    margin: 0 auto;
     line-height: 1.2;
     font-size: 18px;
+    width: 500px;
     height: 62px;
     text-align: center;
 }
