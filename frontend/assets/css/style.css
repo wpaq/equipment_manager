@@ -286,29 +286,60 @@ body {
     transition: all 0.4s ease;
 }
 
-.pageHeader .pageOrder {
+.pageHeader h2 {
+    font-size: 30px;
+}
+
+.pageOrder {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.pageHeader .pageOrder i {
+.pageOrder i {
     font-size: 22px;
 }
 
-.pageHeader .pageOrder a {
+.pageOrder a {
     color: #000;
     text-decoration: none;
     float: right;
 }
 
-.pageHeader .pageSearch {
+.pageSearch {
     display: flex;
 }
 
-.pageHeader .pageSearch .equipmentSearch {
+.pageSearch form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.pageSearch form a {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.pageSearch form .filterAndSeach {
+    height: 100%;
+}
+
+.pageSearch form .filterAndSeach button {
+    background: #1d1b31;
+    color: #fff;
+    height: 100%;
+    width: 250px;
+}
+
+.pageSearch form .filterAndSeach button p {
+    align-items: center;
+    margin: 0;
+}
+
+.pageSearch .equipmentSearch {
     position: relative;
-    width: 50%;
     min-width: 500px;
     height: 50px;
     display: flex;
@@ -320,27 +351,23 @@ body {
     z-index: 0;
 }
 
-.pageHeader .equipmentSearch .bx-search {
+.equipmentSearch .bx-search {
     position: relative;
     color: #11101d;
     font-size: 22px;
     transition: all 0.5s ease;
 }
 
-.pageHeader .equipmentSearch i {
+.equipmentSearch i {
     min-width: 50px;
     text-align: center;
 }
 
-.pageHeader .equipmentSearch input {
+.equipmentSearch input {
     height: 100%;
+    width: 100%;
     border: none;
     outline: none;
-}
-
-.pageHeader .equipmentSearch .filterAndSeach {
-    width: 50%;
-    float: right;
 }
 /* // PAGEHEADER */
 
