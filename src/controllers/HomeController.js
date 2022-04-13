@@ -1,25 +1,11 @@
 import Equipment from '../models/Equipment';
 import { Op, where } from 'sequelize';
-import moment from 'moment';
 
 class HomeController {
   async index(req, res) {
     try {
-        const option = {
-          year: 'numeric',
-          month: ('long' || 'short' || 'numeric'),
-          day: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-          second: 'numeric'
-        }
         const equipments = await Equipment.findAll();
-        const date = equipments[0].updated_at;
-        const datePtbr = date.toLocaleDateString('pt-br', option)
-        const formated = moment(date).format('MMMM Do YYYY, h:mm:ss a');
-        console.log(formated);
-        console.log(datePtbr)
-        
+
         res.status(200).render('index', { equipments });      
     } catch (e) {
         return req.session.save(() => res.status(404).render('404'));

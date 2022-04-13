@@ -30,14 +30,29 @@
                 responsavel: {
                     type: _sequelize2.default.STRING,
                     defaultValue: ''
+                },
+                configuracao: {
+                    type: _sequelize2.default.STRING,
+                    defaultValue: ''
+                },
+                data_verificacao: {
+                    type: _sequelize2.default.STRING,
+                    defaultValue: ''
                 }
             },
             {
                 sequelize,
                 freezeTableName: true,
-                tableName: 'equipments'
+                tableName: 'equipments',
             },
         );
+        // Uppercase
+        this.addHook('beforeSave', async (equipment) => {
+            equipment.equipamento = await equipment.equipamento.toUpperCase();
+            equipment.empresa = await equipment.empresa.toUpperCase();
+            equipment.local = await equipment.local.toUpperCase();
+            equipment.responsavel = await equipment.responsavel.toUpperCase();
+        });
 
         return this;
     }

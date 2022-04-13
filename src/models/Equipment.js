@@ -30,14 +30,29 @@ export default class Equipment extends Model {
                 responsavel: {
                     type: Sequelize.STRING,
                     defaultValue: ''
+                },
+                configuracao: {
+                    type: Sequelize.STRING,
+                    defaultValue: ''
+                },
+                data_verificacao: {
+                    type: Sequelize.STRING,
+                    defaultValue: ''
                 }
             },
             {
                 sequelize,
                 freezeTableName: true,
-                tableName: 'equipments'
+                tableName: 'equipments',
             },
         );
+        // Uppercase
+        this.addHook('beforeSave', async (equipment) => {
+            equipment.equipamento = await equipment.equipamento.toUpperCase();
+            equipment.empresa = await equipment.empresa.toUpperCase();
+            equipment.local = await equipment.local.toUpperCase();
+            equipment.responsavel = await equipment.responsavel.toUpperCase();
+        });
 
         return this;
     }
