@@ -621,6 +621,10 @@ body {
     text-align: center;
 }
 
+.no-equipments {
+    margin-top: 5em;
+}
+
 
 @media only screen and (max-width: 767px) {
     .pageNotFound {

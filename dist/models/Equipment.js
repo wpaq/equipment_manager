@@ -52,6 +52,8 @@
             equipment.empresa = await equipment.empresa.toUpperCase();
             equipment.local = await equipment.local.toUpperCase();
             equipment.responsavel = await equipment.responsavel.toUpperCase();
+
+            equipment.data_verificacao = await equipment.data_verificacao.split('-').reverse().join('/');
         });
 
         return this;
