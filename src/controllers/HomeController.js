@@ -4,7 +4,12 @@ import { Op, where } from 'sequelize';
 class HomeController {
   async index(req, res) {
     try {
-        const equipments = await Equipment.findAll();
+        const limiter = req.query.limit;
+        const equipments = await Equipment.findAll({
+          offset: 0,
+          limit: limiter || 10,
+          order: ['tombo']
+        });
 
         res.status(200).render('index', { equipments });      
     } catch (e) {

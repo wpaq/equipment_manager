@@ -1,2 +1,2 @@
-(()=>{var e=document.querySelector("#btn"),t=document.querySelector(".sidebar"),c=document.querySelector(".bx-search");e.addEventListener("click",(function(){t.classList.toggle("sidebar-active")})),c.addEventListener("click",(function(){t.classList.toggle("sidebar-active")}))})();
+(()=>{var e=document.querySelector("#btn"),t=document.querySelector(".sidebar"),c=document.querySelector(".bx-search"),i=document.querySelector(".limiter");e.addEventListener("click",(function(){t.classList.toggle("sidebar-active")})),c.addEventListener("click",(function(){t.classList.toggle("sidebar-active")})),i.addEventListener("click",(function(){i.classList.toggle(".limit-active")}))})();
 //# sourceMappingURL=custom.bundle.js.map

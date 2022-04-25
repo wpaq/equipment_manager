@@ -609,6 +609,16 @@ body {
 }
 /* -- PageNotFound -- */
 
+/* Limiter */
+.limiter {
+    text-decoration: none;
+}
+
+.limiter .limit-active {
+    font-weight: bold;
+}
+/* Limiter */
+
 /* Messages Alert */
 .messages-alert {
     border: 1px solid transparent;
