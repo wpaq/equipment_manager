@@ -4,7 +4,10 @@ var _sequelize = require('sequelize');
 class HomeController {
   async index(req, res) {
     try {
+        // content per page | limiter
         const limiter = req.query.limit;
+
+        // SELECT * FROM equipments ORDER BY tombo
         const equipments = await _Equipment2.default.findAll({
           offset: 0,
           limit: limiter || 10,
@@ -21,6 +24,7 @@ class HomeController {
     try {
         const query = req.query.search;
 
+        // SELECT * FROM equipments WHERE 
         const equipments = await _Equipment2.default.findAll({ 
           where: { 
             [_sequelize.Op.or]: [   
@@ -59,7 +63,7 @@ class HomeController {
           return;    
         }
 
-        res.render('index', { equipments }); 
+        res.status(200).render('index', { equipments }); 
     } catch (err) {      
         return req.session.save(() => res.status(404).render('404'));   
     }
