@@ -24,12 +24,11 @@ class HomeController {
         const equipments = await Equipment.findAll({ 
           where: { 
             [Op.or]: [   
-              /* -- tombo is integer
               {
                 tombo: { 
                   [Op.iLike]: `%${query}%`
-                
-              },*/   
+                }
+              },
               {
                 equipamento: { 
                   [Op.iLike]: `%${query}%`
@@ -55,7 +54,7 @@ class HomeController {
         });
 
         if (equipments.length === 0) {
-          req.flash('errors', 'Equipamento não existe');
+          req.flash('errors', 'Equipamento não encontrado');
           req.session.save(() => res.redirect('/'));
           return;    
         }

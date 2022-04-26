@@ -24,12 +24,11 @@ class HomeController {
         const equipments = await _Equipment2.default.findAll({ 
           where: { 
             [_sequelize.Op.or]: [   
-              /* -- tombo is integer
               {
                 tombo: { 
-                  [Op.iLike]: `%${query}%`
-                
-              },*/   
+                  [_sequelize.Op.iLike]: `%${query}%`
+                }
+              },
               {
                 equipamento: { 
                   [_sequelize.Op.iLike]: `%${query}%`
@@ -55,7 +54,7 @@ class HomeController {
         });
 
         if (equipments.length === 0) {
-          req.flash('errors', 'Equipamento não existe');
+          req.flash('errors', 'Equipamento não encontrado');
           req.session.save(() => res.redirect('/'));
           return;    
         }
