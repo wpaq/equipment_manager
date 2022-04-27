@@ -16,8 +16,6 @@
                 <input type="text" name="search" placeholder="Pesquisar...">
             </div>  
 
-            <a href="#">Busca Avançada</a>
-
             <div class="filterAndSeach">                
                 <button class="btn" type="submit">
                     <p>Realizar Pesquisa</p>
@@ -25,36 +23,28 @@
             </div>     
         </form>
     </div>
-</div>
+</div> 
+<!-- // page header -->
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <h5 class="modal-title" id="exampleModalLabel">Excluir Equipamento</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+        Deseja excluir o equipamento?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger deleteConfirm">Confirmar</button>
         </div>
-      </div>
     </div>
-  </div>
-  
-
-<!-- // page header -->
+    </div>
+</div>
+<!-- // model -->
 
 <%- include('includes/messages'); %>
 
@@ -93,7 +83,7 @@
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
                             </td>
                             <td>
-                                <a class="text-danger" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
+                                <a class="text-danger deleteLink" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
                             </td>
                         </tr>
                     <% }); %>
