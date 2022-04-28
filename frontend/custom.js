@@ -1,7 +1,7 @@
 let btn = document.querySelector('#btn');
 let sidebar = document.querySelector('.sidebar');
 let searchBtn = document.querySelector('.bx-search');
-let deleteConfirm = document.querySelectorAll('.deleteConfirm');
+const deleteConfirm = document.querySelector('.deleteConfirm');
 let deleteLink = document.querySelectorAll('.deleteLink');
 
 let limiter = document.querySelector('.limiter');
@@ -18,6 +18,12 @@ limiter.addEventListener('click', () => {
     limiter.classList.toggle('.limit-active');
 })
 
-for(let i = 0; i < this.deleteLink.length; i++) {
-    console.log(deleteLink[i]);
+// modal bootstrap confirm delete onclick
+for(let i = 0; i < deleteLink.length; i++) {
+    deleteLink[i].onclick = () => {
+        deleteConfirm.onclick = () => {
+            location.replace(deleteLink[i].href);
+        }
+    }
 }
+// -- modal bootstrap confirm delete onclick 
