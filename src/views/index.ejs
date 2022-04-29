@@ -9,11 +9,21 @@
         <h2><b>Equipamentos</b></h2>
     </div>
     <hr>
+
+</div> 
+<!-- // page header -->
+
+<%- include('includes/messages'); %>
+
+<!-- equipment list -->
+<% if (equipments.length > 0) { %>
+
+    <!-- equipment search -->
     <div class="pageSearch">
         <form action="/index" method="get">
             <div class="equipmentSearch">            
                 <i class='bx bx-search' ></i>
-                <input type="text" name="search" placeholder="Pesquisar...">
+                <input type="text" name="search" placeholder="Pesquisar por Tombo, Equipamento, Empresa...">
             </div>  
 
             <div class="filterAndSeach">                
@@ -23,17 +33,9 @@
             </div>     
         </form>
     </div>
-</div> 
-<!-- // page header -->
+    <!-- // equipment search -->
 
-
-
-<%- include('includes/messages'); %>
-
-<!-- equipment list -->
-<% if (equipments.length > 0) { %>
-
-    <!-- modal -->
+    <!-- modal delete equipment -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -51,9 +53,9 @@
         </div>
         </div>
     </div>
-    <!-- // modal -->
+    <!-- // modal delete equipment -->
 
-
+    <!-- table equipments -->
     <div class="equipments">
         <div class="recents">
             <div class="cardHeader">
@@ -95,6 +97,8 @@
             </table>
         </div>
     </div>
+    <!-- // table equipments -->
+
 <% } else { %>
     <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
 <% } %>

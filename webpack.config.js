@@ -4,7 +4,6 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
-    custom: './frontend/assets/js/custom.js',
     main: './frontend/assets/js/main.js'
   },
   output: {

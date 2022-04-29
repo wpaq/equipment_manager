@@ -8,13 +8,13 @@ class HomeController {
         const limiter = req.query.limit;
 
         // SELECT * FROM equipments ORDER BY tombo
-        const equipments = await Equipment.findAll({
+        const { count, rows } = await Equipment.findAndCountAll({
           offset: 0,
-          limit: limiter || 10,
+          limit: limiter || 100,
           order: ['tombo']
-        });
+        })
 
-        res.status(200).render('index', { equipments });      
+        res.status(200).render('index', { equipments: rows });      
     } catch (e) {
         return req.session.save(() => res.status(404).render('404'));
     }

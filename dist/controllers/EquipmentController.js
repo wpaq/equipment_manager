@@ -13,11 +13,20 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            const newEquipment = await _Equipment2.default.create(req.body);
+            const tombo = req.body.tombo;
+            const equipment = await _Equipment2.default.findOne({ where: { tombo} })
 
-            req.flash('success', 'Equipamento criado com sucesso.');
-            req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
-            return;            
+            if (!equipment) {
+                const newEquipment = await _Equipment2.default.create(req.body);
+
+                req.flash('success', 'Equipamento adicionado com sucesso.');
+                req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
+                return;            
+            }
+
+            req.flash('errors', 'Equipamento já existe!');
+            req.session.save(() => res.redirect(`/equipment/index/`));
+            return;           
         } catch (e) {
             return req.session.save(() => res.render('404'));
         }

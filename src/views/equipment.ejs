@@ -30,19 +30,19 @@
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                 <div class="form-group">
                     <label>Tombo:</label>
-                    <input type="text" class="form-control" name="tombo" value="<%= equipment.tombo %>">
+                    <input type="number" class="form-control" name="tombo" value="<%= equipment.tombo %>">
                 </div>
                 <div class="form-group">
                     <label>Equipamento:</label>
-                    <input type="text" class="form-control" name="equipamento" value="<%= equipment.equipamento %>">
+                    <input type="text" class="form-control" name="equipamento" value="<%= equipment.equipamento %>" required>
                 </div>
                 <div class="form-group">
                     <label>Empresa:</label>
-                    <input type="text" class="form-control" name="empresa" value="<%= equipment.empresa %>">
+                    <input type="text" class="form-control" name="empresa" value="<%= equipment.empresa %>" required>
                 </div>
                 <div class="form-group">
                     <label>Local:</label>
-                    <input type="text" class="form-control" name="local" value="<%= equipment.local %>">
+                    <input type="text" class="form-control" name="local" value="<%= equipment.local %>" required>
                 </div>
                 <div class="form-group">
                     <label>Responsável:</label>
@@ -54,9 +54,10 @@
                 </div>
                 <div class="form-group">
                     <label>Data de Verificação:</label>
-                    <input type="date" class="form-control" name="data_verificacao" placeholder="dd/mm/aaaa" value="<%= equipment.data_verificacao %>" maxlength="8">
+                    <input type="text" class="form-control" id="equipment-date" name="data_verificacao" placeholder="dd/mm/aaaa" value="<%= equipment.data_verificacao %>" maxlength="8" required>
                 </div>
                 <button type="submit" class="btn btn-primary my-2">Salvar</button>
+                <a  class="btn btn-primary my-2" href="/equipment/index">Adicionar Outro</a>
             </form>
         </div>
 

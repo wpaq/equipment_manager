@@ -15,6 +15,10 @@ body {
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+
 /* SIDEBAR  */
 .sidebar {
     position: fixed;
@@ -308,6 +312,11 @@ body {
 
 .pageSearch {
     display: flex;
+    position: relative;
+    width: calc(100% - 78px);
+    left: 78px;
+    padding: 20px;
+    transition: all 0.4s ease;
 }
 
 .pageSearch form {
