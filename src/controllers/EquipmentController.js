@@ -1,4 +1,5 @@
 import Equipment from '../models/Equipment';
+import QRCode from 'qrcode';
 
 class EquipmentController {
     async index (req, res) {
@@ -13,20 +14,18 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            const tombo = req.body.tombo;
-            const equipment = await Equipment.findOne({ where: { tombo} })
+            const newEquipment = await Equipment.create(req.body);
 
-            if (!equipment) {
-                const newEquipment = await Equipment.create(req.body);
+            delete req.body._csrf;
 
-                req.flash('success', 'Equipamento adicionado com sucesso.');
-                req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
-                return;            
-            }
+            const data = JSON.stringify(req.body);
+            data.replace("{", "").replace("\"", "").replace("}", "");
 
-            req.flash('errors', 'Equipamento já existe!');
-            req.session.save(() => res.redirect(`/equipment/index/`));
-            return;           
+            await QRCode.toFile('./harshpatel.png', JSON.stringify(req.body));
+
+            req.flash('success', 'Equipamento criado com sucesso.');
+            req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
+            return;            
         } catch (e) {
             return req.session.save(() => res.render('404'));
         }
@@ -50,6 +49,7 @@ class EquipmentController {
         try {
             const equipment = await Equipment.findByPk(req.params.id);
             await equipment.update(req.body);
+            console.log(req.body)
 
             if (!equipment) {
                 req.flash('errors', 'Equipamento não existe.');
