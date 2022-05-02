@@ -18,10 +18,16 @@ class EquipmentController {
 
             delete req.body._csrf;
 
+            // format equipment value to QRcode
             const data = JSON.stringify(req.body);
-            data.replace("{", "").replace("\"", "").replace("}", "");
+            const dataFormated = data.toUpperCase()
+                .replace(/\{/g, "")
+                .replace(/\}/g, "")
+                .replace(/\"/g, "")
+                .replace(/\,/g, "\n")
+                .replace(/\:/g, ": ");
 
-            await QRCode.toFile('./harshpatel.png', JSON.stringify(req.body));
+            await QRCode.toFile('./public/assets/img/equipment.png', dataFormated);
 
             req.flash('success', 'Equipamento criado com sucesso.');
             req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));

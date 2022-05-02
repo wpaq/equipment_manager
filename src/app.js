@@ -16,6 +16,7 @@ import userRoutes from './routes/userRoutes';
 import loginRoutes from './routes/loginRoutes';
 import tokenRoutes from './routes/tokenRoutes';
 import equipmentRoutes from './routes/equipmentRoutes';
+import qrcodeRoutes from './routes/qrcodeRoutes';
 import { middlewareGlobal, checkCsrfError, csrfMiddleware } from './middlewares/middleware';
 
 class App {
@@ -59,6 +60,7 @@ class App {
     this.app.use('/login/', loginRoutes);
     this.app.use('/token/', tokenRoutes);
     this.app.use('/equipment/', equipmentRoutes);
+    this.app.use('/qrcode/', qrcodeRoutes);
     this.app.use('*', function (req, res) {
         res.render('404', { title:'404' });
     });    

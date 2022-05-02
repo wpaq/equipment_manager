@@ -1,7 +1,8 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true});
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _path = require('path');
+
 class LoginController {
     async index (req, res) {
-        if (!req.session.token) {    
+        if (!req.session.token) {   
             return res.status(401).render('login');           
         }
         return res.status(200).render('login-logado');              
