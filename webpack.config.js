@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: {
-    main: './frontend/assets/js/main.js'
+    main: './frontend/main.js',
   },
   output: {
     filename: '[name].bundle.js',

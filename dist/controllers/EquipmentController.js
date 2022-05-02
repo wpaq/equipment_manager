@@ -1,4 +1,5 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
+var _qrcode = require('qrcode'); var _qrcode2 = _interopRequireDefault(_qrcode);
 
 class EquipmentController {
     async index (req, res) {
@@ -13,20 +14,14 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            const tombo = req.body.tombo;
-            const equipment = await _Equipment2.default.findOne({ where: { tombo} })
+            const newEquipment = await _Equipment2.default.create(req.body);
 
-            if (!equipment) {
-                const newEquipment = await _Equipment2.default.create(req.body);
+            delete req.body._csrf;
+            await _qrcode2.default.toFile('./harshpatel.png', JSON.stringify(req.body));
 
-                req.flash('success', 'Equipamento adicionado com sucesso.');
-                req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
-                return;            
-            }
-
-            req.flash('errors', 'Equipamento já existe!');
-            req.session.save(() => res.redirect(`/equipment/index/`));
-            return;           
+            req.flash('success', 'Equipamento criado com sucesso.');
+            req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
+            return;            
         } catch (e) {
             return req.session.save(() => res.render('404'));
         }
@@ -50,6 +45,7 @@ class EquipmentController {
         try {
             const equipment = await _Equipment2.default.findByPk(req.params.id);
             await equipment.update(req.body);
+            console.log(req.body)
 
             if (!equipment) {
                 req.flash('errors', 'Equipamento não existe.');

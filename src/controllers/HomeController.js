@@ -4,17 +4,14 @@ import { Op } from 'sequelize';
 class HomeController {
   async index(req, res) {
     try {
-        // content per page | limiter
         const limiter = req.query.limit;
-
-        // SELECT * FROM equipments ORDER BY tombo
-        const { count, rows } = await Equipment.findAndCountAll({
+        const equipments = await Equipment.findAll({
           offset: 0,
-          limit: limiter || 100,
+          limit: limiter || 3,
           order: ['tombo']
-        })
+        });
 
-        res.status(200).render('index', { equipments: rows });      
+        res.status(200).render('index', { equipments });      
     } catch (e) {
         return req.session.save(() => res.status(404).render('404'));
     }
@@ -24,15 +21,15 @@ class HomeController {
     try {
         const query = req.query.search;
 
-        // SELECT * FROM equipments WHERE 
         const equipments = await Equipment.findAll({ 
           where: { 
             [Op.or]: [   
+              /* -- tombo is integer
               {
                 tombo: { 
                   [Op.iLike]: `%${query}%`
-                }
-              },
+                
+              },*/   
               {
                 equipamento: { 
                   [Op.iLike]: `%${query}%`
@@ -58,12 +55,12 @@ class HomeController {
         });
 
         if (equipments.length === 0) {
-          req.flash('errors', 'Equipamento não encontrado');
+          req.flash('errors', 'Equipamento não existe');
           req.session.save(() => res.redirect('/'));
           return;    
         }
 
-        res.status(200).render('index', { equipments }); 
+        res.render('index', { equipments }); 
     } catch (err) {      
         return req.session.save(() => res.status(404).render('404'));   
     }
