@@ -1,26 +1,34 @@
 import multer from 'multer';
 import multerConfig from '../config/multer';
 
+import qrcode from 'qrcode';
+
 import QRCodeImage from '../models/QRCodeImage';
 
 const uploud = multer(multerConfig).single('photo');
 
 class QRCodeController {
-  async store(req, res) {
-      try {
-        const image = 'F:\Meus Projetos\node\equipment_manager\public\assets\img\equipment.png';
-        const qrcode = await QRCodeImage.create(image);
+    store(req, res) {
+        return uploud(req, res, async (err) => {
 
-        console.log('aaaaaaa')
-
-        return console.log('enviado');
-      } catch (e) {
-          console.log(e)
-        return res.status(400).json({
-          errors: ['Equipamento não existe'],
-        });
-      }
-  }
+          try {
+            const originalname = 'pão';
+            const filename = 'aaaa.png';            
+            const equipment_id  = '17995e28-0bcb-4af6-bdc3-efda9caab726';
+        
+            const photo = await QRCodeImage.create( filename );
+        
+            return res.json(photo);
+          } catch (e) {
+              console.log(e)
+            return res.status(400).json({
+              errors: ['não existe'],
+            });
+          }
+          
+        })
+   }
 }
+
 
 export default new QRCodeController();
