@@ -64,7 +64,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="/assets/img/aaa.png" alt="">
+                <img class="qrcodePath" src="/assets/img/equipment.png" alt="">
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
@@ -107,7 +107,7 @@
                             <td><%= equipment.configuracao %></td>
                             <td><%= equipment.data_verificacao %></td>
                             <td>
-                                <a class="text-danger qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" value="<%= equipment.foto %>">Visualizar</a>
+                                <a class="text-danger qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar</a>
                             </td>
                             <td>
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>

@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 export default {
     get() {
         this.btn = document.querySelector('#btn');
@@ -9,6 +7,8 @@ export default {
         this.deleteLink = document.querySelectorAll('.deleteLink');
         this.limiter = document.querySelector('.limiter');
         this.equipmentDate = document.querySelector('#equipment-date');
+        this.qrcodeLink = document.querySelectorAll('.qrcodeLink');
+        this.qrcodePath = document.querySelector('.qrcodePath');
     },
 
     actions() {
@@ -28,6 +28,15 @@ export default {
             this.limiter.addEventListener('click', () => {
                 this.limiter.classList.toggle('.limit-active');
             })
+        }
+
+        if (this.qrcodeLink) {            
+            for(let i = 0; i < this.qrcodeLink.length; i++) {
+                
+                this.qrcodeLink[i].onclick = () => {
+                    this.qrcodePath.src = `/assets/img/${this.qrcodeLink[i].id}.png`;
+                }
+            }
         }
         
         // modal bootstrap confirm delete onclick

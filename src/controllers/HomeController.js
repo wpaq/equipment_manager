@@ -17,19 +17,20 @@ class HomeController {
 
 
         equipments.forEach(equipment => {
-          fs.access(path, fs.constants.F_OK, (err) => {
-            console.log(err ? 'não existe' : 'existe');
-            
-            if (!err) {
-              const outputFilepath =  `./public/assets/img/${equipment.id}.png`;
+          // caminho onde salva as imagens
+          const outputFilepath =  `./public/assets/img/${equipment.id}.png`;
 
+          // verificar se imagem ja existe
+          fs.access(outputFilepath, fs.constants.F_OK, (err) => {           
+            if (err) {       
+              // verifica se existe imagem cadastrada no database    
               if (equipment.foto != null) {
+                // converte o arquivo blob do database para imagem e salva no server local
                 fs.writeFileSync(outputFilepath, equipment.foto, 'base64');
               }
             }
           });
-        })
-        //const fotos = await Equipment.findByPk('1ed8c38d-0b25-4d28-aa8e-fd3bc494e482');        
+        })       
 
         res.status(200).render('index', { equipments });      
     } catch (e) {

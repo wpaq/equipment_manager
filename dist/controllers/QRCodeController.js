@@ -5,17 +5,7 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
 class QRCodeController {
   async store(req, res) {
       try {
-        const filepath = './public/assets/img/equipment.png';
-        const photo_data = Buffer.from(_fs2.default.readFileSync(filepath));
-
-        console.log(photo_data)
-        console.log("")
         
-
-        // const qrcode = await QRCodeImage.create(image);
-
-        const newPhoto = await _QRCodeImage2.default.create({ photo_data });
-
         return console.log('enviado');
       } catch (e) {
           console.log(e)
@@ -25,5 +15,6 @@ class QRCodeController {
       }
   }
 }
+
 
 exports. default = new QRCodeController();
