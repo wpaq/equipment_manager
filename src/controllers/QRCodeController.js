@@ -16,4 +16,5 @@ class QRCodeController {
   }
 }
 
+
 export default new QRCodeController();
