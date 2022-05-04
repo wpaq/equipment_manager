@@ -1,5 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
 var _qrcode = require('qrcode'); var _qrcode2 = _interopRequireDefault(_qrcode);
+var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
+var _CreateQRCodeImageService = require('../services/CreateQRCodeImageService');
 
 class EquipmentController {
     async index (req, res) {
@@ -14,20 +16,14 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            const newEquipment = await _Equipment2.default.create(req.body);
+            // generate QRCodeImage
+            const serviceQRCodeImage = new (0, _CreateQRCodeImageService.CreateQRCodeImageService)();
+            const foto = await serviceQRCodeImage.create(req.body)
 
-            delete req.body._csrf;
+            const { tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao } = req.body;
 
-            // format equipment value to QRcode
-            const data = JSON.stringify(req.body);
-            const dataFormated = data.toUpperCase()
-                .replace(/\{/g, "")
-                .replace(/\}/g, "")
-                .replace(/\"/g, "")
-                .replace(/\,/g, "\n")
-                .replace(/\:/g, ": ");
-
-            await _qrcode2.default.toFile('./public/assets/img/equipment.png', dataFormated);
+            // insert in database
+            const newEquipment = await _Equipment2.default.create({ tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao, foto });
 
             req.flash('success', 'Equipamento criado com sucesso.');
             req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));

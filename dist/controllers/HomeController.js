@@ -1,5 +1,8 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
 var _sequelize = require('sequelize');
+var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
+
+const random = () => Math.floor(Math.random() * 10000 + 10000);
 
 class HomeController {
   async index(req, res) {
@@ -10,6 +13,12 @@ class HomeController {
           limit: limiter || 3,
           order: ['tombo']
         });
+
+        //const fotos = await Equipment.findByPk('1ed8c38d-0b25-4d28-aa8e-fd3bc494e482');
+
+        //const outputFilepath =  `./public/assets/img/${Date.now()}_${random()}.png`;
+        //fs.writeFileSync(outputFilepath, fotos.foto, 'base64');
+        
 
         res.status(200).render('index', { equipments });      
     } catch (e) {

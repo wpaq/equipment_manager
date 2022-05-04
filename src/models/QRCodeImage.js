@@ -1,7 +1,6 @@
-import Sequelize, { Model, VIRTUAL } from 'sequelize';
-import appConfig from '../config/appConfig';
+import Sequelize, { Model } from 'sequelize';
 
-export default class Photo extends Model {
+export default class QRCodeImage extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -11,13 +10,15 @@ export default class Photo extends Model {
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true
         },
-        filename: {
-          type: Sequelize.STRING,
+        photo_data: {
+          type: Sequelize.BLOB('long'),
           defaultValue: '',
         },
       },
       {
         sequelize,
+        freezeTableName: true,
+        tableName: 'qrcode_images',
       },
     );
     return this;

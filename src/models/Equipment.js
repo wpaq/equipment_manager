@@ -38,6 +38,10 @@ export default class Equipment extends Model {
                 data_verificacao: {
                     type: Sequelize.STRING,
                     defaultValue: ''
+                },
+                foto: {
+                    type: Sequelize.BLOB('long'),
+                    defaultValue: ''
                 }
             },
             {

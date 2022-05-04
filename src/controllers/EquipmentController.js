@@ -1,5 +1,7 @@
 import Equipment from '../models/Equipment';
 import QRCode from 'qrcode';
+import fs from 'fs';
+import { CreateQRCodeImageService } from '../services/CreateQRCodeImageService';
 
 class EquipmentController {
     async index (req, res) {
@@ -14,20 +16,14 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            const newEquipment = await Equipment.create(req.body);
+            // generate QRCodeImage
+            const serviceQRCodeImage = new CreateQRCodeImageService();
+            const foto = await serviceQRCodeImage.create(req.body)
 
-            delete req.body._csrf;
+            const { tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao } = req.body;
 
-            // format equipment value to QRcode
-            const data = JSON.stringify(req.body);
-            const dataFormated = data.toUpperCase()
-                .replace(/\{/g, "")
-                .replace(/\}/g, "")
-                .replace(/\"/g, "")
-                .replace(/\,/g, "\n")
-                .replace(/\:/g, ": ");
-
-            await QRCode.toFile('./public/assets/img/equipment.png', dataFormated);
+            // insert in database
+            const newEquipment = await Equipment.create({ tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao, foto });
 
             req.flash('success', 'Equipamento criado com sucesso.');
             req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));

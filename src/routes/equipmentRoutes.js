@@ -4,10 +4,10 @@ import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
-router.get('/index', loginRequired, EquipmentController.index);
-router.post('/register', loginRequired, EquipmentController.store);
-router.get('/index/:id', loginRequired, EquipmentController.editIndex);
-router.post('/edit/:id', loginRequired, EquipmentController.update);
-router.get('/delete/:id', loginRequired, EquipmentController.delete);
+router.get('/index', EquipmentController.index);
+router.post('/register', EquipmentController.store);
+router.get('/index/:id', EquipmentController.editIndex);
+router.post('/edit/:id', EquipmentController.update);
+router.get('/delete/:id', EquipmentController.delete);
 
 export default router;
