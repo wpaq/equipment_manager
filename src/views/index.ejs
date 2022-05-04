@@ -55,6 +55,26 @@
     </div>
     <!-- // modal delete equipment -->
 
+    <!-- modal QRCode equipment -->
+    <div class="modal fade" id="QRCodeModal" tabindex="-1" aria-labelledby="QRCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="QRCodeModalLabel">QRCode</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="/assets/img/aaa.png" alt="">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger deleteConfirm">Confirmar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- // modal QRCode equipment -->
+
     <!-- table equipments -->
     <div class="equipments">
         <div class="recents">
@@ -71,6 +91,7 @@
                         <th scope="col">Responsável</th>
                         <th scope="col">Configuração</th>
                         <th scope="col">Data de Verificação</th>
+                        <th scope="col">QRCode</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -85,6 +106,9 @@
                             <td><%= equipment.responsavel %></td>
                             <td><%= equipment.configuracao %></td>
                             <td><%= equipment.data_verificacao %></td>
+                            <td>
+                                <a class="text-danger qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" value="<%= equipment.foto %>">Visualizar</a>
+                            </td>
                             <td>
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
                             </td>

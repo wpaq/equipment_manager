@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export default {
     get() {
         this.btn = document.querySelector('#btn');

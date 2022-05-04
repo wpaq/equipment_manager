@@ -16,7 +16,7 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            // generate QRCodeImage
+            // generate QRCodeImage Service
             const serviceQRCodeImage = new CreateQRCodeImageService();
             const foto = await serviceQRCodeImage.create(req.body)
 

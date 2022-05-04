@@ -1,6 +1,7 @@
 import Equipment from '../models/Equipment';
 import { Op } from 'sequelize';
 import fs from 'fs';
+import path from 'path';
 
 const random = () => Math.floor(Math.random() * 10000 + 10000);
 
@@ -14,11 +15,21 @@ class HomeController {
           order: ['tombo']
         });
 
-        //const fotos = await Equipment.findByPk('1ed8c38d-0b25-4d28-aa8e-fd3bc494e482');
 
-        //const outputFilepath =  `./public/assets/img/${Date.now()}_${random()}.png`;
-        //fs.writeFileSync(outputFilepath, fotos.foto, 'base64');
-        
+        equipments.forEach(equipment => {
+          fs.access(path, fs.constants.F_OK, (err) => {
+            console.log(err ? 'não existe' : 'existe');
+            
+            if (!err) {
+              const outputFilepath =  `./public/assets/img/${equipment.id}.png`;
+
+              if (equipment.foto != null) {
+                fs.writeFileSync(outputFilepath, equipment.foto, 'base64');
+              }
+            }
+          });
+        })
+        //const fotos = await Equipment.findByPk('1ed8c38d-0b25-4d28-aa8e-fd3bc494e482');        
 
         res.status(200).render('index', { equipments });      
     } catch (e) {
