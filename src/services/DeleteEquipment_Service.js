@@ -19,8 +19,7 @@ export class DeleteEquipment_Service {
             const outputFilepath =  `./public/assets/img/${equipmentId}.png`;
             fs.unlink(outputFilepath, function(err){
                 if(err) return console.log(err);
-
-           });
+            });
             
             return equipmentConstants.equipmentDeleteSuccess;
         } catch (err) {

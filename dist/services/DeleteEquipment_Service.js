@@ -19,8 +19,7 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
             const outputFilepath =  `./public/assets/img/${equipmentId}.png`;
             _fs2.default.unlink(outputFilepath, function(err){
                 if(err) return console.log(err);
-
-           });
+            });
             
             return _equipmentConstants2.default.equipmentDeleteSuccess;
         } catch (err) {

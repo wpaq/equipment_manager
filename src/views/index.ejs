@@ -9,7 +9,6 @@
         <h2><b>Equipamentos</b></h2>
     </div>
     <hr>
-
 </div> 
 <!-- // page header -->
 
@@ -27,10 +26,13 @@
             </div>  
 
             <div class="filterAndSeach">                
-                <button class="btn" type="submit">
-                    <p>Realizar Pesquisa</p>
+                <button class="btn btn-primary" type="submit">
+                    <p>Buscar</p>
                 </button>
             </div>     
+            <a href="/equipment/index" class="btn btn-success">                
+                <p>Novo Equipamento</p>
+            </a>       
         </form>
     </div>
     <!-- // equipment search -->
@@ -130,7 +132,12 @@
     <!-- // table equipments -->
 
 <% } else { %>
-    <p class="text-center lead no-equipments">Não existem equipamentos cadastrados.</p>
+    <p class="text-center lead no-equipments">
+        Não existem equipamentos cadastrados.
+        </br></br>
+        <a href="/equipment/index" class="btn btn-success">
+            <i class='bx bx-plus'></i>  Adicionar Equipamento</a>
+    </p>
 <% } %>
 <!-- // equipment list -->
 

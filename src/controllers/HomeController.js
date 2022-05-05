@@ -3,7 +3,6 @@ import QRCodeImage from '../models/QRCodeImage';
 import { Op } from 'sequelize';
 import fs from 'fs';
 
-const random = () => Math.floor(Math.random() * 10000 + 10000);
 
 class HomeController {
   async index(req, res) {
@@ -11,7 +10,7 @@ class HomeController {
         const limiter = req.query.limit;
         const equipments = await Equipment.findAll({
           offset: 0,
-          limit: limiter || 5,
+          limit: limiter || 500,
           order: ['tombo']
         });
 

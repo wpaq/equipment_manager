@@ -3,7 +3,6 @@ var _QRCodeImage = require('../models/QRCodeImage'); var _QRCodeImage2 = _intero
 var _sequelize = require('sequelize');
 var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
 
-const random = () => Math.floor(Math.random() * 10000 + 10000);
 
 class HomeController {
   async index(req, res) {
@@ -11,7 +10,7 @@ class HomeController {
         const limiter = req.query.limit;
         const equipments = await _Equipment2.default.findAll({
           offset: 0,
-          limit: limiter || 5,
+          limit: limiter || 500,
           order: ['tombo']
         });
 

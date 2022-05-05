@@ -6,7 +6,7 @@
     <div class="pageOrder">
         <h2><a href="/">Página Inicial</a></h2>
         <i class='bx bx-chevron-right'></i>
-        <h2><b>Editar Equipamento</b></h2>
+        <h2><b>Criar/Editar Equipamento</b></h2>
     </div>
     <hr>
 </div>
@@ -17,7 +17,6 @@
         <div class="col-lg-2"></div>
 
         <div class="col-lg-8 my-3">
-            <h1 class=" text-center">Equipamento</h1>
             <p class="text-center lead">Crie ou edite seu equipamento abaixo</p>
 
             <%- include('includes/messages') %>
@@ -30,11 +29,11 @@
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                 <div class="form-group">
                     <label>Tombo:</label>
-                    <input type="number" class="form-control" name="tombo" value="<%= equipment.tombo %>">
+                    <input type="number" class="form-control" name="tombo" placeholder="ex: 12345" value="<%= equipment.tombo %>" required>
                 </div>
                 <div class="form-group">
                     <label>Equipamento:</label>
-                    <input type="text" class="form-control" name="equipamento" value="<%= equipment.equipamento %>" required>
+                    <input type="text" class="form-control" name="equipamento" placeholder="ex: gabinete" value="<%= equipment.equipamento %>" required>
                 </div>
                 <div class="form-group">
                     <label>Empresa:</label>

@@ -321,26 +321,35 @@ a {
 
 .pageSearch form {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
 }
 
 .pageSearch form a {
-    width: 100%;
     padding-left: 20px;
 }
 
+.pageSearch form .btn-success {
+    height: 50px;
+    margin-left: 15px;
+}
+
+.pageSearch form .btn-success p {
+    align-items: center;
+    margin: 0;
+}
+
 .pageSearch form .filterAndSeach {
-    height: 100%;
+    margin-left: 15px;
 }
 
 .pageSearch form .filterAndSeach button {
     background: #1d1b31;
     color: #fff;
     font-size: 18px;
-    height: 100%;
-    width: 250px;
+    height: 50px;
+    width: 150px;
 }
 
 .pageSearch form .filterAndSeach button p {
