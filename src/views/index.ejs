@@ -63,12 +63,12 @@
             <h5 class="modal-title" id="QRCodeModalLabel">QRCode</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <img class="qrcodePath" src="/assets/img/equipment.png" alt="">
+            <div class="modal-body qrcodediv">
+                <img class="qrcodeImage" src="/assets/img/equipment.png" alt="">
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-danger deleteConfirm">Confirmar</button>
+            <button type="button" class="btn btn-dark printerButton">Imprimir</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Voltar</button>
             </div>
         </div>
         </div>
@@ -107,7 +107,7 @@
                             <td><%= equipment.configuracao %></td>
                             <td><%= equipment.data_verificacao %></td>
                             <td>
-                                <a class="text-danger qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar</a>
+                                <a class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar</a>
                             </td>
                             <td>
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
