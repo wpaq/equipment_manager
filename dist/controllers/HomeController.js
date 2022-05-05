@@ -1,7 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
+var _QRCodeImage = require('../models/QRCodeImage'); var _QRCodeImage2 = _interopRequireDefault(_QRCodeImage);
 var _sequelize = require('sequelize');
 var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
-var _path = require('path'); var _path2 = _interopRequireDefault(_path);
 
 const random = () => Math.floor(Math.random() * 10000 + 10000);
 
@@ -11,22 +11,24 @@ class HomeController {
         const limiter = req.query.limit;
         const equipments = await _Equipment2.default.findAll({
           offset: 0,
-          limit: limiter || 3,
+          limit: limiter || 5,
           order: ['tombo']
         });
 
+        const QRCodeImages = await _QRCodeImage2.default.findAll();
 
-        equipments.forEach(equipment => {
+        QRCodeImages.forEach(images => {
           // caminho onde salva as imagens
-          const outputFilepath =  `./public/assets/img/${equipment.id}.png`;
+          const outputFilepath =  `./public/assets/img/${images.equipment_id}.png`;
 
           // verificar se imagem ja existe
           _fs2.default.access(outputFilepath, _fs2.default.constants.F_OK, (err) => {           
             if (err) {       
               // verifica se existe imagem cadastrada no database    
-              if (equipment.foto != null) {
+              if (images.photo_data) {
                 // converte o arquivo blob do database para imagem e salva no server local
-                _fs2.default.writeFileSync(outputFilepath, equipment.foto, 'base64');
+                _fs2.default.writeFileSync(outputFilepath, images.photo_data, 'base64');
+                
               }
             }
           });
@@ -34,6 +36,7 @@ class HomeController {
 
         res.status(200).render('index', { equipments });      
     } catch (e) {
+        console.log(e)
         return req.session.save(() => res.status(404).render('404'));
     }
   }
@@ -45,12 +48,11 @@ class HomeController {
         const equipments = await _Equipment2.default.findAll({ 
           where: { 
             [_sequelize.Op.or]: [   
-              /* -- tombo is integer
               {
                 tombo: { 
-                  [Op.iLike]: `%${query}%`
-                
-              },*/   
+                  [_sequelize.Op.iLike]: `%${query}%`   
+                }             
+              },  
               {
                 equipamento: { 
                   [_sequelize.Op.iLike]: `%${query}%`

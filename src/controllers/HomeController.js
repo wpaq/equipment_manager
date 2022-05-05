@@ -28,6 +28,7 @@ class HomeController {
               if (images.photo_data) {
                 // converte o arquivo blob do database para imagem e salva no server local
                 fs.writeFileSync(outputFilepath, images.photo_data, 'base64');
+                
               }
             }
           });

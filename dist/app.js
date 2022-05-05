@@ -16,7 +16,6 @@ var _userRoutes = require('./routes/userRoutes'); var _userRoutes2 = _interopReq
 var _loginRoutes = require('./routes/loginRoutes'); var _loginRoutes2 = _interopRequireDefault(_loginRoutes);
 var _tokenRoutes = require('./routes/tokenRoutes'); var _tokenRoutes2 = _interopRequireDefault(_tokenRoutes);
 var _equipmentRoutes = require('./routes/equipmentRoutes'); var _equipmentRoutes2 = _interopRequireDefault(_equipmentRoutes);
-var _qrcodeRoutes = require('./routes/qrcodeRoutes'); var _qrcodeRoutes2 = _interopRequireDefault(_qrcodeRoutes);
 var _middleware = require('./middlewares/middleware');
 
 class App {
@@ -60,7 +59,6 @@ class App {
     this.app.use('/login/', _loginRoutes2.default);
     this.app.use('/token/', _tokenRoutes2.default);
     this.app.use('/equipment/', _equipmentRoutes2.default);
-    this.app.use('/qrcode/', _qrcodeRoutes2.default);
     this.app.use('*', function (req, res) {
         res.render('404', { title:'404' });
     });    

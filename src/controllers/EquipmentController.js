@@ -1,6 +1,8 @@
 import Equipment from '../models/Equipment';
 import equipmentConstants from '../constants/equipmentConstants';
 import { CreateEquipment_Service } from '../services/CreateEquipment_Service';
+import { UpdateEquipment_Service } from '../services/UpdateEquipment_Service';
+import { DeleteEquipment_Service } from '../services/DeleteEquipment_Service';
 
 class EquipmentController {
     async index (req, res) {
@@ -26,6 +28,43 @@ class EquipmentController {
         }
     };
 
+    async update(req, res) {
+        try {
+            const service = new UpdateEquipment_Service();
+            const updateEquipment = await service.execute(req.body, req.params.id);
+
+            if (!updateEquipment == equipmentConstants.equipmentNotFound) {
+                req.flash('errors', equipmentConstants.equipmentNotFound);
+                req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
+                return;
+            };           
+            
+            req.flash('success', equipmentConstants.equipmentUpdateSuccess);
+            req.session.save(() => res.redirect(`/equipment/index/${updateEquipment}`));
+            return;            
+        } catch (e) {
+            return req.session.save(() => res.status(404).render('404'));
+        }
+    };
+
+    async delete(req, res) {
+        try {
+            const service = new DeleteEquipment_Service();
+            const deleteEquipment = await service.execute(req.params.id);
+
+            if (deleteEquipment != equipmentConstants.equipmentDeleteSuccess) {
+                req.flash('errors', equipmentConstants.equipmentDeleteError);
+                req.session.save(() => res.render('404'));
+                return;
+            }
+            
+            req.flash('success', equipmentConstants.equipmentDeleteSuccess);
+            return req.session.save(() => res.status(200).redirect('/'));
+        } catch (e) {
+            return req.session.save(() => res.status(404).render('404'));
+        }
+    };
+
     async editIndex(req, res) {
         try {
             const equipment = await Equipment.findByPk(req.params.id);
@@ -39,43 +78,6 @@ class EquipmentController {
             return req.session.save(() => res.status(404).render('404'));
         }
     }
-
-    async update(req, res) {
-        try {
-            const equipment = await Equipment.findByPk(req.params.id);
-            await equipment.update(req.body);
-
-            if (!equipment) {
-                req.flash('errors', equipmentConstants.equipmentNotFound);
-                req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
-                return;
-            };           
-            
-            req.flash('success', equipmentConstants.equipmentUpdateSuccess);
-            req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
-            return;            
-        } catch (e) {
-            return req.session.save(() => res.status(404).render('404'));
-        }
-    };
-
-    async delete(req, res) {
-        try {
-            const equipment = await Equipment.findByPk(req.params.id);
-
-            if (!equipment) {
-                req.flash('errors', equipmentConstants.equipmentNotFound);
-                req.session.save(() => res.render('404'));
-                return;
-            }
-            
-            await equipment.destroy();
-            req.flash('success', equipmentConstants.equipmentDeleteSuccess);
-            return req.session.save(() => res.status(200).redirect('/'));
-        } catch (e) {
-            return req.session.save(() => res.status(404).render('404'));
-        }
-    };
 };
 
 export default new EquipmentController();

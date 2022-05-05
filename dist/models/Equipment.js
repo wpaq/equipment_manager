@@ -38,10 +38,6 @@
                 data_verificacao: {
                     type: _sequelize2.default.STRING,
                     defaultValue: ''
-                },
-                foto: {
-                    type: _sequelize2.default.BLOB('long'),
-                    defaultValue: ''
                 }
             },
             {
