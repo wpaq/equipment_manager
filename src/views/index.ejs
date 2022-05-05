@@ -67,8 +67,14 @@
                 <img class="qrcodeImage" src="/assets/img/equipment.png" alt="">
             </div>
             <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-dark printerButton">Imprimir</button>
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Voltar</button>
+            <a class="qrCodeImageLinkDownload" href="/assets/img/equipment.png" download>
+                <button type="button" class="btn btn-dark printerButton">
+                    <i class='bx bxs-download'></i> Download 
+                </button>
+            </a>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                Voltar
+            </button>
             </div>
         </div>
         </div>
@@ -107,7 +113,7 @@
                             <td><%= equipment.configuracao %></td>
                             <td><%= equipment.data_verificacao %></td>
                             <td>
-                                <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar</a>
+                                <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
                             </td>
                             <td>
                                 <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
