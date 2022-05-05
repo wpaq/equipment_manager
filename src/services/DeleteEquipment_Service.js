@@ -7,7 +7,7 @@ export class DeleteEquipment_Service {
     async execute(equipmentId) {
         try {
             const equipment = await Equipment.findByPk(equipmentId);
-            const equipmentQRCode = await QRCodeImage.findOne({ equipment_id: equipmentId });
+            const equipmentQRCode = await QRCodeImage.findOne({ where: { equipment_id: equipmentId }});
 
             if (!equipment || !equipmentQRCode) {
                 return equipmentConstants.equipmentDeleteError;

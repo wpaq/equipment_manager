@@ -7,7 +7,7 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
     async execute(equipmentId) {
         try {
             const equipment = await _Equipment2.default.findByPk(equipmentId);
-            const equipmentQRCode = await _QRCodeImage2.default.findOne({ equipment_id: equipmentId });
+            const equipmentQRCode = await _QRCodeImage2.default.findOne({ where: { equipment_id: equipmentId }});
 
             if (!equipment || !equipmentQRCode) {
                 return _equipmentConstants2.default.equipmentDeleteError;
