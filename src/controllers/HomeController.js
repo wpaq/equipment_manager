@@ -2,7 +2,6 @@ import Equipment from '../models/Equipment';
 import QRCodeImage from '../models/QRCodeImage';
 import { Op } from 'sequelize';
 import fs from 'fs';
-import path from 'path';
 
 const random = () => Math.floor(Math.random() * 10000 + 10000);
 
@@ -26,7 +25,7 @@ class HomeController {
           fs.access(outputFilepath, fs.constants.F_OK, (err) => {           
             if (err) {       
               // verifica se existe imagem cadastrada no database    
-              if (images.photo_data != null) {
+              if (images.photo_data) {
                 // converte o arquivo blob do database para imagem e salva no server local
                 fs.writeFileSync(outputFilepath, images.photo_data, 'base64');
               }
@@ -34,8 +33,9 @@ class HomeController {
           });
         })       
 
-        res.status(200).render('index', { equipments, QRCodeImages });      
+        res.status(200).render('index', { equipments });      
     } catch (e) {
+        console.log(e)
         return req.session.save(() => res.status(404).render('404'));
     }
   }
@@ -47,12 +47,11 @@ class HomeController {
         const equipments = await Equipment.findAll({ 
           where: { 
             [Op.or]: [   
-              /* -- tombo is integer
               {
                 tombo: { 
-                  [Op.iLike]: `%${query}%`
-                
-              },*/   
+                  [Op.iLike]: `%${query}%`   
+                }             
+              },  
               {
                 equipamento: { 
                   [Op.iLike]: `%${query}%`

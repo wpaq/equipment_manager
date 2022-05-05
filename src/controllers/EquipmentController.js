@@ -44,7 +44,6 @@ class EquipmentController {
         try {
             const equipment = await Equipment.findByPk(req.params.id);
             await equipment.update(req.body);
-            console.log(req.body)
 
             if (!equipment) {
                 req.flash('errors', equipmentConstants.equipmentNotFound);

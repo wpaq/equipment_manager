@@ -7,13 +7,11 @@ export class CreateEquipment_Service {
         try {
             // generate QRCodeImageBuffer Service
             const serviceQRCodeImageBuffer = new GenerateQRCodeImageBuffer_Service();
-            const foto = await serviceQRCodeImageBuffer.create(data)
- 
-            const { tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao } = data;
+            const imageBuffer = await serviceQRCodeImageBuffer.create(data)
 
             // insert in database
-            const newEquipment = await Equipment.create({ tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao, foto });
-            const newQRCodeImage = await QRCodeImage.create({ photo_data: foto, equipment_id: newEquipment.id});
+            const newEquipment = await Equipment.create(data);
+            const newQRCodeImage = await QRCodeImage.create({ photo_data: imageBuffer, equipment_id: newEquipment.id});
             
             return newEquipment.id;
         } catch (err) {
