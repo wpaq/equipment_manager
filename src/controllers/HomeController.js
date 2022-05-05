@@ -1,4 +1,5 @@
 import Equipment from '../models/Equipment';
+import QRCodeImage from '../models/QRCodeImage';
 import { Op } from 'sequelize';
 import fs from 'fs';
 import path from 'path';
@@ -11,28 +12,29 @@ class HomeController {
         const limiter = req.query.limit;
         const equipments = await Equipment.findAll({
           offset: 0,
-          limit: limiter || 3,
+          limit: limiter || 5,
           order: ['tombo']
         });
 
+        const QRCodeImages = await QRCodeImage.findAll();
 
-        equipments.forEach(equipment => {
+        QRCodeImages.forEach(images => {
           // caminho onde salva as imagens
-          const outputFilepath =  `./public/assets/img/${equipment.id}.png`;
+          const outputFilepath =  `./public/assets/img/${images.equipment_id}.png`;
 
           // verificar se imagem ja existe
           fs.access(outputFilepath, fs.constants.F_OK, (err) => {           
             if (err) {       
               // verifica se existe imagem cadastrada no database    
-              if (equipment.foto != null) {
+              if (images.photo_data != null) {
                 // converte o arquivo blob do database para imagem e salva no server local
-                fs.writeFileSync(outputFilepath, equipment.foto, 'base64');
+                fs.writeFileSync(outputFilepath, images.photo_data, 'base64');
               }
             }
           });
         })       
 
-        res.status(200).render('index', { equipments });      
+        res.status(200).render('index', { equipments, QRCodeImages });      
     } catch (e) {
         return req.session.save(() => res.status(404).render('404'));
     }

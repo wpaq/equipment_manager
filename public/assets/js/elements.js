@@ -8,7 +8,8 @@ export default {
         this.limiter = document.querySelector('.limiter');
         this.equipmentDate = document.querySelector('#equipment-date');
         this.qrcodeLink = document.querySelectorAll('.qrcodeLink');
-        this.qrcodePath = document.querySelector('.qrcodePath');
+        this.qrcodeImage = document.querySelector('.qrcodeImage');
+        this.printerButton = document.querySelector('.printerButton');
     },
 
     actions() {
@@ -23,7 +24,7 @@ export default {
             this.sidebar.classList.toggle('sidebar-active');
             })
         }
-        
+
         if (this.limiter) {
             this.limiter.addEventListener('click', () => {
                 this.limiter.classList.toggle('.limit-active');
@@ -31,10 +32,28 @@ export default {
         }
 
         if (this.qrcodeLink) {            
-            for(let i = 0; i < this.qrcodeLink.length; i++) {
-                
+            for(let i = 0; i < this.qrcodeLink.length; i++) {                                
                 this.qrcodeLink[i].onclick = () => {
-                    this.qrcodePath.src = `/assets/img/${this.qrcodeLink[i].id}.png`;
+                    this.qrcodeImage.src = `/assets/img/${this.qrcodeLink[i].id}.png`;
+
+                    if (this.printerButton) {
+                        this.printerButton.addEventListener('click', () => {
+                            var newPage = window.open('about:black', '_new');
+                            newPage.document.open();
+                            newPage.document.write(
+                                '<html>',
+                                '   <head>',
+                                '   </head>',
+                                '   <body>',
+                                '       <img src="' + this.qrcodeImage.src + '" width="200" height="200"/>',
+                                '   </body>',
+                                '</html>'
+                            );
+                            newPage.onload(newPage.window.print())
+                            newPage.onafterprint(newPage.window.close())
+                            
+                        })
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 import QRCode from 'qrcode';
 import fs from 'fs';
 
-export class CreateQRCodeImageService {
+export class GenerateQRCodeImageBuffer_Service {
     async create(obj) {
         try {
             // filepath to save qrcode image
@@ -17,10 +17,11 @@ export class CreateQRCodeImageService {
                 .replace(/\,/g, "\n")
                 .replace(/\:/g, ": ");
 
+            // generate qrcode image
             await QRCode.toFile(filepath, dataFormated);      
-            const qrcode_photo = Buffer.from(fs.readFileSync(filepath));
+            const QRCodeBuffer = Buffer.from(fs.readFileSync(filepath));
 
-            return qrcode_photo;
+            return QRCodeBuffer;
         } catch (err) {
             return console.log(err)
         }        

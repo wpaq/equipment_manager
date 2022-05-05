@@ -1,7 +1,6 @@
 import Equipment from '../models/Equipment';
-import QRCode from 'qrcode';
-import fs from 'fs';
-import { CreateQRCodeImageService } from '../services/CreateQRCodeImageService';
+import equipmentConstants from '../constants/equipmentConstants';
+import { CreateEquipment_Service } from '../services/CreateEquipment_Service';
 
 class EquipmentController {
     async index (req, res) {
@@ -16,20 +15,14 @@ class EquipmentController {
 
     async store(req, res) {
         try {
-            // generate QRCodeImage Service
-            const serviceQRCodeImage = new CreateQRCodeImageService();
-            const foto = await serviceQRCodeImage.create(req.body)
-
-            const { tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao } = req.body;
-
-            // insert in database
-            const newEquipment = await Equipment.create({ tombo, equipamento, empresa, local, responsavel, configuracao, data_verificacao, foto });
-
-            req.flash('success', 'Equipamento criado com sucesso.');
-            req.session.save(() => res.redirect(`/equipment/index/${newEquipment.id}`));
+            const service = new CreateEquipment_Service();
+            const newEquipment = await service.execute(req.body);
+            
+            req.flash('success', equipmentConstants.equipmentSuccess);
+            req.session.save(() => res.status(200).redirect(`/equipment/index/${newEquipment}`));
             return;            
-        } catch (e) {
-            return req.session.save(() => res.render('404'));
+        } catch (err) {
+            return req.session.save(() => res.status(400).render('404'));
         }
     };
 
@@ -54,12 +47,12 @@ class EquipmentController {
             console.log(req.body)
 
             if (!equipment) {
-                req.flash('errors', 'Equipamento não existe.');
+                req.flash('errors', equipmentConstants.equipmentNotFound);
                 req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
                 return;
             };           
             
-            req.flash('success', 'Equipamento atualizado com sucesso.');
+            req.flash('success', equipmentConstants.equipmentUpdateSuccess);
             req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
             return;            
         } catch (e) {
@@ -72,13 +65,13 @@ class EquipmentController {
             const equipment = await Equipment.findByPk(req.params.id);
 
             if (!equipment) {
-                req.flash('errors', 'Equipamento não existe.');
+                req.flash('errors', equipmentConstants.equipmentNotFound);
                 req.session.save(() => res.render('404'));
                 return;
             }
             
             await equipment.destroy();
-            req.flash('success', 'Equipamento deletado com sucesso');
+            req.flash('success', equipmentConstants.equipmentDeleteSuccess);
             return req.session.save(() => res.status(200).redirect('/'));
         } catch (e) {
             return req.session.save(() => res.status(404).render('404'));
