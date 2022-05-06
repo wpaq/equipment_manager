@@ -10,9 +10,7 @@
 }
 
 body {
-    position: relative;
-    min-height: 100vh;
-    width: 100%;
+    font-size: .875rem;
 }
 
 a {
@@ -33,7 +31,7 @@ a {
 }
 
 .sidebar-active {
-    width: 300px;
+    width: 280px;
 }
 
 .sidebar .logo_content .logo {
@@ -135,37 +133,8 @@ a {
     opacity: 1;
 }
 
-
 .sidebar-active .tooltip {
     display: none;
-}
-
-.sidebar ul li input {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    border-radius: 12px;
-    outline: none;
-    border: none;
-    background: #1d1b31;
-    padding-left: 50px;
-    font-size: 18px;
-    color: #fff;
-}
-
-.sidebar ul li .bx-search {
-    position: absolute;
-    color: #fff;
-    font-size: 22px;
-    transition: all 0.5s ease;
-    z-index: 99;
-}
-
-.sidebar ul li .bx-search:hover {
-    background: #fff;
-    color: #1d1b31;
 }
 
 .sidebar ul li a {
@@ -269,12 +238,22 @@ a {
 }
 
 .sidebar-active ~ .equipments {
-    width: calc(100% - 300px);
-    left: 300px;
+    width: calc(100% - 280px);
+    left: 280px;
 }
 
 .sidebar-active ~ .pageHeader {
-    width: calc(100% - 300px);
+    width: calc(100% - 280px);
+    left: 280px;
+}
+
+.sidebar-active ~ .pageSearch {
+    width: calc(100% - 280px);
+    left: 280px;
+}
+
+.sidebar-active ~ .pageCards {
+    width: calc(100% - 317px);
     left: 300px;
 }
 /* -- // SIDEBAR -- */
@@ -293,6 +272,66 @@ a {
 .pageHeader h2 {
     font-size: 30px;
 }
+
+/* dashborad Card */
+.pageCards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    width: calc(100% - 116px);
+    left: 97px;
+    transition: all 0.4s ease;
+}
+
+.dashboard-card {
+    width: 261px;
+    height: 130px;
+    background: #1E90FF;
+}
+
+.dashboard-card a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dashboard-card .icons-card-dashboard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 80px;
+    color: #4169E1;
+}
+
+.dashboard-card .card-details-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #4169E1;
+    width: 100%;
+    height: 37px;
+    cursor: pointer;
+}
+
+.dashboard-card .card-img-overlay {
+    bottom: auto;
+}
+
+#card-add-equipment {
+    background: #2E8B57;
+}
+
+#card-add-equipment .bxs-file-plus {
+    color: #006400;
+}
+
+#card-add-equipment .card-details-link {
+    background: #006400;
+}
+
+/* dashborad Card */
 
 .pageOrder {
     position: relative;
@@ -321,7 +360,6 @@ a {
 
 .pageSearch form {
     display: flex;
-    justify-content: center;
     align-items: center;
     width: 100%;
 }

@@ -6,11 +6,54 @@
     <div class="pageOrder">
         <h2><a href="/">Página Inicial</a></h2>
         <i class='bx bx-chevron-right'></i>
-        <h2><b>Equipamentos</b></h2>
+        <h2><b>Dashboard</b></h2>
     </div>
     <hr>
 </div> 
 <!-- // page header -->
+
+<!-- page cards -->
+<div class="pageCards">
+    <div class="card text-white dashboard-card">
+        <i class='card-img icons-card-dashboard bx bx-file'></i>
+        <div class="card-img-overlay">
+          <h5 class="card-title"><%= equipments_qtd %></h5>
+          <p>Equipamentos Cadastrados</p>
+        </div>
+        <a href="#">
+            <div class="card-details-link">
+                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card text-white dashboard-card" id="card-add-equipment">
+        <i class='card-img icons-card-dashboard bx bxs-file-plus'></i>
+        <div class="card-img-overlay">
+          <h5 class="card-title"></h5>
+          <p>Adicionar Equipamento</p>
+        </div>        
+        <a href="/equipment/index">
+            <div class="card-details-link">
+                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card text-white dashboard-card">
+        <i class='card-img icons-card-dashboard  bx bxs-user'></i>
+        <div class="card-img-overlay">
+          <h5 class="card-title"></h5>
+          <p>Dados do Usuário</p>
+        </div>
+        <a href="#">
+            <div class="card-details-link">
+                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
+            </div>
+        </a>
+    </div>
+</div>
+<!-- // page cards -->
 
 <%- include('includes/messages'); %>
 

@@ -8,7 +8,7 @@ class HomeController {
   async index(req, res) {
     try {
         const limiter = req.query.limit;
-        const equipments = await Equipment.findAll({
+        const { count, rows } = await Equipment.findAndCountAll({
           offset: 0,
           limit: limiter || 500,
           order: ['tombo']
@@ -33,7 +33,7 @@ class HomeController {
           });
         })       
 
-        res.status(200).render('index', { equipments });      
+        res.status(200).render('index', { equipments: rows, equipments_qtd: count });      
     } catch (e) {
         console.log(e)
         return req.session.save(() => res.status(404).render('404'));
