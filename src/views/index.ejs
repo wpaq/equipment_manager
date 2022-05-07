@@ -1,19 +1,10 @@
 <%- include('includes/head'); %>
 <%- include('includes/sidebar'); %>
 
-<!-- page header -->
-<div class="pageHeader">
-    <div class="pageOrder">
-        <h2><a href="/">Página Inicial</a></h2>
-        <i class='bx bx-chevron-right'></i>
-        <h2><b>Dashboard</b></h2>
-    </div>
-    <hr>
-</div> 
-<!-- // page header -->
+<%- include('includes/breadcrumb') %>
 
 <!-- page cards -->
-<div class="pageCards">
+<div class="pageCards flex-wrap">
     <div class="card text-white dashboard-card">
         <i class='card-img icons-card-dashboard bx bx-file'></i>
         <div class="card-img-overlay">
@@ -34,6 +25,19 @@
           <p>Adicionar Equipamento</p>
         </div>        
         <a href="/equipment/index">
+            <div class="card-details-link">
+                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
+            </div>
+        </a>
+    </div>
+
+    <div class="card text-white dashboard-card">
+        <i class='card-img icons-card-dashboard  bx bxs-user'></i>
+        <div class="card-img-overlay">
+          <h5 class="card-title"></h5>
+          <p>Dados do Usuário</p>
+        </div>
+        <a href="#">
             <div class="card-details-link">
                 <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
             </div>

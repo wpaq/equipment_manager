@@ -3,7 +3,6 @@ import QRCodeImage from '../models/QRCodeImage';
 import { Op } from 'sequelize';
 import fs from 'fs';
 
-
 class HomeController {
   async index(req, res) {
     try {
@@ -33,7 +32,7 @@ class HomeController {
           });
         })       
 
-        res.status(200).render('index', { equipments: rows, equipments_qtd: count });      
+        res.status(200).render('index', { equipments: rows, equipments_qtd: count , title: 'Dashboard'});      
     } catch (e) {
         console.log(e)
         return req.session.save(() => res.status(404).render('404'));

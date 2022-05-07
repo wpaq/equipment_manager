@@ -242,7 +242,7 @@ a {
     left: 280px;
 }
 
-.sidebar-active ~ .pageHeader {
+.sidebar-active ~ .page-breadcrumb {
     width: calc(100% - 280px);
     left: 280px;
 }
@@ -259,24 +259,22 @@ a {
 /* -- // SIDEBAR -- */
 
 /* PAGEHEADER */
-.pageHeader {
+.page-breadcrumb {
     position: relative;
     width: calc(100% - 78px);
     left: 78px;
     padding: 20px;
     min-height: 100px;
     margin-top: 10px;
+    font-size: 20px;
+    font-weight: 400;
     transition: all 0.4s ease;
-}
-
-.pageHeader h2 {
-    font-size: 30px;
 }
 
 /* dashborad Card */
 .pageCards {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     position: relative;
     width: calc(100% - 116px);
@@ -288,6 +286,7 @@ a {
     width: 261px;
     height: 130px;
     background: #1E90FF;
+    margin: 5px;
 }
 
 .dashboard-card a {

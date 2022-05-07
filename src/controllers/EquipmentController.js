@@ -9,6 +9,7 @@ class EquipmentController {
         try {
             res.render('equipment', {
                 equipment: {},
+                title: 'Adicionar Equipamento'
             });
         } catch (err) {
             return req.session.save(() => res.status(404).render('404'));
@@ -21,7 +22,7 @@ class EquipmentController {
             const newEquipment = await service.execute(req.body);
             
             req.flash('success', equipmentConstants.equipmentSuccess);
-            req.session.save(() => res.status(200).redirect(`/equipment/index/${newEquipment}`));
+            req.session.save(() => res.status(200).redirect(`/equipment/index/${newEquipment}/?title='Editar Equipamento`));
             return;            
         } catch (err) {
             return req.session.save(() => res.status(400).render('404'));
@@ -73,7 +74,10 @@ class EquipmentController {
                 return res.status(404).render('404');
             };           
             
-            return res.render('equipment', { equipment });
+            return res.render('equipment', { 
+                equipment,
+                title: 'Editar Equipamento'
+            });
         } catch (e) {
             return req.session.save(() => res.status(404).render('404'));
         }
