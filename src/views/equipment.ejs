@@ -9,9 +9,9 @@
 
         <div class="col-lg-8 my-3">
             <p class="text-center lead">Crie ou edite seu equipamento abaixo</p>
-
-            <%- include('includes/messages') %>
             
+            <%- include('includes/messages') %>
+
             <% if(equipment.id) { %>
             <form action="/equipment/edit/<%= equipment.id %>" method="POST" class="my-3">
             <% } else { %>
