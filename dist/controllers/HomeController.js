@@ -3,12 +3,11 @@ var _QRCodeImage = require('../models/QRCodeImage'); var _QRCodeImage2 = _intero
 var _sequelize = require('sequelize');
 var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
 
-
 class HomeController {
   async index(req, res) {
     try {
         const limiter = req.query.limit;
-        const equipments = await _Equipment2.default.findAll({
+        const { count, rows } = await _Equipment2.default.findAndCountAll({
           offset: 0,
           limit: limiter || 500,
           order: ['tombo']
@@ -33,7 +32,7 @@ class HomeController {
           });
         })       
 
-        res.status(200).render('index', { equipments });      
+        res.status(200).render('index', { equipments: rows, equipments_qtd: count , title: 'Dashboard'});      
     } catch (e) {
         console.log(e)
         return req.session.save(() => res.status(404).render('404'));
