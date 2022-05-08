@@ -1,10 +1,40 @@
 import Equipment from '../models/Equipment';
 import equipmentConstants from '../constants/equipmentConstants';
+
+import { GetAllQRCodeImages_Service } from '../services/GetAllQRCodeImages_Service';
+import { SearchEquipment_Service } from '../services/SearchEquipment_Service';
 import { CreateEquipment_Service } from '../services/CreateEquipment_Service';
 import { UpdateEquipment_Service } from '../services/UpdateEquipment_Service';
 import { DeleteEquipment_Service } from '../services/DeleteEquipment_Service';
 
 class EquipmentController {
+    async show (req, res) {
+        try {
+            const limiter = req.query.limit;
+            const query_search = req.query.search;
+
+            if (query_search) {
+                const equipments = await new SearchEquipment_Service().execute(query_search); 
+
+                return res.status(200).render('equipamentos', { equipments, title: 'Equipamentos' });
+            }
+
+            const { count, rows } = await Equipment.findAndCountAll({
+              offset: 0,
+              limit: limiter || 500,
+              order: ['created_at']
+            }); 
+            
+
+            const service = new GetAllQRCodeImages_Service();      
+            await service.execute();  
+    
+            res.status(200).render('equipamentos', { equipments: rows, equipments_qtd: count , title: 'Equipamentos'});  
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async index (req, res) {
         try {
             res.render('equipment', {

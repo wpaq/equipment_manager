@@ -253,8 +253,8 @@ a {
 }
 
 .sidebar-active ~ .pageCards {
-    width: calc(100% - 317px);
-    left: 300px;
+    width: calc(100% - 280px);
+    left: 280px;
 }
 /* -- // SIDEBAR -- */
 
@@ -277,8 +277,8 @@ a {
     justify-content: space-evenly;
     align-items: center;
     position: relative;
-    width: calc(100% - 116px);
-    left: 97px;
+    width: calc(100% - 78px);
+    left: 78px;
     transition: all 0.4s ease;
 }
 
@@ -328,6 +328,28 @@ a {
 
 #card-add-equipment .card-details-link {
     background: #006400;
+}
+
+#card-user {
+    background: #DC143C;
+}
+#card-user .bxs-user {
+    color: #A52A2A;
+}
+#card-user .card-details-link {
+    background: #A52A2A;
+}
+
+#card-relatorio {
+    background: #DAA520;
+}
+
+#card-relatorio .bxs-report {
+    color: #B8860B;
+}
+
+#card-relatorio .card-details-link {
+    background: #B8860B;
 }
 
 /* dashborad Card */
@@ -681,7 +703,6 @@ a {
     line-height: 1.2;
     font-size: 18px;
     width: 500px;
-    height: 62px;
     text-align: center;
 }
 

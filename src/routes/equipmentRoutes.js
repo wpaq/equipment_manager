@@ -5,6 +5,7 @@ import loginRequired from '../middlewares/loginRequired';
 const router = new Router();
 
 router.get('/index', EquipmentController.index);
+router.get('/show', EquipmentController.show);
 router.post('/register', EquipmentController.store);
 router.get('/index/:id', EquipmentController.editIndex);
 router.post('/edit/:id', EquipmentController.update);
