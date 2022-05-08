@@ -1,10 +1,40 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
 var _equipmentConstants = require('../constants/equipmentConstants'); var _equipmentConstants2 = _interopRequireDefault(_equipmentConstants);
+
+var _GetAllQRCodeImages_Service = require('../services/GetAllQRCodeImages_Service');
+var _SearchEquipment_Service = require('../services/SearchEquipment_Service');
 var _CreateEquipment_Service = require('../services/CreateEquipment_Service');
 var _UpdateEquipment_Service = require('../services/UpdateEquipment_Service');
 var _DeleteEquipment_Service = require('../services/DeleteEquipment_Service');
 
 class EquipmentController {
+    async show (req, res) {
+        try {
+            const limiter = req.query.limit;
+            const query_search = req.query.search;
+
+            if (query_search) {
+                const equipments = await new (0, _SearchEquipment_Service.SearchEquipment_Service)().execute(query_search); 
+
+                return res.status(200).render('equipamentos', { equipments, title: 'Equipamentos' });
+            }
+
+            const { count, rows } = await _Equipment2.default.findAndCountAll({
+              offset: 0,
+              limit: limiter || 500,
+              order: ['created_at']
+            }); 
+            
+
+            const service = new (0, _GetAllQRCodeImages_Service.GetAllQRCodeImages_Service)();      
+            await service.execute();  
+    
+            res.status(200).render('equipamentos', { equipments: rows, equipments_qtd: count , title: 'Equipamentos'});  
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async index (req, res) {
         try {
             res.render('equipment', {

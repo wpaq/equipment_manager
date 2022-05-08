@@ -5,6 +5,7 @@ var _loginRequired = require('../middlewares/loginRequired'); var _loginRequired
 const router = new (0, _express.Router)();
 
 router.get('/index', _EquipmentController2.default.index);
+router.get('/show', _EquipmentController2.default.show);
 router.post('/register', _EquipmentController2.default.store);
 router.get('/index/:id', _EquipmentController2.default.editIndex);
 router.post('/edit/:id', _EquipmentController2.default.update);
