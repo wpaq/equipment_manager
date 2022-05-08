@@ -111,7 +111,7 @@
     <!-- // modal QRCode equipment -->
 
     <!-- table equipments -->
-    <div class="equipments">
+    <div class="equipments text-center">
         <div class="recents">
             <div class="cardHeader">
                 <h6>Adicionados Recentemente</h6>
@@ -127,8 +127,6 @@
                         <th scope="col">Configuração</th>
                         <th scope="col">Data de Verificação</th>
                         <th scope="col">QRCode</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,12 +141,6 @@
                             <td><%= equipment.data_verificacao %></td>
                             <td>
                                 <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
-                            </td>
-                            <td>
-                                <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
-                            </td>
-                            <td>
-                                <a class="text-danger deleteLink" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
                             </td>
                         </tr>
                     <% }); %>

@@ -2,6 +2,7 @@ import Equipment from '../models/Equipment';
 import equipmentConstants from '../constants/equipmentConstants';
 
 import { GetAllQRCodeImages_Service } from '../services/GetAllQRCodeImages_Service';
+import { GetAllEquipments_Service } from '../services/GetAllEquipments_Service';
 import { SearchEquipment_Service } from '../services/SearchEquipment_Service';
 import { CreateEquipment_Service } from '../services/CreateEquipment_Service';
 import { UpdateEquipment_Service } from '../services/UpdateEquipment_Service';
@@ -16,53 +17,57 @@ class EquipmentController {
             if (query_search) {
                 const equipments = await new SearchEquipment_Service().execute(query_search); 
 
-                return res.status(200).render('equipamentos', { equipments, title: 'Equipamentos' });
+                return res.status(200).render('equipamentos', { 
+                    equipments, 
+                    title: 'Equipamentos' 
+                });
             }
 
-            const { count, rows } = await Equipment.findAndCountAll({
-              offset: 0,
-              limit: limiter || 500,
-              order: ['created_at']
-            }); 
-            
-
-            const service = new GetAllQRCodeImages_Service();      
-            await service.execute();  
+            const equipments = await new GetAllEquipments_Service().execute();
+            await new GetAllQRCodeImages_Service().execute();      
     
-            res.status(200).render('equipamentos', { equipments: rows, equipments_qtd: count , title: 'Equipamentos'});  
+            return res.status(200).render('equipamentos', { 
+                equipments: equipments.rows, 
+                equipments_qtd: equipments.count, 
+                title: 'Equipamentos'
+            });  
         } catch (err) {
-            console.log(err)
+            req.flash('errors', equipmentConstants.equipmentSearchError);
+            req.session.save(() => res.redirect('/equipment/show'));
+            return;   
         }
     }
 
     async index (req, res) {
         try {
-            res.render('equipment', {
+            return res.status(200).render('equipment', {
                 equipment: {},
                 title: 'Adicionar Equipamento'
             });
         } catch (err) {
-            return req.session.save(() => res.status(404).render('404'));
+            req.flash('errors', equipmentConstants.equipmentStoreError);
+            req.session.save(() => res.redirect('/equipment/index'));
+            return;   
         }
     }
 
     async store(req, res) {
         try {
-            const service = new CreateEquipment_Service();
-            const newEquipment = await service.execute(req.body);
+            const newEquipment = await new CreateEquipment_Service().execute(req.body);
             
-            req.flash('success', equipmentConstants.equipmentSuccess);
+            req.flash('success', equipmentConstants.equipmentStoreSuccess);
             req.session.save(() => res.status(200).redirect(`/equipment/index/${newEquipment}/?title='Editar Equipamento`));
             return;            
         } catch (err) {
-            return req.session.save(() => res.status(400).render('404'));
+            req.flash('errors', equipmentConstants.equipmentStoreError);
+            req.session.save(() => res.redirect('/equipment/index'));
+            return;  
         }
     };
 
     async update(req, res) {
         try {
-            const service = new UpdateEquipment_Service();
-            const updateEquipment = await service.execute(req.body, req.params.id);
+            const updateEquipment = await new UpdateEquipment_Service().execute(req.body, req.params.id);
 
             if (!updateEquipment == equipmentConstants.equipmentNotFound) {
                 req.flash('errors', equipmentConstants.equipmentNotFound);
@@ -73,26 +78,29 @@ class EquipmentController {
             req.flash('success', equipmentConstants.equipmentUpdateSuccess);
             req.session.save(() => res.redirect(`/equipment/index/${updateEquipment}`));
             return;            
-        } catch (e) {
-            return req.session.save(() => res.status(404).render('404'));
+        } catch (err) {
+            req.flash('errors', equipmentConstants.equipmentUpdateError);
+            req.session.save(() => res.redirect('/equipment/index'));
+            return;  
         }
     };
 
     async delete(req, res) {
         try {
-            const service = new DeleteEquipment_Service();
-            const deleteEquipment = await service.execute(req.params.id);
+            const deleteEquipment = await new DeleteEquipment_Service().execute(req.params.id);
 
             if (deleteEquipment != equipmentConstants.equipmentDeleteSuccess) {
                 req.flash('errors', equipmentConstants.equipmentDeleteError);
-                req.session.save(() => res.render('404'));
+                req.session.save(() => res.status(400).redirect('/equipment/show'));
                 return;
             }
             
             req.flash('success', equipmentConstants.equipmentDeleteSuccess);
-            return req.session.save(() => res.status(200).redirect('/'));
-        } catch (e) {
-            return req.session.save(() => res.status(404).render('404'));
+            return req.session.save(() => res.status(200).redirect('/equipment/show'));
+        } catch (err) {
+            req.flash('errors', equipmentConstants.equipmentDeleteError);
+            req.session.save(() => res.status(400).redirect('/equipment/show'));
+            return; 
         }
     };
 
@@ -101,15 +109,19 @@ class EquipmentController {
             const equipment = await Equipment.findByPk(req.params.id);
 
             if (!equipment) {
-                return res.status(404).render('404');
+                req.flash('errors', equipmentConstants.equipmentNotFound);
+                req.session.save(() => res.redirect(`/equipment/index/${req.params.id}`));
+                return; 
             };           
             
             return res.render('equipment', { 
                 equipment,
                 title: 'Editar Equipamento'
             });
-        } catch (e) {
-            return req.session.save(() => res.status(404).render('404'));
+        } catch (err) {
+            req.flash('errors', equipmentConstants.equipmentUpdateError);
+            req.session.save(() => res.redirect(`/equipment/index/${updateEquipment}`));
+            return; 
         }
     }
 };

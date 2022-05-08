@@ -1,22 +1,20 @@
-import Equipment from '../models/Equipment';
 import { GetAllQRCodeImages_Service } from '../services/GetAllQRCodeImages_Service';
-import { Op } from 'sequelize';
+import { GetAllEquipments_Service } from '../services/GetAllEquipments_Service';
 
 class HomeController {
   async index(req, res) {
     try {
-        const qtd_limit = 3
-        const { count, rows } = await Equipment.findAndCountAll({
-          offset: 0,
-          limit: qtd_limit || 3,
-          order: ['tombo']
-        });
+        const qtd_limit = 3;
 
+        const equipments = await new GetAllEquipments_Service().execute(qtd_limit);
         await new GetAllQRCodeImages_Service().execute(qtd_limit);      
 
-        res.status(200).render('index', { equipments: rows, equipments_qtd: count , title: 'Dashboard'});      
-    } catch (e) {
-        console.log(e)
+        return res.status(200).render('index', { 
+            equipments: equipments.rows, 
+            equipments_qtd: equipments.count, 
+            title: 'Dashboard'
+        });      
+    } catch (err) {
         return req.session.save(() => res.status(404).render('404'));
     }
   }

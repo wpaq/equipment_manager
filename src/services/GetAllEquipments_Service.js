@@ -1,19 +1,14 @@
 import Equipment from "../models/Equipment";
-import QRCodeImage from '../models/QRCodeImage';
-import { GenerateQRCodeImageBuffer_Service } from './GenerateQRCodeImageBuffer_Service';
 
-export class CreateEquipment_Service {
-    async execute(data) {
+export class GetAllEquipments_Service {
+    async execute(qtd_limit) {
         try {
-            // generate QRCodeImageBuffer Service
-            const serviceQRCodeImageBuffer = new GenerateQRCodeImageBuffer_Service();
-            const imageBuffer = await serviceQRCodeImageBuffer.create(data)
+            const { count, rows } = await Equipment.findAndCountAll({
+                offset: 0,
+                limit: qtd_limit
+            });
 
-            // insert in database
-            const newEquipment = await Equipment.create(data);
-            const newQRCodeImage = await QRCodeImage.create({ photo_data: imageBuffer, equipment_id: newEquipment.id});
-            
-            return newEquipment.id;
+            return { count, rows };
         } catch (err) {
             return console.log(err)
         }
