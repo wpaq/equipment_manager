@@ -1,4 +1,5 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
+var _equipmentConstants = require('../constants/equipmentConstants'); var _equipmentConstants2 = _interopRequireDefault(_equipmentConstants);
 var _sequelize = require('sequelize');
 
  class SearchEquipment_Service {
@@ -37,14 +38,16 @@ var _sequelize = require('sequelize');
             });
 
             if (equipments.length === 0) {
-                req.flash('errors', 'Equipamento não encontrado');
+                req.flash('errors', _equipmentConstants2.default.equipmentNotFound);
                 req.session.save(() => res.redirect('/equipment/show'));
                 return;    
             }
 
             return equipments;
         } catch (err) {
-            return console.log(err)
+            req.flash('errors', _equipmentConstants2.default.equipmentSearchError);
+            req.session.save(() => res.redirect('/equipment/show'));
+            return;    
         }
     }
 

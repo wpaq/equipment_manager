@@ -1,22 +1,20 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Equipment = require('../models/Equipment'); var _Equipment2 = _interopRequireDefault(_Equipment);
-var _GetAllQRCodeImages_Service = require('../services/GetAllQRCodeImages_Service');
-var _sequelize = require('sequelize');
+"use strict";Object.defineProperty(exports, "__esModule", {value: true});var _GetAllQRCodeImages_Service = require('../services/GetAllQRCodeImages_Service');
+var _GetAllEquipments_Service = require('../services/GetAllEquipments_Service');
 
 class HomeController {
   async index(req, res) {
     try {
-        const qtd_limit = 3
-        const { count, rows } = await _Equipment2.default.findAndCountAll({
-          offset: 0,
-          limit: qtd_limit || 3,
-          order: ['tombo']
-        });
+        const qtd_limit = 3;
 
+        const equipments = await new (0, _GetAllEquipments_Service.GetAllEquipments_Service)().execute(qtd_limit);
         await new (0, _GetAllQRCodeImages_Service.GetAllQRCodeImages_Service)().execute(qtd_limit);      
 
-        res.status(200).render('index', { equipments: rows, equipments_qtd: count , title: 'Dashboard'});      
-    } catch (e) {
-        console.log(e)
+        return res.status(200).render('index', { 
+            equipments: equipments.rows, 
+            equipments_qtd: equipments.count, 
+            title: 'Dashboard'
+        });      
+    } catch (err) {
         return req.session.save(() => res.status(404).render('404'));
     }
   }
