@@ -274,11 +274,12 @@ a {
 /* dashborad Card */
 .pageCards {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     position: relative;
     width: calc(100% - 78px);
     left: 78px;
+    padding: 20px;
     transition: all 0.4s ease;
 }
 
@@ -286,7 +287,7 @@ a {
     width: 261px;
     height: 130px;
     background: #1E90FF;
-    margin: 5px;
+    margin-top: 5px;
 }
 
 .dashboard-card a {

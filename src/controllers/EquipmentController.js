@@ -120,7 +120,7 @@ class EquipmentController {
             });
         } catch (err) {
             req.flash('errors', equipmentConstants.equipmentUpdateError);
-            req.session.save(() => res.redirect(`/equipment/index/${updateEquipment}`));
+            req.session.save(() => res.redirect(`/equipment/index`));
             return; 
         }
     }
