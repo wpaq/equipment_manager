@@ -30,46 +30,52 @@
     </div>
 
     <div class="collapseFilterSearch">
-        <div class="collapse" id="collapseFilterSearch">
-            <form action="/equipment/show" method="get">
-    
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Filtrar por Equipamento:</label>
-                        <select class="form-select equipment-select" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                            <option></option>
-                            <option value="gabinete">GABINETE</option>
-                            <option value="monitor">MONITOR</option>
-                            <option value="estabilizador">ESTABILIZADOR</option>
-                        </select>
+        <% if (querys == 1) { %>
+            <div class="collapse show" id="collapseFilterSearch">
+        <% } else { %>
+            <div class="collapse" id="collapseFilterSearch">
+        <% } %>
+                <form action="/equipment/show" method="get">
+        
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Filtrar por Equipamento:</label>
+                            <select class="form-select equipment-select" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                                <option></option>
+                                <option value="gabinete">GABINETE</option>
+                                <option value="monitor">MONITOR</option>
+                                <option value="estabilizador">ESTABILIZADOR</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Filtrar por Empresa:</label>
+                            <select class="form-select equipment-select" name="empresa" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                                <option></option>
+                                <option value="moreia">MOREIA</option>
+                                <option value="pmjn">PMJN</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Filtrar por Local:</label>
+                            <select class="form-select equipment-select" name="local" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                                <option></option>
+                            </select>
+                        </div>   
                     </div>
-                    <div class="col-md-4">
-                        <label>Filtrar por Empresa:</label>
-                        <select class="form-select equipment-select" name="empresa" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                            <option></option>
-                        </select>
+        
+                    <div class="row">
+                        <div class="col">                
+                            <button class="btn btn-primary" type="submit">
+                                <p class="d-flex align-items-center"><i class='bx bx-search-alt-2' ></i> Filtrar</p>
+                            </button>
+                            <a href="/equipment/show" class="btn btn-danger" type="submit">
+                                <p class="d-flex align-items-center"><i class='bx bx-x-circle'></i> Limpar</p>
+                            </a>
+                        </div>  
                     </div>
-                    <div class="col-md-4">
-                        <label>Filtrar por Local:</label>
-                        <select class="form-select equipment-select" name="local" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                            <option></option>
-                        </select>
-                    </div>   
-                </div>
-    
-                <div class="row">
-                    <div class="col">                
-                        <button class="btn btn-primary" type="submit">
-                            <p class="d-flex align-items-center"><i class='bx bx-search-alt-2' ></i> Filtrar</p>
-                        </button>
-                        <a href="/equipment/show" class="btn btn-danger" type="submit">
-                            <p class="d-flex align-items-center"><i class='bx bx-x-circle'></i> Limpar</p>
-                        </a>
-                    </div>  
-                </div>
-    
-            </form>
-        </div>
+        
+                </form>
+            </div>
     </div>
     
     <!-- // equipment search -->
