@@ -252,6 +252,11 @@ a {
     left: 280px;
 }
 
+.sidebar-active ~ .collapseFilterSearch {
+    width: calc(100% - 280px);
+    left: 280px;
+}
+
 .sidebar-active ~ .pageCards {
     width: calc(100% - 280px);
     left: 280px;
@@ -428,6 +433,32 @@ a {
     border-radius: 5px;
     border: none;
     z-index: 0;
+}
+
+.collapseFilterSearch {
+    position: relative;
+    width: calc(100% - 78px);
+    left: 78px;
+    padding: 20px;
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.collapseFilterSearch form .row .col {
+    margin-top: 10px;
+}
+
+.collapseFilterSearch form .row .col .btn {
+    height: 40px;
+    align-items: center;
+}
+
+#collapseFilterSearch {
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border: none;
 }
 
 .equipmentSearch .bx-search {

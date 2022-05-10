@@ -1,28 +1,77 @@
 <%- include('includes/head'); %>
 <%- include('includes/sidebar'); %>
-
 <%- include('includes/breadcrumb') %>
-
 <%- include('includes/messages'); %>
 
 <!-- equipment list -->
 <% if (equipments.length > 0) { %>
 
     <!-- equipment search -->
-    <div class="pageSearch">
+    <div class="pageSearch row">
         <form action="/equipment/show" method="get">
-            <div class="equipmentSearch">            
-                <i class='bx bx-search' ></i>
-                <input type="text" name="search" placeholder="Pesquisar por Tombo, Equipamento, Empresa...">
-            </div>  
 
-            <div class="filterAndSeach">                
-                <button class="btn btn-primary" type="submit">
-                    <p>Buscar</p>
-                </button>
-            </div>           
+                <div class="cold-md-6 equipmentSearch">            
+                    <i class='bx bx-search' ></i>
+                    <input type="text" name="search" placeholder="Pesquisar por Tombo, Equipamento, Empresa...">
+                </div>  
+
+                <div class="col-md-2">
+                    <a data-bs-toggle="collapse" href="#collapseFilterSearch" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Filtrar Pesquisa
+                    </a>
+                </div>
+                
+                <div class="col-md-4 filterAndSeach">                
+                    <button class="btn btn-primary" type="submit">
+                        <p>Buscar</p>
+                    </button>
+                </div>           
         </form>
     </div>
+
+    <div class="collapseFilterSearch">
+        <div class="collapse" id="collapseFilterSearch">
+            <form action="/equipment/show" method="get">
+    
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Filtrar por Equipamento:</label>
+                        <select class="form-select equipment-select" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                            <option></option>
+                            <option value="gabinete">GABINETE</option>
+                            <option value="monitor">MONITOR</option>
+                            <option value="estabilizador">ESTABILIZADOR</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Filtrar por Empresa:</label>
+                        <select class="form-select equipment-select" name="empresa" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Filtrar por Local:</label>
+                        <select class="form-select equipment-select" name="local" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
+                            <option></option>
+                        </select>
+                    </div>   
+                </div>
+    
+                <div class="row">
+                    <div class="col">                
+                        <button class="btn btn-primary" type="submit">
+                            <p class="d-flex align-items-center"><i class='bx bx-search-alt-2' ></i> Filtrar</p>
+                        </button>
+                        <a href="/equipment/show" class="btn btn-danger" type="submit">
+                            <p class="d-flex align-items-center"><i class='bx bx-x-circle'></i> Limpar</p>
+                        </a>
+                    </div>  
+                </div>
+    
+            </form>
+        </div>
+    </div>
+    
     <!-- // equipment search -->
 
     <!-- modal delete equipment -->

@@ -24,7 +24,12 @@
                 </div>
                 <div class="form-group">
                     <label>Equipamento:</label>
-                    <input type="text" class="form-control" name="equipamento" placeholder="ex: gabinete" value="<%= equipment.equipamento %>" required>
+                    <select class="form-select equipment-select" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento" required>
+                        <option value="<%= equipment.equipamento %>"></option>
+                        <option value="gabinete">GABINETE</option>
+                        <option value="monitor">MONITOR</option>
+                        <option value="estabilizador">ESTABILIZADOR</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Empresa:</label>
@@ -44,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label>Data de Verificação:</label>
-                    <input type="text" class="form-control" id="equipment-date" name="data_verificacao" placeholder="dd/mm/aaaa" value="<%= equipment.data_verificacao %>" maxlength="8" required>
+                    <input type="text" class="form-control" id="equipment-date" name="data_verificacao" placeholder="dd/mm/aaaa" value="<%= equipment.data_verificacao %>" minlength="8" maxlength="8" required>
                 </div>
                 <button type="submit" class="btn btn-primary my-2">Salvar</button>
                 <a  class="btn btn-primary my-2" href="/equipment/index">Adicionar Outro</a>

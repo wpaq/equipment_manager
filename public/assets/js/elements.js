@@ -10,9 +10,22 @@ export default {
         this.qrcodeLink = document.querySelectorAll('.qrcodeLink');
         this.qrcodeImage = document.querySelector('.qrcodeImage');
         this.qrcodeImageLinkDownload = document.querySelector('.qrCodeImageLinkDownload');
+        this.equipmentSelect = document.querySelector('.equipment-select');
     },
 
     actions() {
+        if (this.equipmentSelect) {
+            if (this.equipmentSelect.value === 'GABINETE') {
+                this.equipmentSelect.options[1].selected = 'selected';
+            } 
+            if (this.equipmentSelect.value === 'MONITOR') {
+                this.equipmentSelect.options[2].selected = 'selected';
+            } 
+            if (this.equipmentSelect.value === 'ESTABILIZADOR') {
+                this.equipmentSelect.options[3].selected = 'selected';
+            } 
+        }
+
         if (this.btn) {
             this.btn.addEventListener('click', () => {
                 this.sidebar.classList.toggle('sidebar-active');

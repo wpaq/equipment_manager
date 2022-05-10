@@ -14,6 +14,9 @@ class EquipmentController {
             const limiter = req.query.limit;
             const query_search = req.query.search;
 
+            const querys = []
+            querys.push(req.query.search, req.query.equipamento)
+
             if (query_search) {
                 const equipments = await new SearchEquipment_Service().execute(query_search); 
 
@@ -32,6 +35,7 @@ class EquipmentController {
                 title: 'Equipamentos'
             });  
         } catch (err) {
+            console.log(err)
             req.flash('errors', equipmentConstants.equipmentSearchError);
             req.session.save(() => res.redirect('/equipment/show'));
             return;   
