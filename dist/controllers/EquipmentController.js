@@ -12,18 +12,17 @@ class EquipmentController {
     async show (req, res) {
         try {
             const limiter = req.query.limit;
-            const query_search = req.query.search;
 
-            const querys = []
-            querys.push(req.query.search, req.query.equipamento)
+            for (var key in req.query) {
+                if (req.query[key] != '' ) {
+                    const equipments = await new (0, _SearchEquipment_Service.SearchEquipment_Service)().execute(req.query[key]); 
 
-            if (query_search) {
-                const equipments = await new (0, _SearchEquipment_Service.SearchEquipment_Service)().execute(query_search); 
-
-                return res.status(200).render('equipamentos', { 
-                    equipments, 
-                    title: 'Equipamentos' 
-                });
+                    return res.status(200).render('equipamentos', { 
+                        equipments, 
+                        title: 'Equipamentos',
+                        querys: 1
+                    });
+                }
             }
 
             const equipments = await new (0, _GetAllEquipments_Service.GetAllEquipments_Service)().execute();
@@ -32,7 +31,8 @@ class EquipmentController {
             return res.status(200).render('equipamentos', { 
                 equipments: equipments.rows, 
                 equipments_qtd: equipments.count, 
-                title: 'Equipamentos'
+                title: 'Equipamentos',
+                querys: 0
             });  
         } catch (err) {
             console.log(err)
