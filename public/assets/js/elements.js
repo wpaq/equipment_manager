@@ -14,6 +14,10 @@ export default {
     },
 
     actions() {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
         if (this.equipmentSelect) {
             if (this.equipmentSelect.value === 'GABINETE') {
                 this.equipmentSelect.options[1].selected = 'selected';
