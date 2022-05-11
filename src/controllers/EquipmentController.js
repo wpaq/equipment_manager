@@ -14,13 +14,14 @@ class EquipmentController {
             const limiter = req.query.limit;
 
             for (var key in req.query) {
-                if (req.query[key] != '' ) {
-                    const equipments = await new SearchEquipment_Service().execute(req.query[key]); 
+                if (req.query[key] != '') {
+
+                    const equipments = await new SearchEquipment_Service().execute(req.query); 
 
                     return res.status(200).render('equipamentos', { 
                         equipments, 
                         title: 'Equipamentos',
-                        querys: 1
+                       querys: 1
                     });
                 }
             }
