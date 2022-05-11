@@ -3,52 +3,62 @@ var _equipmentConstants = require('../constants/equipmentConstants'); var _equip
 var _sequelize = require('sequelize');
 
  class SearchEquipment_Service {
-    async execute(query) {
+    async execute(querys) {
         try {
-            const equipments = await _Equipment2.default.findAll({ 
-                where: { 
-                  [_sequelize.Op.or]: [   
-                    {
-                      tombo: { 
-                        [_sequelize.Op.iLike]: `%${query}%`   
-                      }             
-                    },  
-                    {
-                      equipamento: { 
-                        [_sequelize.Op.iLike]: `%${query}%`
-                      } 
-                    },        
-                    { 
-                      responsavel: { 
-                        [_sequelize.Op.iLike]: `%${query}%`
-                      } 
-                    },
-                    {
-                      local: { 
-                        [_sequelize.Op.iLike]: `%${query}%`
-                      } 
-                    },
-                    { 
-                      empresa: { 
-                        [_sequelize.Op.iLike]: `%${query}%`
-                      } 
-                    }
-                  ]            
-                }
-            });
+
+              const equipments = await _Equipment2.default.findAll({ 
+                  where: { 
+                    [_sequelize.Op.or]: [   
+                      {
+                        tombo: { 
+                          [_sequelize.Op.iLike]: `%${querys.search}%`   
+                        }             
+                      },  
+                      {
+                        equipamento: { 
+                          [_sequelize.Op.iLike]: `%${querys.search}%`
+                        } 
+                      },        
+                      { 
+                        responsavel: { 
+                          [_sequelize.Op.iLike]: `%${querys.search}%`
+                        } 
+                      },
+                      {
+                        local: { 
+                          [_sequelize.Op.iLike]: `%${querys.search}%`
+                        } 
+                      },
+                      { 
+                        empresa: { 
+                          [_sequelize.Op.iLike]: `%${querys.search}%`
+                        } 
+                      },
+                      {
+                        [_sequelize.Op.and]: [
+                          {
+                            equipamento: { [_sequelize.Op.iLike]: `%${querys.equipamento}%` }
+                          },
+                          {
+                            empresa: { [_sequelize.Op.iLike]: `%${querys.empresa}%` }
+                          },
+                          {
+                            local: { [_sequelize.Op.iLike]: `%${querys.local}%` }
+                          }
+                        ] 
+                      }
+                    ],           
+                  }
+              });
 
             if (equipments.length === 0) {
-                req.flash('errors', _equipmentConstants2.default.equipmentNotFound);
-                req.session.save(() => res.redirect('/equipment/show'));
-                return;    
+              return _equipmentConstants2.default.equipmentNotFound;    
             }
 
             return equipments;
         } catch (err) {
-            req.flash('errors', _equipmentConstants2.default.equipmentSearchError);
-            req.session.save(() => res.redirect('/equipment/show'));
-            return;    
+          console.log(err)
+          return _equipmentConstants2.default.equipmentSearchError;
         }
     }
-
 } exports.SearchEquipment_Service = SearchEquipment_Service;
