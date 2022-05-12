@@ -5,7 +5,6 @@ import { Op } from 'sequelize';
 export class SearchEquipment_Service {
     async execute(querys) {
         try {
-
               const equipments = await Equipment.findAll({ 
                   where: { 
                     [Op.or]: [   

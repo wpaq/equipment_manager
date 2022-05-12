@@ -377,7 +377,6 @@ a {
 }
 
 .pageSearch {
-    display: flex;
     position: relative;
     width: calc(100% - 78px);
     left: 78px;
@@ -386,9 +385,7 @@ a {
 }
 
 .pageSearch form {
-    display: flex;
-    align-items: center;
-    width: 100%;
+    padding: 12px;
 }
 
 .pageSearch form a {
@@ -424,7 +421,7 @@ a {
 
 .pageSearch .equipmentSearch {
     position: relative;
-    min-width: 500px;
+    width: 500px;
     height: 50px;
     display: flex;
     align-items: center;

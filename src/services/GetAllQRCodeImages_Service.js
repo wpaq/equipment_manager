@@ -5,6 +5,7 @@ export class GetAllQRCodeImages_Service {
     async execute(qtd_limit) {
         try {
             const QRCodeImages = await QRCodeImage.findAll({
+                attributes: { exclude: ['created_at', 'updated_at'] },
                 offset: 0,
                 limit: qtd_limit
             });
