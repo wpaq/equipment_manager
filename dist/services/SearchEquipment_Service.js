@@ -5,7 +5,6 @@ var _sequelize = require('sequelize');
  class SearchEquipment_Service {
     async execute(querys) {
         try {
-
               const equipments = await _Equipment2.default.findAll({ 
                   where: { 
                     [_sequelize.Op.or]: [   

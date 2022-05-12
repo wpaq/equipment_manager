@@ -5,6 +5,7 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
     async execute(qtd_limit) {
         try {
             const QRCodeImages = await _QRCodeImage2.default.findAll({
+                attributes: { exclude: ['created_at', 'updated_at'] },
                 offset: 0,
                 limit: qtd_limit
             });
