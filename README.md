@@ -50,9 +50,3 @@ Feito com ❤️ por Wallyson Pablo -- Entre em contato!
 
 ### Demo
 https://uploud-equipment-manager.herokuapp.com/login
-
-Login: wallyson@email.com
-Password: 123456
-
-
-
