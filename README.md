@@ -49,4 +49,4 @@ Feito com ❤️ por Wallyson Pablo -- Entre em contato!
 <br>
 
 ### Demo
-https://uploud-equipment-manager.herokuapp.com/login
+https://uploud-equipment-manager.herokuapp.com
