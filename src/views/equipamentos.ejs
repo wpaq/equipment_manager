@@ -18,7 +18,7 @@
 
                 <div class="col-md-2">
                     <a data-bs-toggle="collapse" href="#collapseFilterSearch" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Filtrar Pesquisanp
+                        Filtrar Pesquisa
                     </a>
                 </div>
                 
@@ -135,44 +135,48 @@
             <div class="cardHeader">
                 <p>Visualizar: <span><a class="limiter limit-active" href="/?limit=10">10</a> - <a class="limiter" href="/?limit=25">25</a> - <a class="limiter" href="/?limit=50">50</a> - <a class="limiter" href="/?limit=100">100</a></span></p>
             </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Tombo</th>
-                        <th scope="col">Equipamento</th>
-                        <th scope="col">Empresa</th>
-                        <th scope="col">Local (Setor)</th>
-                        <th scope="col">Responsável</th>
-                        <th scope="col">Configuração</th>
-                        <th scope="col">Data de Verificação</th>
-                        <th scope="col">QRCode</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% equipments.forEach(equipment => { %>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td><%= equipment.tombo %></td>
-                            <td><%= equipment.equipamento %></td>
-                            <td><%= equipment.empresa %></td>
-                            <td><%= equipment.local %></td>
-                            <td><%= equipment.responsavel %></td>
-                            <td><%= equipment.configuracao %></td>
-                            <td><%= equipment.data_verificacao %></td>
-                            <td>
-                                <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
-                            </td>
-                            <td>
-                                <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
-                            </td>
-                            <td>
-                                <a class="text-danger deleteLink" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
-                            </td>
+                            <th scope="col">Tombo</th>
+                            <th scope="col">Equipamento</th>
+                            <th scope="col">Empresa</th>
+                            <th scope="col">Local (Setor)</th>
+                            <th scope="col">Responsável</th>
+                            <th scope="col">Configuração</th>
+                            <th scope="col">Data de Verificação</th>
+                            <th scope="col">QRCode</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
-                    <% }); %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% equipments.forEach(equipment => { %>
+                            <tr>
+                                <td><%= equipment.tombo %></td>
+                                <td><%= equipment.equipamento %></td>
+                                <td><%= equipment.empresa %></td>
+                                <td><%= equipment.local %></td>
+                                <td><%= equipment.responsavel %></td>
+                                <td><%= equipment.configuracao %></td>
+                                <td><%= equipment.data_verificacao %></td>
+                                <td>
+                                    <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
+                                </td>
+                                <td>
+                                    <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
+                                </td>
+                                <td>
+                                    <a class="text-danger deleteLink" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <!-- End Table -->
+            </div>
+            <!-- End Responsive Table -->
         </div>
     </div>
     <!-- // table equipments -->

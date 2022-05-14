@@ -451,10 +451,6 @@ a {
     border-radius: 5px;
 }
 
-.equipments .recents table {
-    margin: 10px;
-}
-
 .cardHeader {
     display: flex;
     justify-content: space-between;
