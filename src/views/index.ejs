@@ -6,58 +6,108 @@
 <%- include('includes/messages'); %>
 
 <!-- page cards -->
-<div class="pageCards flex-wrap">
-    <div class="card text-white dashboard-card">
-        <i class='card-img icons-card-dashboard bx bx-file'></i>
-        <div class="card-img-overlay">
-          <h5 class="card-title"><%= equipments_qtd %></h5>
-          <p>Equipamentos Cadastrados</p>
-        </div>
-        <a href="/equipment/show">
-            <div class="card-details-link">
-                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
-            </div>
-        </a>
-    </div>
+<div class="row pageCards">
 
-    <div class="card text-white dashboard-card" id="card-add-equipment">
-        <i class='card-img icons-card-dashboard bx bxs-file-plus'></i>
-        <div class="card-img-overlay">
-          <h5 class="card-title"></h5>
-          <p>Adicionar Equipamento</p>
-        </div>        
-        <a href="/equipment/index">
-            <div class="card-details-link">
-                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
-            </div>
-        </a>
+    <div class="col-sm-6 col-lg-3 mb-3">
+            <!-- Card -->
+            <a class="card card-hover-shadow h-100" href="/equipment/show">
+              <div class="card-body">
+                <p class="card-subtitle">Equipamentos</p>
+    
+                <div class="row align-items-center gx-2 mb-1">
+                  <div class="col-8">
+                    <h2 class="card-title text-inherit">3</h2>
+                  </div>
+                  <!-- End Col -->
+    
+                  <div class="col-4">
+                    <i class='card-img icons-card-dashboard bx bx-file'></i>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+              <span class="fs-6 more-details">Mais Detalhes <i class='bx bxs-chevron-right'></i></span>
+            </a>
+            <!-- End Card -->
     </div>
+    <!--End Card-->
 
-    <div class="card text-white dashboard-card" id="card-user">
-        <i class='card-img icons-card-dashboard  bx bxs-user'></i>
-        <div class="card-img-overlay">
-          <h5 class="card-title"></h5>
-          <p>Dados do Usuário</p>
-        </div>
-        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Em Desenvolvimento!">
-            <div class="card-details-link">
-                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
-            </div>
-        </a>
+    <div class="col-sm-6 col-lg-3 mb-3">
+            <!-- Card -->
+            <a class="card card-hover-shadow h-100" href="/equipment/index">
+              <div class="card-body">
+                <p class="card-subtitle">Adicionar Equipamento</p>
+    
+                <div class="row align-items-center gx-2 mb-1">
+                  <div class="col-8">
+                    <h2 class="card-title text-inherit"></h2>
+                  </div>
+                  <!-- End Col -->
+    
+                  <div class="col-4">
+                    <i class='card-img icons-card-dashboard bx bxs-file-plus'></i>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+              <span class="fs-6 more-details">Mais Detalhes <i class='bx bxs-chevron-right'></i></span>
+            </a>
+            <!-- End Card -->
     </div>
+    <!--End Card-->
 
-    <div class="card text-white dashboard-card" id="card-relatorio">
-        <i class='card-img icons-card-dashboard  bx bxs-report'></i>
-        <div class="card-img-overlay">
-          <h5 class="card-title"></h5>
-          <p>Relatórios</p>
-        </div>
-        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Em Desenvolvimento!">
-            <div class="card-details-link">
-                <p class="card-text">Mais Detalhes <i class='bx bxs-chevron-right'></i></p>
-            </div>
-        </a>
+    <div class="col-sm-6 col-lg-3 mb-3">
+            <!-- Card -->
+            <a class="card card-hover-shadow h-100" href="#">
+              <div class="card-body">
+                <p class="card-subtitle">Dados do Usuário</p>
+    
+                <div class="row align-items-center gx-2 mb-1">
+                  <div class="col-8">
+                    <h2 class="card-title text-inherit"></h2>
+                  </div>
+                  <!-- End Col -->
+    
+                  <div class="col-4">
+                    <i class='card-img icons-card-dashboard  bx bxs-user'></i>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+              <span class="fs-6 more-details">Mais Detalhes <i class='bx bxs-chevron-right'></i></span>
+            </a>
+            <!-- End Card -->
     </div>
+    <!--End Card-->
+
+    <div class="col-sm-6 col-lg-3 mb-3">
+            <!-- Card -->
+            <a class="card card-hover-shadow h-100" href="#">
+              <div class="card-body">
+                <p class="card-subtitle">Relatórios</p>
+    
+                <div class="row align-items-center gx-2 mb-1">
+                  <div class="col-8">
+                    <h2 class="card-title text-inherit"></h2>
+                  </div>
+                  <!-- End Col -->
+    
+                  <div class="col-4">
+                    <i class='card-img icons-card-dashboard  bx bxs-report'></i>
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+              <span class="fs-6 more-details">Mais Detalhes <i class='bx bxs-chevron-right'></i></span>
+            </a>
+            <!-- End Card -->
+    </div>
+    <!--End Card-->
+        
 </div>
 <!-- // page cards -->
 
