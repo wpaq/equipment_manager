@@ -15,8 +15,13 @@ class EquipmentController {
 
             for (var key in req.query) {
                 if (req.query[key] != '') {
-
                     const equipments = await new (0, _SearchEquipment_Service.SearchEquipment_Service)().execute(req.query); 
+
+                    if (equipments === _equipmentConstants2.default.equipmentNotFound) {
+                        req.flash('errors', _equipmentConstants2.default.equipmentNotFound);
+                        req.session.save(() => res.redirect('/equipment/show'));
+                        return;   
+                    }
 
                     return res.status(200).render('equipamentos', { 
                         equipments, 
@@ -36,7 +41,6 @@ class EquipmentController {
                 querys: 0
             });  
         } catch (err) {
-            console.log(err)
             req.flash('errors', _equipmentConstants2.default.equipmentSearchError);
             req.session.save(() => res.redirect('/equipment/show'));
             return;   

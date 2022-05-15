@@ -56,7 +56,6 @@ var _sequelize = require('sequelize');
 
             return equipments;
         } catch (err) {
-          console.log(err)
           return _equipmentConstants2.default.equipmentSearchError;
         }
     }
