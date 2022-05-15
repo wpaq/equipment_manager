@@ -56,7 +56,6 @@ export class SearchEquipment_Service {
 
             return equipments;
         } catch (err) {
-          console.log(err)
           return equipmentConstants.equipmentSearchError;
         }
     }
