@@ -4,7 +4,7 @@ import { GetAllEquipments_Service } from '../services/GetAllEquipments_Service';
 class HomeController {
   async index(req, res) {
     try {
-        const qtd_limit = 3;
+        const qtd_limit = 5;
 
         const equipments = await new GetAllEquipments_Service().execute(qtd_limit);
         await new GetAllQRCodeImages_Service().execute(qtd_limit);      

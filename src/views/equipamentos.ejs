@@ -6,82 +6,7 @@
 <!-- equipment list -->
 <% if (equipments.length > 0) { %>
 
-    <!-- equipment search -->
-    <div class="pageSearch">
-        <form action="/equipment/show" method="get">
-            <div class="row align-items-center">
 
-                <div class="cold-md-6 equipmentSearch">            
-                    <i class='bx bx-search' ></i>
-                    <input type="text" name="search" placeholder="Pesquisar por Tombo, Equipamento, Empresa...">
-                </div>  
-
-                <div class="col-md-2">
-                    <a data-bs-toggle="collapse" href="#collapseFilterSearch" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        Filtrar Pesquisa
-                    </a>
-                </div>
-                
-                <div class="col-md-4 filterAndSeach">                
-                    <button class="btn btn-primary" type="submit">
-                        <p>Pesquisar</p>
-                    </button>
-                </div> 
-
-            </div>          
-        </form>
-    </div>
-
-    <div class="collapseFilterSearch">
-        <% if (querys == 1) { %>
-            <div class="collapse show" id="collapseFilterSearch">
-        <% } else { %>
-            <div class="collapse" id="collapseFilterSearch">
-        <% } %>
-                <form action="/equipment/show" method="get">
-        
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Filtrar por Equipamento:</label>
-                            <select class="form-select equipment-select" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                                <option value=""></option>
-                                <option value="gabinete">GABINETE</option>
-                                <option value="monitor">MONITOR</option>
-                                <option value="estabilizador">ESTABILIZADOR</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Filtrar por Empresa:</label>
-                            <select class="form-select equipment-select" name="empresa" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                                <option></option>
-                                <option value="moreia">MOREIA</option>
-                                <option value="pmjn">PMJN</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label>Filtrar por Local:</label>
-                            <select class="form-select equipment-select" name="local" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento">
-                                <option></option>
-                            </select>
-                        </div>   
-                    </div>
-        
-                    <div class="row">
-                        <div class="col">                
-                            <button class="btn btn-primary" type="submit">
-                                <p class="d-flex align-items-center"><i class='bx bx-search-alt-2' ></i> Filtrar</p>
-                            </button>
-                            <a href="/equipment/show" class="btn btn-danger" type="submit">
-                                <p class="d-flex align-items-center"><i class='bx bx-x-circle'></i> Limpar</p>
-                            </a>
-                        </div>  
-                    </div>
-        
-                </form>
-            </div>
-    </div>
-    
-    <!-- // equipment search -->
 
     <!-- modal delete equipment -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -132,11 +57,8 @@
     <!-- table equipments -->
     <div class="equipments text-center">
         <div class="recents">
-            <div class="cardHeader">
-                <p>Visualizar: <span><a class="limiter limit-active" href="/?limit=10">10</a> - <a class="limiter" href="/?limit=25">25</a> - <a class="limiter" href="/?limit=50">50</a> - <a class="limiter" href="/?limit=100">100</a></span></p>
-            </div>
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover" id="myTable">
                     <thead>
                         <tr>
                             <th scope="col">Tombo</th>

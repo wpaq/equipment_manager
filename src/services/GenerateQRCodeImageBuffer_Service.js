@@ -11,11 +11,10 @@ export class GenerateQRCodeImageBuffer_Service {
             delete obj._csrf;
             const data = JSON.stringify(obj);
             const dataFormated = data.toUpperCase()
-                .replace(/\{/g, "")
-                .replace(/\}/g, "")
-                .replace(/\"/g, "")
-                .replace(/\,/g, "\n")
-                .replace(/\:/g, ": ");
+                .replace(/\{"/g, "")
+                .replace(/\":"/g, ": ")
+                .replace(/\","/g, "\n-----\n")
+                .replace(/\"}/g, "");
 
             // generate qrcode image
             await QRCode.toFile(filepath, dataFormated);      

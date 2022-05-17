@@ -165,7 +165,7 @@
     <div class="equipments text-center">
         <div class="recents">
             <div class="row cardHeader">
-                <h6 class="col-md-2">Adicionados Recentemente</h6>
+                <h6 class="col-md-1">Adicionados Recentemente</h6>
                 <p class="col-md-1"><a href="/equipment/show">Ver Todos</a></p>
             </div>
             <div class="table-responsive">
@@ -180,6 +180,7 @@
                             <th scope="col">Configuração</th>
                             <th scope="col">Data de Verificação</th>
                             <th scope="col">QRCode</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -193,7 +194,10 @@
                                 <td><%= equipment.configuracao %></td>
                                 <td><%= equipment.data_verificacao %></td>
                                 <td>
-                                    <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
+                                    <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>" ><i class='bx bxs-show' data-toggle="tooltip" data-placement="bottom" title="Visualizar"></i></a>
+                                </td>
+                                <td>
+                                    <a href="/equipment/index/<%= equipment.id %>" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class='bx bxs-pencil' ></i></a>
                                 </td>
                             </tr>
                         <% }); %>

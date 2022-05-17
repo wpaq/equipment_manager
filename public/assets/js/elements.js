@@ -18,6 +18,11 @@ export default {
             $('[data-toggle="tooltip"]').tooltip()
         })
 
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+
+
         if (this.equipmentSelect) {
             if (this.equipmentSelect.value === 'GABINETE') {
                 this.equipmentSelect.options[1].selected = 'selected';
