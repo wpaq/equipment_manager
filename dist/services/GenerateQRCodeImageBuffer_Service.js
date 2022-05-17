@@ -11,11 +11,10 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
             delete obj._csrf;
             const data = JSON.stringify(obj);
             const dataFormated = data.toUpperCase()
-                .replace(/\{/g, "")
-                .replace(/\}/g, "")
-                .replace(/\"/g, "")
-                .replace(/\,/g, "\n")
-                .replace(/\:/g, ": ");
+                .replace(/\{"/g, "")
+                .replace(/\":"/g, ": ")
+                .replace(/\","/g, "\n-----\n")
+                .replace(/\"}/g, "");
 
             // generate qrcode image
             await _qrcode2.default.toFile(filepath, dataFormated);      

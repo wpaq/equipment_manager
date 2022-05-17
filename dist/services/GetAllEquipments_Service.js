@@ -5,7 +5,10 @@
         try {
             const { count, rows } = await _Equipment2.default.findAndCountAll({
                 offset: 0,
-                limit: qtd_limit
+                limit: qtd_limit,
+                order: [
+                    ['created_at', 'DESC']
+                ]
             });
 
             return { count, rows };

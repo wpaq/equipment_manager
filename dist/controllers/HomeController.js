@@ -4,7 +4,7 @@ var _GetAllEquipments_Service = require('../services/GetAllEquipments_Service');
 class HomeController {
   async index(req, res) {
     try {
-        const qtd_limit = 3;
+        const qtd_limit = 5;
 
         const equipments = await new (0, _GetAllEquipments_Service.GetAllEquipments_Service)().execute(qtd_limit);
         await new (0, _GetAllQRCodeImages_Service.GetAllQRCodeImages_Service)().execute(qtd_limit);      
