@@ -162,7 +162,7 @@
     <!-- // modal QRCode equipment -->
 
     <!-- table equipments -->
-    <div class="equipments text-center">
+    <div class="equipments">
         <div class="recents">
             <div class="row cardHeader">
                 <h6 class="col-md-1">Adicionados Recentemente</h6>
@@ -193,11 +193,11 @@
                                 <td><%= equipment.responsavel %></td>
                                 <td><%= equipment.configuracao %></td>
                                 <td><%= equipment.data_verificacao %></td>
-                                <td>
-                                    <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>" ><i class='bx bxs-show' data-toggle="tooltip" data-placement="bottom" title="Visualizar"></i></a>
+                                <td class="text-center">
+                                    <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>" >Visualizar <i class='bx bxs-show' data-toggle="tooltip" data-placement="bottom" title="Visualizar"></i></a>
                                 </td>
-                                <td>
-                                    <a href="/equipment/index/<%= equipment.id %>" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class='bx bxs-pencil' ></i></a>
+                                <td class="text-center">
+                                    <a href="/equipment/index/<%= equipment.id %>" data-toggle="tooltip" data-placement="bottom" title="Editar">Editar <i class='bx bxs-pencil' ></i></a>
                                 </td>
                             </tr>
                         <% }); %>

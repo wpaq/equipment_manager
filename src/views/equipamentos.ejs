@@ -55,8 +55,11 @@
     <!-- // modal QRCode equipment -->
 
     <!-- table equipments -->
-    <div class="equipments text-center">
+    <div class="equipments">
         <div class="recents">
+            <div class="cardHeader mb-3">
+                <h5 class="col-md-1">Equipamentos</h5>             
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover" id="myTable">
                     <thead>
@@ -83,13 +86,13 @@
                                 <td><%= equipment.responsavel %></td>
                                 <td><%= equipment.configuracao %></td>
                                 <td><%= equipment.data_verificacao %></td>
-                                <td>
+                                <td class="text-center">
                                     <a  href="#" class="qrcodeLink" data-bs-toggle="modal" data-bs-target="#QRCodeModal" id="<%= equipment.id %>">Visualizar <i class='bx bxs-show'></i></a>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a href="/equipment/index/<%= equipment.id %>">Editar <i class='bx bxs-pencil' ></i></a>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <a class="text-danger deleteLink" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/equipment/delete/<%= equipment.id %>" name="delete">Excluir <i class='bx bxs-trash-alt' ></i></a>
                                 </td>
                             </tr>
