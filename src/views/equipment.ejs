@@ -9,6 +9,86 @@
 
         <div class="col-lg-8 my-3">
             <p class="text-center lead">Crie ou edite seu equipamento abaixo</p>
+
+            <form>
+                <div class="row mb-4">
+                    
+                  <div class="col">
+                    <div class="form-outline">
+                      <input type="number" id="form6Example1" class="form-control" />
+                      <label class="form-label" for="form6Example1">Tombo</label>
+                    </div>
+                  </div>
+                  <!-- End Input -->
+
+                  <div class="col">
+                    <div class="form-outline">
+                        <select class="form-select equipment-select" id="form6Example2" name="equipamento" aria-label="Selecione um Equipamento" placeholder="Selecione um Equipamento" required>
+                            <option value="<%= equipment.equipamento %>"></option>
+                        </select>
+                        <label class="form-label" for="form6Example2">Equipamento</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <select class="form-select empresa-select" id="form6Example3" name="empresa" aria-label="Selecione uma Empresa" placeholder="Selecione uma Empresa" required>
+                                <option value="<%= equipment.empresa %>"></option>
+                            </select>
+                            <label class="form-label" for="form6Example3">Empresa</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="form6Example3">Alugado/Locado: </label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Sim</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <label class="form-check-label" for="inlineRadio2">Não</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <input type="text" id="form6Example4" class="form-control" />
+                            <label class="form-label" for="form6Example4">Secretaria</label>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-outline">
+                            <input type="email" id="form6Example5" class="form-control" />
+                            <label class="form-label" for="form6Example5">Setor</label>
+                        </div>
+                    </div>
+                </div>
+                            
+                <div class="form-outline mb-4">
+                  <input type="text" id="form6Example6" class="form-control" data-mask="00/00/0000" />
+                  <label class="form-label" for="form6Example6">Responsável</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <input type="text" id="form6Example7" class="form-control" />
+                    <label class="form-label" for="form6Example7">Data de Verificação</label>
+                </div>
+              
+                <div class="form-outline mb-4">
+                  <textarea class="form-control" id="form6Example8" rows="4"></textarea>
+                  <label class="form-label" for="form6Example8">Configuração</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+            </form>
             
             <%- include('includes/messages') %>
 
@@ -18,6 +98,7 @@
             <form action="/equipment/register" method="POST" class="my-3">
             <% } %>
                 <input type="hidden" name="_csrf" value=<%= csrfToken %>>
+
                 <div class="form-group">
                     <label>Tombo:</label>
                     <input type="number" class="form-control" name="tombo" placeholder="ex: 12345" value="<%= equipment.tombo %>" required>

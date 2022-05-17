@@ -1,0 +1,13 @@
+{
+    "secretarias": [
+        {
+            "secretaria": "SEAD",
+            "setores": [
+                "RH",
+                "PAD",
+                "DTI",
+                "DIRETORIA ADMINISTRATIVA"   
+            ]
+        }     
+    ]
+}

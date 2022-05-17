@@ -284,6 +284,10 @@ a {
     left: 78px;
     padding: 20px;
     transition: all 0.4s ease;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari and Chrome */
+    -o-animation: fadein 1s; /* Opera */
 }
 
 .pageCards .more-details {
@@ -440,6 +444,10 @@ a {
     display: grid;
     transition: all 0.4s ease;
     z-index: 0;
+    animation: fadein 1.3s;
+    -moz-animation: fadein 1.3s; /* Firefox */
+    -webkit-animation: fadein 1.3s; /* Safari and Chrome */
+    -o-animation: fadein 1.3s; /* Opera */
 }
 
 .equipments .recents {

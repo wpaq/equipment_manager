@@ -1,3 +1,5 @@
+import data from "./data.js";
+
 export default {
     get() {
         this.btn = document.querySelector('#btn');
@@ -11,9 +13,23 @@ export default {
         this.qrcodeImage = document.querySelector('.qrcodeImage');
         this.qrcodeImageLinkDownload = document.querySelector('.qrCodeImageLinkDownload');
         this.equipmentSelect = document.querySelector('.equipment-select');
+
+        this.dataa = document.querySelector('#form6Example7');
+
+        this.selectOptionEquipment = document.querySelector('#form6Example2');
+        this.selectOptionEmpresa = document.querySelector('.empresa-select');
     },
 
     actions() {
+        // mask date jquery
+        if (this.equipmentDate) {
+            $(this.equipmentDate).mask("00/00/0000");
+        }  
+
+        if (this.dataa) {
+            $(this.dataa).mask("00/00/0000");
+        }
+
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
@@ -71,12 +87,48 @@ export default {
                     }
                 }
             }
+        }   
+    
+    },
+
+    arraySelectOption() {
+        const dataJson = {
+            secretarias: [
+                { nome: 'SEAD', setores: [ 'PAD', 'RH' ]},
+                { nome: 'AMAJU', setores: [ 'AAA', 'AAA' ]},
+            ]
+        }
+        for (var index in dataJson ) {
+            console.log(dataJson[index])
         }
 
-        // mask date jquery
-        if (this.equipmentDate) {
-            $(this.equipmentDate).mask("99/99/9999");
-        }      
-    
+        // equipamentos data
+
+        var arrays = data.map(Object.values);
+        var equipamentos = arrays[0];
+        var secretarias = arrays[1];
+        var empresas = arrays[2];
+
+        equipamentos.forEach(elem => {
+            elem.forEach(equip => {
+                const optionEquipamento = document.createElement("option");
+                optionEquipamento.innerHTML = equip;
+                optionEquipamento.value = equip;
+
+                this.selectOptionEquipment.appendChild(optionEquipamento);
+            });
+        });
+
+        empresas.forEach(elem => {
+            elem.forEach(empresa => {
+                const optionEmpresa = document.createElement("option");
+                optionEmpresa.innerHTML = empresa;
+                optionEmpresa.value = empresa;
+
+                this.selectOptionEmpresa.appendChild(optionEmpresa);
+            });
+        });
+
+
     }
 }
