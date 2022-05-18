@@ -53,13 +53,21 @@
   
                       <div class="col">
                           <div class="form-outline">
-                              <label class="form-label" for="form6Example3">Alugado/Locado: </label>
+                              <label class="form-label" for="form6Example3">Equipamento Alugado? </label>
                               <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                <% if (equipment.alugado == true) { %>
+                                  <input class="form-check-input" type="radio" name="alugado" id="inlineRadio1" value="1" checked>
+                                <% } else { %>
+                                  <input class="form-check-input" type="radio" name="alugado" id="inlineRadio1" value="1">
+                                <% } %>
                                   <label class="form-check-label" for="inlineRadio1">Sim</label>
                               </div>
                               <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                <% if (equipment.alugado == false) { %>
+                                  <input class="form-check-input" type="radio" name="alugado" id="inlineRadio2" value="0" checked>
+                                <% } else { %>
+                                  <input class="form-check-input" type="radio" name="alugado" id="inlineRadio2" value="0">
+                                <% } %>
                                   <label class="form-check-label" for="inlineRadio2">Não</label>
                               </div>
                           </div>
@@ -69,7 +77,7 @@
                   <div class="row mb-4">
                       <div class="col">
                           <div class="form-outline">
-                              <select class="form-select secretaria-select" id="form6Example4" name="local" aria-label="Selecione uma secretaria" placeholder="Selecione uma secretaria" required>
+                              <select class="form-select secretaria-select" id="form6Example4" name="secretaria" aria-label="Selecione uma secretaria" placeholder="Selecione uma secretaria" required>
                                   <option  value="<%= equipment.secretaria %>"></option>
                               </select>
                               <label class="form-label" for="form6Example4">Secretaria</label>

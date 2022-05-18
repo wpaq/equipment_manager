@@ -23,8 +23,16 @@ export default class Equipment extends Model {
                     type: Sequelize.STRING,
                     defaultValue: ''
                 },
-                local: {
+                secretaria: {
                     type: Sequelize.STRING,
+                    defaultValue: ''
+                },
+                setor: {
+                    type: Sequelize.STRING,
+                    defaultValue: ''
+                },
+                alugado: {
+                    type: Sequelize.BOOLEAN,
                     defaultValue: ''
                 },
                 responsavel: {
@@ -50,7 +58,8 @@ export default class Equipment extends Model {
         this.addHook('beforeSave', async (equipment) => {
             equipment.equipamento = await equipment.equipamento.toUpperCase();
             equipment.empresa = await equipment.empresa.toUpperCase();
-            equipment.local = await equipment.local.toUpperCase();
+            equipment.secretaria = await equipment.secretaria.toUpperCase();
+            equipment.setor = await equipment.setor.toUpperCase();
             equipment.responsavel = await equipment.responsavel.toUpperCase();
 
             equipment.data_verificacao = await equipment.data_verificacao.split('-').reverse().join('/');

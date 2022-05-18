@@ -22,6 +22,14 @@ export default {
     },
 
     actions() {
+        if (this.tdEquipmentAlugado) {
+            if (this.tdEquipmentAlugado.innerHTML == 'false') {
+                this.tdEquipmentAlugado.innerHTML = 'NÃO'
+            } else if (this.tdEquipmentAlugado.innerHTML == 'true') {
+                this.tdEquipmentAlugado.innerHTML = 'SIM'
+            }
+        }
+
         if (this.data_verificacao) {
             $(this.data_verificacao).mask("00/00/0000", {placeholder: "__/__/____"});
         }
@@ -84,7 +92,7 @@ export default {
                             optionSecretaria.innerHTML = elem.secretarias[i].nome;
                             optionSecretaria.value = elem.secretarias[i].nome;
             
-                            this.selectOptionSecretaria.appendChild(optionSecretaria);
+                        this.selectOptionSecretaria.appendChild(optionSecretaria);
             
                         // select option secretaria onchange
                         this.selectOptionSecretaria.addEventListener('change', () => {
@@ -139,6 +147,6 @@ export default {
                 }
             });
             // End forEach data
-        }
+        }        
     }
 }

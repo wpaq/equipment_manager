@@ -7,15 +7,15 @@ class HomeController {
         const qtd_limit = 5;
 
         const equipments = await new GetAllEquipments_Service().execute(qtd_limit);
-        await new GetAllQRCodeImages_Service().execute(qtd_limit);      
-
+        await new GetAllQRCodeImages_Service().execute(qtd_limit);  
+        
         return res.status(200).render('index', { 
             equipments: equipments.rows, 
             equipments_qtd: equipments.count, 
             title: 'Dashboard'
         });      
     } catch (err) {
-        return req.session.save(() => res.status(404).render('404'));
+        return req.session.save(() => res.status(400).render('404'));
     }
   }
 

@@ -14,7 +14,8 @@ export class GenerateQRCodeImageBuffer_Service {
                 .replace(/\{"/g, "")
                 .replace(/\":"/g, ": ")
                 .replace(/\","/g, "\n-----\n")
-                .replace(/\"}/g, "");
+                .replace(/\"}/g, "")
+            
 
             // generate qrcode image
             await QRCode.toFile(filepath, dataFormated);      
