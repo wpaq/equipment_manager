@@ -12,22 +12,18 @@ export default {
         this.qrcodeLink = document.querySelectorAll('.qrcodeLink');
         this.qrcodeImage = document.querySelector('.qrcodeImage');
         this.qrcodeImageLinkDownload = document.querySelector('.qrCodeImageLinkDownload');
-        this.equipmentSelect = document.querySelector('.equipment-select');
 
-        this.dataa = document.querySelector('#form6Example7');
+        this.data_verificacao = document.querySelector('#form6Example7');
 
-        this.selectOptionEquipment = document.querySelector('#form6Example2');
+        this.selectOptionEquipment = document.querySelector('.equipment-select');
         this.selectOptionEmpresa = document.querySelector('.empresa-select');
+        this.selectOptionSecretaria = document.querySelector('.secretaria-select');
+        this.selectOptionSetor = document.querySelector('.setor-select');
     },
 
     actions() {
-        // mask date jquery
-        if (this.equipmentDate) {
-            $(this.equipmentDate).mask("00/00/0000");
-        }  
-
-        if (this.dataa) {
-            $(this.dataa).mask("00/00/0000");
+        if (this.data_verificacao) {
+            $(this.data_verificacao).mask("00/00/0000", {placeholder: "__/__/____"});
         }
 
         $(function () {
@@ -37,19 +33,6 @@ export default {
         $(document).ready( function () {
             $('#myTable').DataTable();
         } );
-
-
-        if (this.equipmentSelect) {
-            if (this.equipmentSelect.value === 'GABINETE') {
-                this.equipmentSelect.options[1].selected = 'selected';
-            } 
-            if (this.equipmentSelect.value === 'MONITOR') {
-                this.equipmentSelect.options[2].selected = 'selected';
-            } 
-            if (this.equipmentSelect.value === 'ESTABILIZADOR') {
-                this.equipmentSelect.options[3].selected = 'selected';
-            } 
-        }
 
         if (this.btn) {
             this.btn.addEventListener('click', () => {
@@ -92,43 +75,70 @@ export default {
     },
 
     arraySelectOption() {
-        const dataJson = {
-            secretarias: [
-                { nome: 'SEAD', setores: [ 'PAD', 'RH' ]},
-                { nome: 'AMAJU', setores: [ 'AAA', 'AAA' ]},
-            ]
-        }
-        for (var index in dataJson ) {
-            console.log(dataJson[index])
-        }
+        if (this.selectOptionEquipment) {
+            data.forEach(elem => {
+                if (elem.secretarias) {
+                    for (let i = 0; i < elem.secretarias.length; i++) {
+                        // create option secretaria
+                        const optionSecretaria = document.createElement("option");
+                            optionSecretaria.innerHTML = elem.secretarias[i].nome;
+                            optionSecretaria.value = elem.secretarias[i].nome;
+            
+                            this.selectOptionSecretaria.appendChild(optionSecretaria);
+            
+                        // select option secretaria onchange
+                        this.selectOptionSecretaria.addEventListener('change', () => {
+                            if (this.selectOptionSecretaria.value === elem.secretarias[i].nome) { 
+                                
+                                // clear options select and append option with value database
+                                const optionEmpty = this.selectOptionSetor[0];
+                                $(this.selectOptionSetor).empty();
+                                this.selectOptionSetor.appendChild(optionEmpty);
+            
+                                for (let j in elem.secretarias[i].setores) {
+                                    // create options with setores value
+                                    const optionSetor = document.createElement("option");
+                                    optionSetor.innerHTML = elem.secretarias[i].setores[j];
+                                    optionSetor.value = elem.secretarias[i].setores[j];
+            
+                                    this.selectOptionSetor.appendChild(optionSetor);
+                                }                        
+                            }
+                        });
+                    }    
+                }
 
-        // equipamentos data
+                if (elem.equipamentos) {
+                    for (let i in elem.equipamentos) {
+                        const optionEquipamento = document.createElement("option");
+                            optionEquipamento.innerHTML = elem.equipamentos[i];
+                            optionEquipamento.value = elem.equipamentos[i];
+            
+                        this.selectOptionEquipment.appendChild(optionEquipamento);
 
-        var arrays = data.map(Object.values);
-        var equipamentos = arrays[0];
-        var secretarias = arrays[1];
-        var empresas = arrays[2];
+                        if (this.selectOptionEquipment.value === elem.equipamentos[i]) {
+                            i++;
+                            this.selectOptionEquipment.options[i].selected = 'selected';
+                        }
+                    }
+                }
 
-        equipamentos.forEach(elem => {
-            elem.forEach(equip => {
-                const optionEquipamento = document.createElement("option");
-                optionEquipamento.innerHTML = equip;
-                optionEquipamento.value = equip;
+                if (elem.empresas) {
+                    for (let i in elem.empresas) {
+                        const optionEmpresa = document.createElement("option");
+                        optionEmpresa.innerHTML = elem.empresas[i];
+                        optionEmpresa.value = elem.empresas[i];
+        
+                        this.selectOptionEmpresa.appendChild(optionEmpresa);
 
-                this.selectOptionEquipment.appendChild(optionEquipamento);
+                        if (this.selectOptionEmpresa.value === elem.empresas[i]) {
+                            i++;
+                            this.selectOptionEmpresa.options[i].selected = 'selected';
+                        }
+                    }
+                }
             });
-        });
-
-        empresas.forEach(elem => {
-            elem.forEach(empresa => {
-                const optionEmpresa = document.createElement("option");
-                optionEmpresa.innerHTML = empresa;
-                optionEmpresa.value = empresa;
-
-                this.selectOptionEmpresa.appendChild(optionEmpresa);
-            });
-        });
-
-
+            // End forEach data
+        }
     }
 }
