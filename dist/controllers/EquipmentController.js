@@ -23,6 +23,12 @@ class EquipmentController {
                         return;   
                     }
 
+                    if (equipments.alugado == true) {
+                        equipments.alugado = 'SIM'
+                    } else if (equipments.alugado == false) {
+                        equipments.alugado = 'NÃO'
+                    }
+
                     return res.status(200).render('equipamentos', { 
                         equipments, 
                         title: 'Equipamentos',
@@ -32,8 +38,8 @@ class EquipmentController {
             }
 
             const equipments = await new (0, _GetAllEquipments_Service.GetAllEquipments_Service)().execute();
-            await new (0, _GetAllQRCodeImages_Service.GetAllQRCodeImages_Service)().execute();      
-    
+            await new (0, _GetAllQRCodeImages_Service.GetAllQRCodeImages_Service)().execute(); 
+            
             return res.status(200).render('equipamentos', { 
                 equipments: equipments.rows, 
                 equipments_qtd: equipments.count, 

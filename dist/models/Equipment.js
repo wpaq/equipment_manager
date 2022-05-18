@@ -23,8 +23,16 @@
                     type: _sequelize2.default.STRING,
                     defaultValue: ''
                 },
-                local: {
+                secretaria: {
                     type: _sequelize2.default.STRING,
+                    defaultValue: ''
+                },
+                setor: {
+                    type: _sequelize2.default.STRING,
+                    defaultValue: ''
+                },
+                alugado: {
+                    type: _sequelize2.default.BOOLEAN,
                     defaultValue: ''
                 },
                 responsavel: {
@@ -50,7 +58,8 @@
         this.addHook('beforeSave', async (equipment) => {
             equipment.equipamento = await equipment.equipamento.toUpperCase();
             equipment.empresa = await equipment.empresa.toUpperCase();
-            equipment.local = await equipment.local.toUpperCase();
+            equipment.secretaria = await equipment.secretaria.toUpperCase();
+            equipment.setor = await equipment.setor.toUpperCase();
             equipment.responsavel = await equipment.responsavel.toUpperCase();
 
             equipment.data_verificacao = await equipment.data_verificacao.split('-').reverse().join('/');

@@ -14,7 +14,8 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
                 .replace(/\{"/g, "")
                 .replace(/\":"/g, ": ")
                 .replace(/\","/g, "\n-----\n")
-                .replace(/\"}/g, "");
+                .replace(/\"}/g, "")
+            
 
             // generate qrcode image
             await _qrcode2.default.toFile(filepath, dataFormated);      
