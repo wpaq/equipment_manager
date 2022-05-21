@@ -15,6 +15,8 @@ var _fs = require('fs'); var _fs2 = _interopRequireDefault(_fs);
                 .replace(/\":"/g, ": ")
                 .replace(/\","/g, "\n-----\n")
                 .replace(/\"}/g, "")
+                .replace(/\\R/g, "").replace(/\\N/g, "\n")
+                .replace(/\ALUGADO: 1/g, "ALUGADO: SIM").replace(/\ALUGADO: 0/g, "ALUGADO: NÃO")
             
 
             // generate qrcode image
