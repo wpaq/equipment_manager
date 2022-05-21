@@ -6,7 +6,7 @@ export default [
         secretarias: [
             { 
                 nome: 'SEAD', 
-                setores: ['RH', 'PAD', 'CPD', 'ASESSORIA JURÍDICA', 'DIRETORIA ADMINISTRATIVA', 'PATRIMÔNIO'] 
+                setores: ['RH', 'PAD', 'CPD', 'ASESSORIA JURÍDICA', 'DIRETORIA ADMINISTRATIVA', 'PATRIMÔNIO', 'DTI'] 
             },
 
             { 

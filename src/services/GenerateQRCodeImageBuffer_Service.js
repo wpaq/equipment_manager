@@ -15,6 +15,8 @@ export class GenerateQRCodeImageBuffer_Service {
                 .replace(/\":"/g, ": ")
                 .replace(/\","/g, "\n-----\n")
                 .replace(/\"}/g, "")
+                .replace(/\\R/g, "").replace(/\\N/g, "\n")
+                .replace(/\ALUGADO: 1/g, "ALUGADO: SIM").replace(/\ALUGADO: 0/g, "ALUGADO: NÃO")
             
 
             // generate qrcode image

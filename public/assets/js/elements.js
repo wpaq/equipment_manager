@@ -19,15 +19,19 @@ export default {
         this.selectOptionEmpresa = document.querySelector('.empresa-select');
         this.selectOptionSecretaria = document.querySelector('.secretaria-select');
         this.selectOptionSetor = document.querySelector('.setor-select');
+
+        this.tdEquipmentAlugado = document.querySelectorAll('.td-equipment-alugado');
     },
 
     actions() {
         if (this.tdEquipmentAlugado) {
-            if (this.tdEquipmentAlugado.innerHTML == 'false') {
-                this.tdEquipmentAlugado.innerHTML = 'NÃO'
-            } else if (this.tdEquipmentAlugado.innerHTML == 'true') {
-                this.tdEquipmentAlugado.innerHTML = 'SIM'
-            }
+            this.tdEquipmentAlugado.forEach(td => {
+                if (td.innerHTML == 'false') {
+                    td.innerHTML = 'NÃO'
+                } else if (td.innerHTML == 'true') {
+                    td.innerHTML = 'SIM'
+                } 
+            });
         }
 
         if (this.data_verificacao) {
@@ -91,11 +95,37 @@ export default {
                         const optionSecretaria = document.createElement("option");
                             optionSecretaria.innerHTML = elem.secretarias[i].nome;
                             optionSecretaria.value = elem.secretarias[i].nome;
-            
+                            
                         this.selectOptionSecretaria.appendChild(optionSecretaria);
+
+                        if (this.selectOptionSecretaria.value === elem.secretarias[i].nome) {
+                            i++
+                            this.selectOptionSecretaria.options[i].selected = 'selected';
+                            i--
+
+                            const optionEmpty = this.selectOptionSetor[0];
+                                $(this.selectOptionSetor).empty();
+                                this.selectOptionSetor.appendChild(optionEmpty);
             
-                        // select option secretaria onchange
+                                for (let j in elem.secretarias[i].setores) {
+                                    // create options with setores value
+                                    const optionSetor = document.createElement("option");
+                                    optionSetor.innerHTML = elem.secretarias[i].setores[j];
+                                    optionSetor.value = elem.secretarias[i].setores[j];
+            
+                                    this.selectOptionSetor.appendChild(optionSetor);
+
+                                    if (this.selectOptionSetor.value === elem.secretarias[i].setores[j]) {
+                                        j++
+                                        this.selectOptionSetor.options[j].selected = 'selected';
+                                        j--
+                                    }
+                                }    
+                        }                        
+            
+                        // select option secretaria onchange                        
                         this.selectOptionSecretaria.addEventListener('change', () => {
+
                             if (this.selectOptionSecretaria.value === elem.secretarias[i].nome) { 
                                 
                                 // clear options select and append option with value database
@@ -148,5 +178,5 @@ export default {
             });
             // End forEach data
         }        
-    }
+    },
 }
