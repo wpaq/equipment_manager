@@ -262,7 +262,12 @@ a {
     left: 280px;
 }
 /* -- // SIDEBAR -- */
-
+.table-responsive.table-ellipsis tbody td {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+  }
 /* PAGEHEADER */
 .page-breadcrumb {
     position: relative;

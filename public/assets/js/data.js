@@ -1,22 +1,22 @@
 export default [
     { 
-        equipamentos: ["GABINETE", "MONITOR", "ESTABILIZADOR", "IMPRESSORA"]
+        equipamentos: ["GABINETE", "MONITOR", "ESTABILIZADOR", "IMPRESSORA"].sort()
     },
     {
         secretarias: [
             { 
                 nome: 'SEAD', 
-                setores: ['RH', 'PAD', 'CPD', 'ASESSORIA JURÍDICA', 'DIRETORIA ADMINISTRATIVA', 'PATRIMÔNIO', 'DTI'] 
+                setores: ['RECURSOS HUMANOS', 'PAD', 'CPD', 'ASESSORIA JURÍDICA', 'DIRETORIA ADMINISTRATIVA', 'PATRIMÔNIO', 'DTI'].sort() 
             },
 
             { 
                 nome: 'AMAJU',
-                setores: ['ATENDIMENTO', 'GALPÃO'] 
+                setores: ['ATENDIMENTO', 'GALPÃO'].sort() 
             }
         ]
     },
     { 
-        empresas: ["PMJN", "MOREIA"] 
+        empresas: ["PMJN", "MOREIA"].sort() 
     }
 ]
 
