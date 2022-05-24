@@ -7,7 +7,7 @@ class HomeController {
         const qtd_limit = 5;
 
         const equipments = await new GetAllEquipments_Service().execute(qtd_limit);
-        await new GetAllQRCodeImages_Service().execute(qtd_limit);  
+        await new GetAllQRCodeImages_Service().execute();  
         
         return res.status(200).render('index', { 
             equipments: equipments.rows, 

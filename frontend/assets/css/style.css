@@ -242,6 +242,11 @@ a {
     left: 280px;
 }
 
+.sidebar-active ~ .container-create-equipment {
+    width: calc(100% - 280px);
+    left: 280px;
+}
+
 .sidebar-active ~ .page-breadcrumb {
     width: calc(100% - 280px);
     left: 280px;
@@ -453,6 +458,18 @@ a {
     -moz-animation: fadein 1.3s; /* Firefox */
     -webkit-animation: fadein 1.3s; /* Safari and Chrome */
     -o-animation: fadein 1.3s; /* Opera */
+}
+
+.container-create-equipment {
+    position: relative;
+    width: calc(100% - 78px);
+    left: 78px;
+    padding: 20px;
+    min-height: 100px;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    transition: all 0.4s ease;
 }
 
 .equipments .recents {
